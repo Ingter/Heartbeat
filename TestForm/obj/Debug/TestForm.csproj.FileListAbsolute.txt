@@ -1,0 +1,15 @@
+C:\Users\Admin\source\repos\TestForm\TestForm\bin\Debug\TestForm.exe.config
+C:\Users\Admin\source\repos\TestForm\TestForm\bin\Debug\TestForm.exe
+C:\Users\Admin\source\repos\TestForm\TestForm\bin\Debug\TestForm.pdb
+C:\Users\Admin\source\repos\TestForm\TestForm\obj\Debug\TestForm.csprojAssemblyReference.cache
+C:\Users\Admin\source\repos\TestForm\TestForm\obj\Debug\TestForm.Properties.Resources.resources
+C:\Users\Admin\source\repos\TestForm\TestForm\obj\Debug\TestForm.csproj.GenerateResource.cache
+C:\Users\Admin\source\repos\TestForm\TestForm\obj\Debug\TestForm.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\TestForm\TestForm\obj\Debug\TestForm.exe
+C:\Users\Admin\source\repos\TestForm\TestForm\obj\Debug\TestForm.pdb
+C:\Users\Admin\source\repos\TestForm\TestForm\obj\Debug\TestForm.Man_Page.resources
+C:\Users\Admin\source\repos\TestForm\TestForm\obj\Debug\TestForm.Regis_Page.resources
+C:\Users\Admin\source\repos\TestForm\TestForm\obj\Debug\TestForm.Detail_Page.resources
+C:\Users\Admin\source\repos\TestForm\TestForm\obj\Debug\TestForm.Login.resources
+C:\Users\Admin\source\repos\TestForm\TestForm\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\Users\Admin\source\repos\TestForm\TestForm\obj\Debug\TestForm.csproj.CopyComplete
