@@ -1,4 +1,4 @@
-﻿using Oracle.ManagedDataAccess.Client;
+﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,21 +9,26 @@ namespace TestForm
 {
     class LoginHandler
     {
-        string strConn = "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)" +
-"(HOST=192.168.0.22)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=xe)));User Id=heartbeat;Password=heartbeat;";
 
-        OracleConnection conn;
-        OracleCommand cmd;
+        public string strConn = "Server=192.168.0.22;" +
+                                "Database=heartbeat;" +
+                                "Uid=heartbeat;" +
+                                "Pwd=1234;" +
+                                "charset=utf8;";
+
+        public MySqlConnection conn;
+        public MySqlCommand cmd;
+        public MySqlDataReader rdr;
 
         public bool LoginCheck(string id, string password)
         {
-            conn = new OracleConnection(strConn);
-            cmd = new OracleCommand();
+            conn = new MySqlConnection(strConn);
+            cmd = new MySqlCommand();
             conn.Open();
             cmd.Connection = conn;
 
             cmd.CommandText = "select * from manager_info";
-            OracleDataReader rdr = cmd.ExecuteReader();
+            rdr = cmd.ExecuteReader();
 
 
             while (rdr.Read())

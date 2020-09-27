@@ -1,4 +1,4 @@
-﻿using Oracle.ManagedDataAccess.Client;
+﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,11 +14,15 @@ namespace TestForm
     public partial class Man_Page : Form
     {
 
-        string strConn = "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)" +
-     "(HOST=192.168.0.22)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=xe)));User Id=heartbeat;Password=heartbeat;";
+        public string strConn = "Server=192.168.0.22;" +
+                                "Database=heartbeat;" +
+                                "Uid=heartbeat;" +
+                                "Pwd=1234;" +
+                                "charset=utf8;";
 
-        OracleConnection conn;
-        OracleCommand cmd;
+        public MySqlConnection conn;
+        public MySqlCommand cmd;
+        public MySqlDataReader rdr;
 
         Login login;
         public Man_Page()
@@ -63,13 +67,13 @@ namespace TestForm
                     break;
             }
 
-            conn = new OracleConnection(strConn);
-            cmd = new OracleCommand();
+            conn = new MySqlConnection(strConn);
+            cmd = new MySqlCommand();
             conn.Open();
             cmd.Connection = conn;
 
             cmd.CommandText = ("select * from emp_detail");
-            OracleDataReader rdr = cmd.ExecuteReader();
+            rdr = cmd.ExecuteReader();
             StringBuilder sb = new StringBuilder();
 
             while (rdr.Read())
@@ -82,7 +86,9 @@ namespace TestForm
 
                 string Heart_rate = rdr["heart_rate"].ToString();
 
-                string[] emp_detail_data = new string[] { Emp_id, Emp_name, Body_temp, Heart_rate };
+                string Dept_name = rdr["dept_name"] as string;
+
+                string[] emp_detail_data = new string[] { Emp_id, Emp_name, Body_temp, Heart_rate, Dept_name };
 
                 dataGridView1.Rows.Add(emp_detail_data);
 
@@ -98,8 +104,8 @@ namespace TestForm
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            conn = new OracleConnection(strConn);
-            cmd = new OracleCommand();
+            conn = new MySqlConnection(strConn);
+            cmd = new MySqlCommand();
             conn.Open();
             cmd.Connection = conn;
 
@@ -109,9 +115,11 @@ namespace TestForm
             if (comboBox1.SelectedIndex == 0)
             {
                 cmd.CommandText = ("select * from emp_detail where dept_name = '검수팀'");
-                OracleDataReader rdr = cmd.ExecuteReader();
+                rdr = cmd.ExecuteReader();
                 //StringBuilder sb = new StringBuilder();
                 dataGridView1.Rows.Clear();
+
+
                 while (rdr.Read())
                 {
                     string Emp_id = rdr["emp_id"] as string;
@@ -122,36 +130,75 @@ namespace TestForm
 
                     string Heart_rate = rdr["heart_rate"].ToString();
 
-                    string[] emp_detail_data = new string[] { Emp_id, Emp_name, Body_temp, Heart_rate };
+                    string Dept_name = rdr["dept_name"] as string;
+
+                    string[] emp_detail_data = new string[] { Emp_id, Emp_name, Body_temp, Heart_rate, Dept_name };
 
                     dataGridView1.Rows.Add(emp_detail_data);
+
                 }
+
+
             }
 
             else if (comboBox1.SelectedIndex == 1)
             {
                 cmd.CommandText = ("select * from emp_detail where dept_name = '포장팀'");
-                OracleDataReader rdr = cmd.ExecuteReader();
+                rdr = cmd.ExecuteReader();
                 //StringBuilder sb = new StringBuilder();
                 dataGridView1.Rows.Clear();
+
                 while (rdr.Read())
                 {
-                    string emp_id = rdr["emp_id"] as string;
+                    string Emp_id = rdr["emp_id"] as string;
 
-                    string emp_name = rdr["emp_name"] as string;
+                    string Emp_name = rdr["emp_name"] as string;
 
-                    string body_temp = rdr["body_temp"].ToString();
+                    string Body_temp = rdr["body_temp"].ToString();
 
-                    string heart_rate = rdr["heart_rate"].ToString();
+                    string Heart_rate = rdr["heart_rate"].ToString();
 
-                    string[] emp_detail_data = new string[] { emp_id, emp_name, body_temp, heart_rate };
+                    string Dept_name = rdr["dept_name"] as string;
+
+                    string[] emp_detail_data = new string[] { Emp_id, Emp_name, Body_temp, Heart_rate, Dept_name };
 
                     dataGridView1.Rows.Add(emp_detail_data);
 
+                }
+
+            }
+            else if (comboBox1.SelectedIndex == 2)
+            {
+                cmd.CommandText = ("select * from emp_detail;");
+                rdr = cmd.ExecuteReader();
+                //StringBuilder sb = new StringBuilder();
+                dataGridView1.Rows.Clear();
+
+                while (rdr.Read())
+                {
+                    string Emp_id = rdr["emp_id"] as string;
+
+                    string Emp_name = rdr["emp_name"] as string;
+
+                    string Body_temp = rdr["body_temp"].ToString();
+
+                    string Heart_rate = rdr["heart_rate"].ToString();
+
+                    string Dept_name = rdr["dept_name"] as string;
+
+                    string[] emp_detail_data = new string[] { Emp_id, Emp_name, Body_temp, Heart_rate, Dept_name };
+
+                    dataGridView1.Rows.Add(emp_detail_data);
 
                 }
+
             }
             conn.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

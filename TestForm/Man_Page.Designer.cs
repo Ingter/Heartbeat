@@ -35,6 +35,7 @@
             this.이름 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.심박수 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.체온 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.부서이름 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -49,17 +50,19 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
             this.이름,
             this.심박수,
-            this.체온});
+            this.체온,
+            this.부서이름});
             this.dataGridView1.Location = new System.Drawing.Point(32, 96);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dataGridView1.RowTemplate.Height = 27;
-            this.dataGridView1.Size = new System.Drawing.Size(544, 312);
+            this.dataGridView1.Size = new System.Drawing.Size(552, 312);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -68,28 +71,30 @@
             this.ID.HeaderText = "ID";
             this.ID.MinimumWidth = 6;
             this.ID.Name = "ID";
-            this.ID.Width = 125;
             // 
             // 이름
             // 
             this.이름.HeaderText = "이름";
             this.이름.MinimumWidth = 6;
             this.이름.Name = "이름";
-            this.이름.Width = 125;
             // 
             // 심박수
             // 
             this.심박수.HeaderText = "심박수";
             this.심박수.MinimumWidth = 6;
             this.심박수.Name = "심박수";
-            this.심박수.Width = 125;
             // 
             // 체온
             // 
             this.체온.HeaderText = "체온";
             this.체온.MinimumWidth = 6;
             this.체온.Name = "체온";
-            this.체온.Width = 125;
+            // 
+            // 부서이름
+            // 
+            this.부서이름.HeaderText = "부서이름";
+            this.부서이름.MinimumWidth = 6;
+            this.부서이름.Name = "부서이름";
             // 
             // label1
             // 
@@ -111,6 +116,7 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "작업자 추가";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label2
             // 
@@ -127,7 +133,8 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "검수팀",
-            "포장팀"});
+            "포장팀",
+            "전체"});
             this.comboBox1.Location = new System.Drawing.Point(624, 96);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(128, 23);
@@ -178,6 +185,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn 이름;
         private System.Windows.Forms.DataGridViewTextBoxColumn 심박수;
         private System.Windows.Forms.DataGridViewTextBoxColumn 체온;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 부서이름;
     }
 }
 
