@@ -36,4 +36,6 @@ C:\Users\Admin\source\repos\TestForm\TestForm\bin\Debug\System.Buffers.xml
 C:\Users\Admin\source\repos\TestForm\TestForm\bin\Debug\System.Memory.xml
 C:\Users\Admin\source\repos\TestForm\TestForm\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\Admin\source\repos\TestForm\TestForm\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
-C:\Users\Admin\source\repos\TestForm\TestForm\obj\Debug\TestForm.Form1.resources
+C:\Users\Admin\source\repos\TestForm\TestForm\obj\Debug\TestForm.Emp_Update.resources
+C:\Users\Admin\source\repos\TestForm\TestForm\obj\Debug\TestForm.RemoveCheck.resources
+C:\Users\Admin\source\repos\TestForm\TestForm\obj\Debug\TestForm.emp_Regis.resources

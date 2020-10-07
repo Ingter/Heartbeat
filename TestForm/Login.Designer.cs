@@ -63,6 +63,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(192, 25);
             this.textBox1.TabIndex = 2;
+            this.textBox1.Text = "admin1";
             // 
             // textBox2
             // 
@@ -71,6 +72,7 @@
             this.textBox2.PasswordChar = '*';
             this.textBox2.Size = new System.Drawing.Size(192, 25);
             this.textBox2.TabIndex = 3;
+            this.textBox2.Text = "1234";
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // label3
@@ -82,6 +84,7 @@
             this.label3.Size = new System.Drawing.Size(107, 45);
             this.label3.TabIndex = 4;
             this.label3.Text = "Login";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // button1
             // 

@@ -10,11 +10,11 @@ namespace TestForm
     class LoginHandler
     {
 
-        public string strConn = "Server=192.168.0.22;" +
-                                "Database=heartbeat;" +
-                                "Uid=heartbeat;" +
-                                "Pwd=1234;" +
-                                "charset=utf8;";
+        public string strConn = "Server=192.168.0.31;" +
+                               "Database=test;" +
+                               "Uid=test;" +
+                               "Pwd=1234;"
+                               ;
 
         public MySqlConnection conn;
         public MySqlCommand cmd;

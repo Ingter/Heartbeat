@@ -14,11 +14,11 @@ namespace TestForm
     public partial class Man_Page : Form
     {
 
-        public string strConn = "Server=192.168.0.22;" +
-                                "Database=heartbeat;" +
-                                "Uid=heartbeat;" +
-                                "Pwd=1234;" +
-                                "charset=utf8;";
+        public string strConn = "Server=192.168.0.31;" +
+                               "Database=test;" +
+                               "Uid=test;" +
+                               "Pwd=1234;" +
+                               "charset=utf8;";
 
         public MySqlConnection conn;
         public MySqlCommand cmd;
@@ -48,7 +48,14 @@ namespace TestForm
 
         private void button2_Click(object sender, EventArgs e)
         {
+            int rowIndex = dataGridView1.CurrentRow.Index;
+
+            MessageBox.Show(dataGridView1.SelectedRows[0].Cells[0].FormattedValue.ToString());
+
+            string name = dataGridView1.SelectedRows[0].Cells[1].FormattedValue.ToString();
+
             Detail_Page DP = new Detail_Page();
+            DP.Passvalue = name;  // 전달자(Passvalue)를 통해서 dp페이지로 전달
             DP.Show();
         }
 
@@ -72,7 +79,7 @@ namespace TestForm
             conn.Open();
             cmd.Connection = conn;
 
-            cmd.CommandText = ("select * from emp_detail");
+            cmd.CommandText = ("select * from emp_info");
             rdr = cmd.ExecuteReader();
             StringBuilder sb = new StringBuilder();
 
@@ -82,15 +89,24 @@ namespace TestForm
 
                 string Emp_name = rdr["emp_name"] as string;
 
-                string Body_temp = rdr["body_temp"].ToString();
+                string Emp_email = rdr["emp_email"] as string;
 
-                string Heart_rate = rdr["heart_rate"].ToString();
+                string Emp_tel = rdr["emp_tel"] as string;
 
-                string Dept_name = rdr["dept_name"] as string;
+                string Emp_addr = rdr["emp_addr"] as string;
 
-                string[] emp_detail_data = new string[] { Emp_id, Emp_name, Body_temp, Heart_rate, Dept_name };
+                string Emp_emer_tel = rdr["emp_emer_tel"] as string;
 
-                dataGridView1.Rows.Add(emp_detail_data);
+                string Blood_type = rdr["blood_type"] as string;
+
+                string dept_id = rdr["dept_id"] as string;
+
+
+
+                string[] emp_info = new string[] { Emp_id, Emp_name, Emp_email,
+                                                    Emp_tel, Emp_addr, Emp_emer_tel, Blood_type, dept_id };
+
+                dataGridView1.Rows.Add(emp_info);
 
             }
 
@@ -98,7 +114,7 @@ namespace TestForm
         }
         private void LoginSuccess(string userName)
         {
-            
+
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -114,7 +130,7 @@ namespace TestForm
 
             if (comboBox1.SelectedIndex == 0)
             {
-                cmd.CommandText = ("select * from emp_detail where dept_name = '검수팀'");
+                cmd.CommandText = ("select * from emp_info where dept_id = '1'");
                 rdr = cmd.ExecuteReader();
                 //StringBuilder sb = new StringBuilder();
                 dataGridView1.Rows.Clear();
@@ -126,15 +142,22 @@ namespace TestForm
 
                     string Emp_name = rdr["emp_name"] as string;
 
-                    string Body_temp = rdr["body_temp"].ToString();
+                    string Emp_email = rdr["emp_email"] as string;
 
-                    string Heart_rate = rdr["heart_rate"].ToString();
+                    string Emp_tel = rdr["emp_tel"] as string;
 
-                    string Dept_name = rdr["dept_name"] as string;
+                    string Emp_addr = rdr["emp_addr"] as string;
 
-                    string[] emp_detail_data = new string[] { Emp_id, Emp_name, Body_temp, Heart_rate, Dept_name };
+                    string Emp_emer_tel = rdr["emp_emer_tel"] as string;
 
-                    dataGridView1.Rows.Add(emp_detail_data);
+                    string Blood_type = rdr["blood_type"] as string;
+
+                    string dept_id = rdr["dept_id"] as string;
+
+
+                    string[] emp_info = new string[] { Emp_id, Emp_name, Emp_email, Emp_tel, Emp_addr, Emp_emer_tel, Blood_type, dept_id };
+
+                    dataGridView1.Rows.Add(emp_info);
 
                 }
 
@@ -143,7 +166,7 @@ namespace TestForm
 
             else if (comboBox1.SelectedIndex == 1)
             {
-                cmd.CommandText = ("select * from emp_detail where dept_name = '포장팀'");
+                cmd.CommandText = ("select * from emp_info where dept_id = '2'");
                 rdr = cmd.ExecuteReader();
                 //StringBuilder sb = new StringBuilder();
                 dataGridView1.Rows.Clear();
@@ -154,22 +177,30 @@ namespace TestForm
 
                     string Emp_name = rdr["emp_name"] as string;
 
-                    string Body_temp = rdr["body_temp"].ToString();
+                    string Emp_email = rdr["emp_email"] as string;
 
-                    string Heart_rate = rdr["heart_rate"].ToString();
+                    string Emp_tel = rdr["emp_tel"] as string;
 
-                    string Dept_name = rdr["dept_name"] as string;
+                    string Emp_addr = rdr["emp_addr"] as string;
 
-                    string[] emp_detail_data = new string[] { Emp_id, Emp_name, Body_temp, Heart_rate, Dept_name };
+                    string Emp_emer_tel = rdr["emp_emer_tel"] as string;
 
-                    dataGridView1.Rows.Add(emp_detail_data);
+                    string Blood_type = rdr["blood_type"] as string;
+
+                    string dept_id = rdr["dept_id"] as string;
+
+
+                    string[] emp_info = new string[] { Emp_id, Emp_name, Emp_email, Emp_tel, Emp_addr, Emp_emer_tel, Blood_type, dept_id };
+
+                    dataGridView1.Rows.Add(emp_info);
+
 
                 }
 
             }
             else if (comboBox1.SelectedIndex == 2)
             {
-                cmd.CommandText = ("select * from emp_detail;");
+                cmd.CommandText = ("select * from emp_info;");
                 rdr = cmd.ExecuteReader();
                 //StringBuilder sb = new StringBuilder();
                 dataGridView1.Rows.Clear();
@@ -180,15 +211,21 @@ namespace TestForm
 
                     string Emp_name = rdr["emp_name"] as string;
 
-                    string Body_temp = rdr["body_temp"].ToString();
+                    string Emp_email = rdr["emp_email"] as string;
 
-                    string Heart_rate = rdr["heart_rate"].ToString();
+                    string Emp_tel = rdr["emp_tel"] as string;
 
-                    string Dept_name = rdr["dept_name"] as string;
+                    string Emp_addr = rdr["emp_addr"] as string;
 
-                    string[] emp_detail_data = new string[] { Emp_id, Emp_name, Body_temp, Heart_rate, Dept_name };
+                    string Emp_emer_tel = rdr["emp_emer_tel"] as string;
 
-                    dataGridView1.Rows.Add(emp_detail_data);
+                    string Blood_type = rdr["blood_type"] as string;
+
+                    string dept_id = rdr["dept_id"] as string;
+
+                    string[] emp_info = new string[] { Emp_id, Emp_name, Emp_email, Emp_tel, Emp_addr, Emp_emer_tel, Blood_type, dept_id };
+
+                    dataGridView1.Rows.Add(emp_info);
 
                 }
 
@@ -198,7 +235,43 @@ namespace TestForm
 
         private void button1_Click(object sender, EventArgs e)
         {
+            emp_Regis f1 = new emp_Regis();
+            f1.ShowDialog();
+        }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            conn = new MySqlConnection(strConn);
+            cmd = new MySqlCommand();
+            conn.Open();
+            cmd.Connection = conn;
+
+            cmd.CommandText = ("select * from emp_info;");
+            rdr = cmd.ExecuteReader();
+            dataGridView1.Rows.Clear();
+
+            while (rdr.Read())
+            {
+                string Emp_id = rdr["emp_id"] as string;
+
+                string Emp_name = rdr["emp_name"] as string;
+
+                string Emp_email = rdr["emp_email"] as string;
+
+                string Emp_tel = rdr["emp_tel"] as string;
+
+                string Emp_addr = rdr["emp_addr"] as string;
+
+                string Emp_emer_tel = rdr["emp_emer_tel"] as string;
+
+                string Blood_type = rdr["blood_type"] as string;
+
+                string dept_id = rdr["dept_id"] as string;
+
+                string[] emp_info = new string[] { Emp_id, Emp_name, Emp_email, Emp_tel, Emp_addr, Emp_emer_tel, Blood_type, dept_id };
+
+                dataGridView1.Rows.Add(emp_info);
+            }
         }
     }
 }

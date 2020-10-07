@@ -35,15 +35,20 @@
             this.시간 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.심박수 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.체온 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.emp_id = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.na = new System.Windows.Forms.Label();
+            this.emp_d = new System.Windows.Forms.Label();
+            this.emp_addr = new System.Windows.Forms.Label();
+            this.emp_bl = new System.Windows.Forms.Label();
+            this.emp_tel = new System.Windows.Forms.Label();
+            this.emp_etel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -65,6 +70,7 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "회원수정";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -74,6 +80,7 @@
             this.button2.TabIndex = 2;
             this.button2.Text = "회원삭제";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // dataGridView1
             // 
@@ -110,15 +117,6 @@
             this.체온.MinimumWidth = 6;
             this.체온.Name = "체온";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(96, 240);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 15);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "이름넣는곳";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -144,7 +142,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(67, 15);
             this.label4.TabIndex = 7;
-            this.label4.Text = "부서이름";
+            this.label4.Text = "부서번호";
             // 
             // label5
             // 
@@ -164,14 +162,14 @@
             this.label6.TabIndex = 9;
             this.label6.Text = "혈액형";
             // 
-            // label7
+            // emp_id
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(112, 272);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(48, 15);
-            this.label7.TabIndex = 10;
-            this.label7.Text = "직원id";
+            this.emp_id.AutoSize = true;
+            this.emp_id.Location = new System.Drawing.Point(112, 272);
+            this.emp_id.Name = "emp_id";
+            this.emp_id.Size = new System.Drawing.Size(48, 15);
+            this.emp_id.TabIndex = 10;
+            this.emp_id.Text = "직원id";
             // 
             // panel1
             // 
@@ -189,20 +187,79 @@
             this.panel2.Size = new System.Drawing.Size(576, 120);
             this.panel2.TabIndex = 12;
             // 
+            // na
+            // 
+            this.na.AutoSize = true;
+            this.na.Location = new System.Drawing.Point(112, 240);
+            this.na.Name = "na";
+            this.na.Size = new System.Drawing.Size(23, 15);
+            this.na.TabIndex = 13;
+            this.na.Text = "na";
+            // 
+            // emp_d
+            // 
+            this.emp_d.AutoSize = true;
+            this.emp_d.Location = new System.Drawing.Point(392, 472);
+            this.emp_d.Name = "emp_d";
+            this.emp_d.Size = new System.Drawing.Size(50, 15);
+            this.emp_d.TabIndex = 14;
+            this.emp_d.Text = "emp_d";
+            // 
+            // emp_addr
+            // 
+            this.emp_addr.AutoSize = true;
+            this.emp_addr.Location = new System.Drawing.Point(392, 504);
+            this.emp_addr.Name = "emp_addr";
+            this.emp_addr.Size = new System.Drawing.Size(70, 15);
+            this.emp_addr.TabIndex = 15;
+            this.emp_addr.Text = "emp_addr";
+            // 
+            // emp_bl
+            // 
+            this.emp_bl.AutoSize = true;
+            this.emp_bl.Location = new System.Drawing.Point(392, 536);
+            this.emp_bl.Name = "emp_bl";
+            this.emp_bl.Size = new System.Drawing.Size(53, 15);
+            this.emp_bl.TabIndex = 16;
+            this.emp_bl.Text = "emp_bl";
+            // 
+            // emp_tel
+            // 
+            this.emp_tel.AutoSize = true;
+            this.emp_tel.Location = new System.Drawing.Point(648, 472);
+            this.emp_tel.Name = "emp_tel";
+            this.emp_tel.Size = new System.Drawing.Size(57, 15);
+            this.emp_tel.TabIndex = 17;
+            this.emp_tel.Text = "emp_tel";
+            // 
+            // emp_etel
+            // 
+            this.emp_etel.AutoSize = true;
+            this.emp_etel.Location = new System.Drawing.Point(688, 504);
+            this.emp_etel.Name = "emp_etel";
+            this.emp_etel.Size = new System.Drawing.Size(65, 15);
+            this.emp_etel.TabIndex = 18;
+            this.emp_etel.Text = "emp_etel";
+            // 
             // Detail_Page
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(982, 582);
+            this.Controls.Add(this.emp_etel);
+            this.Controls.Add(this.emp_tel);
+            this.Controls.Add(this.emp_bl);
+            this.Controls.Add(this.emp_addr);
+            this.Controls.Add(this.emp_d);
+            this.Controls.Add(this.na);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.emp_id);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -226,15 +283,20 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn 시간;
         private System.Windows.Forms.DataGridViewTextBoxColumn 심박수;
         private System.Windows.Forms.DataGridViewTextBoxColumn 체온;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label emp_id;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label na;
+        private System.Windows.Forms.Label emp_d;
+        private System.Windows.Forms.Label emp_addr;
+        private System.Windows.Forms.Label emp_bl;
+        private System.Windows.Forms.Label emp_tel;
+        private System.Windows.Forms.Label emp_etel;
     }
 }
 

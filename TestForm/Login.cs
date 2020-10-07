@@ -43,9 +43,9 @@ namespace TestForm
         private void button1_Click(object sender, EventArgs e)
         {
             LoginHandler loginHandler = new LoginHandler();
-            if(ControlCheck())
+            if (ControlCheck())
             {
-                if(loginHandler.LoginCheck(textBox1.Text, textBox2.Text))
+                if (loginHandler.LoginCheck(textBox1.Text, textBox2.Text))
                 {
                     string userName = textBox1.Text;
                     loginEventHandler(userName);
@@ -58,6 +58,7 @@ namespace TestForm
                     textBox2.Clear();
                 }
             }
+
         }
 
         private bool ControlCheck()
@@ -83,6 +84,11 @@ namespace TestForm
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
         {
 
         }
