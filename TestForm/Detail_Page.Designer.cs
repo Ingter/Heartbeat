@@ -59,6 +59,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(64, 48);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(144, 168);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -266,6 +267,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "Detail_Page";
             this.Text = "Detail_Page";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Detail_Page_FormClosing);
             this.Load += new System.EventHandler(this.Detail_Page_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

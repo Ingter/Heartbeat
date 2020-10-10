@@ -9,8 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
+
 namespace TestForm
 {
+
     public partial class Man_Page : Form
     {
 
@@ -50,17 +53,17 @@ namespace TestForm
         {
             int rowIndex = dataGridView1.CurrentRow.Index;
 
-            MessageBox.Show(dataGridView1.SelectedRows[0].Cells[0].FormattedValue.ToString());
-
-            string name = dataGridView1.SelectedRows[0].Cells[1].FormattedValue.ToString();
+            string id = dataGridView1.SelectedRows[0].Cells[0].FormattedValue.ToString();
 
             Detail_Page DP = new Detail_Page();
-            DP.Passvalue = name;  // 전달자(Passvalue)를 통해서 dp페이지로 전달
+            DP.Passvalue = id;  // 전달자(Passvalue)를 통해서 dp페이지로 전달
             DP.Show();
         }
 
         private void Man_Page_Load(object sender, EventArgs e)
         {
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
             Login Li = new Login();
             Li.loginEventHandler += new EventHandler(LoginSuccess);
             switch (Li.ShowDialog())
