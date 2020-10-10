@@ -122,7 +122,7 @@ namespace TestForm
                 }
                 rdr.Close();
 
-                if (imgPath != "")  // 사용자가 이미지를 등록했을 때  실행
+                if (imgPath != "")  // 사용자가 이미지를 등록했을 때  실행ㅁ
                 {
 
                     fs = new FileStream(imgPath, FileMode.Open, FileAccess.Read);
