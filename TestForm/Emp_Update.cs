@@ -154,7 +154,7 @@ namespace TestForm
                                 break;
                             }
 
-                            else // 사용자 정보에 원래 사진이 없었을 때 실행
+                            else // 사용자 정보에 원래 사진이 없었을 때 실행asd
                             {
                                 SQL = $"INSERT INTO image (ImageNo, Image, Image_name) VALUES(@ImageNo, @Image, @ImageName)";
                                 SQL2 = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = '{emp_d.Text}' where emp_name = '{Passvalue2}'";
