@@ -125,7 +125,7 @@ namespace TestForm
                 if (imgPath != "")  // 사용자가 이미지를 등록했을 때  실행ㅁasdfsadf
                 {
 
-                    fs = new FileStream(imgPath, FileMode.Open, FileAccess.Read);
+                    fs = new FileStream($@"C:\Heartbeat\employee_pic\{imgPath}", FileMode.Open, FileAccess.Read);
                     FileSize = (UInt32)fs.Length;
 
                     rawData = new byte[FileSize];
@@ -175,7 +175,7 @@ namespace TestForm
 
                     cmd.Parameters.AddWithValue("@ImageNo", EmpID);
                     cmd.Parameters.AddWithValue("@Image", rawData);
-                    cmd.Parameters.AddWithValue("@ImageName", imgPath);
+                    cmd.Parameters.AddWithValue("@ImageName", $@"C:\Heartbeat\employee_pic\{imgPath}");
 
                     cmd.ExecuteNonQuery();
 
@@ -219,11 +219,12 @@ namespace TestForm
                     pictureBox1.Image = new Bitmap(ofd.FileName);
                     pictureBox1.Tag = ofd.FileName;
                     fs = new FileStream(ofd.FileName, FileMode.Open, FileAccess.Read);
-                    txtPath.Text = ofd.FileName;
+                    txtPath.Text = ofd.SafeFileName;
 
                     fs.Close();
 
                 }
+
                 imgPath = txtPath.Text;
 
                 MessageBox.Show("파일이 정상적으로 업로드 되었습니다.");
