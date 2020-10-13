@@ -38,6 +38,13 @@ namespace TestForm
   
         }
 
+        Detail_Page dp;
+        public Emp_Update(Detail_Page _dp)
+        {
+            InitializeComponent();
+            dp = _dp;
+        }
+
         public Emp_Update()
         {
             InitializeComponent();
@@ -122,7 +129,7 @@ namespace TestForm
                 }
                 rdr.Close();
 
-                if (imgPath != "")  // 사용자가 이미지를 등록했을 때  실행ㅁasdfsadf
+                if (imgPath != "")  // 사용자가 이미지를 등록했을 때  실행
                 {
 
                     fs = new FileStream($@"C:\Heartbeat\employee_pic\{imgPath}", FileMode.Open, FileAccess.Read);
@@ -139,7 +146,7 @@ namespace TestForm
                     cmd.CommandText = ($"select * from image");
                     rdr = cmd.ExecuteReader();
 
-                    if (CountRow != 0)
+                    if (CountRow != 0) //테이블에 행이 있을 때 실행
                     {
                         while (rdr.Read())
                         {
@@ -150,14 +157,14 @@ namespace TestForm
                             if (ImageNumber == EmpID) // 사용자 정보에 원래 사진이 있었을 때 실행
                             {
                                 SQL = $"update image set Image = @Image, Image_name = @ImageName where ImageNo = '{EmpID}'";
-                                SQL2 = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = '{emp_d.Text}' where emp_name = '{Passvalue2}'";
+                                SQL2 = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = '{emp_d.Text}' where emp_id = '{Passvalue2}'";
                                 break;
                             }
 
                             else // 사용자 정보에 원래 사진이 없었을 때 실행asd
                             {
                                 SQL = $"INSERT INTO image (ImageNo, Image, Image_name) VALUES(@ImageNo, @Image, @ImageName)";
-                                SQL2 = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = '{emp_d.Text}' where emp_name = '{Passvalue2}'";
+                                SQL2 = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = '{emp_d.Text}' where emp_id = '{Passvalue2}'";
 
                             }
 
@@ -166,7 +173,7 @@ namespace TestForm
                     else
                     {
                         SQL = $"INSERT INTO image (ImageNo, Image, Image_name) VALUES(@ImageNo, @Image, @ImageName)";
-                        SQL2 = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = '{emp_d.Text}' where emp_name = '{Passvalue2}'";
+                        SQL2 = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = '{emp_d.Text}' where emp_id = '{Passvalue2}'";
                     }
 
                     rdr.Close();
@@ -184,14 +191,70 @@ namespace TestForm
                     MessageBox.Show("수정되었습니다.");
 
 
+                    cmd.CommandText = ($"select * from emp_info where emp_id = '{Passvalue2}'");
+                    rdr = cmd.ExecuteReader();
+
+                    while (rdr.Read())
+                    {
+                        string Emp_id = rdr["emp_id"] as string;
+
+                        string Emp_name = rdr["emp_name"] as string;
+
+                        string Emp_tel = rdr["emp_tel"] as string;
+
+                        string Emp_addr = rdr["emp_addr"] as string;
+
+                        string Emp_emer_tel = rdr["emp_emer_tel"] as string;
+
+                        string blood_type = rdr["blood_type"] as string;
+
+                        string Dept_id = rdr["dept_id"] as string;
+
+                        dp.na.Text = Emp_name;
+                        dp.emp_tel.Text = Emp_tel;
+                        dp.emp_etel.Text = Emp_emer_tel;
+                        dp.emp_addr.Text = Emp_addr;
+                        dp.emp_bl.Text = blood_type;
+                        dp.emp_d.Text = Dept_id;
+
+                    }
+
                     this.Close();
                 }
 
 
                 else
                 {
-                    cmd.CommandText = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = '{emp_d.Text}' where emp_name = '{Passvalue2}'";
+                    cmd.CommandText = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = '{emp_d.Text}' where emp_id = '{Passvalue2}'";
                     cmd.ExecuteNonQuery();
+
+                    cmd.CommandText = ($"select * from emp_info where emp_id = '{Passvalue2}'");
+                    rdr = cmd.ExecuteReader();
+
+                    while (rdr.Read())
+                    {
+                        string Emp_id = rdr["emp_id"] as string;
+
+                        string Emp_name = rdr["emp_name"] as string;
+
+                        string Emp_tel = rdr["emp_tel"] as string;
+
+                        string Emp_addr = rdr["emp_addr"] as string;
+
+                        string Emp_emer_tel = rdr["emp_emer_tel"] as string;
+
+                        string blood_type = rdr["blood_type"] as string;
+
+                        string Dept_id = rdr["dept_id"] as string;
+
+                        dp.na.Text = Emp_name;
+                        dp.emp_tel.Text = Emp_tel;
+                        dp.emp_etel.Text = Emp_emer_tel;
+                        dp.emp_addr.Text = Emp_addr;
+                        dp.emp_bl.Text = blood_type;
+                        dp.emp_d.Text = Dept_id;
+
+                    }
 
                     MessageBox.Show("수정되었습니다.");
                     this.Close();

@@ -28,6 +28,13 @@ namespace TestForm
 
         OpenFileDialog ofd = new OpenFileDialog();
 
+        Man_Page mp;
+        public emp_Regis(Man_Page _mp)
+        {
+            InitializeComponent();
+            mp = _mp;
+        }
+
         public emp_Regis()
         {
             InitializeComponent();
@@ -148,6 +155,41 @@ namespace TestForm
                 this.Close();
             }
 
+        }
+
+        private void emp_Regis_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            conn = new MySqlConnection(strConn);
+            cmd = new MySqlCommand();
+            conn.Open();
+            cmd.Connection = conn;
+
+            cmd.CommandText = ("select * from emp_info;");
+            rdr = cmd.ExecuteReader();
+            mp.dataGridView1.Rows.Clear();
+
+            while (rdr.Read())
+            {
+                string Emp_id = rdr["emp_id"] as string;
+
+                string Emp_name = rdr["emp_name"] as string;
+
+                string Emp_email = rdr["emp_email"] as string;
+
+                string Emp_tel = rdr["emp_tel"] as string;
+
+                string Emp_addr = rdr["emp_addr"] as string;
+
+                string Emp_emer_tel = rdr["emp_emer_tel"] as string;
+
+                string Blood_type = rdr["blood_type"] as string;
+
+                string dept_id = rdr["dept_id"] as string;
+
+                string[] emp_info = new string[] { Emp_id, Emp_name, Emp_email, Emp_tel, Emp_addr, Emp_emer_tel, Blood_type, dept_id };
+
+                mp.dataGridView1.Rows.Add(emp_info);
+            }
         }
     }   
 }

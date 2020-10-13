@@ -55,9 +55,12 @@ namespace TestForm
 
             string id = dataGridView1.SelectedRows[0].Cells[0].FormattedValue.ToString();
 
-            Detail_Page DP = new Detail_Page();
+            //상세 정보 페이지에 
+            Man_Page mp = this;
+            Detail_Page DP = new Detail_Page(mp);
             DP.Passvalue = id;  // 전달자(Passvalue)를 통해서 dp페이지로 전달
-            DP.Show();
+            DP.ShowDialog(this);
+
         }
 
         private void Man_Page_Load(object sender, EventArgs e)
@@ -238,8 +241,15 @@ namespace TestForm
 
         private void button1_Click(object sender, EventArgs e)
         {
-            emp_Regis f1 = new emp_Regis();
-            f1.ShowDialog();
+
+            Man_Page mp = this;
+            emp_Regis f1 = new emp_Regis(mp);
+            f1.ShowDialog(this);
+
+/*            Man_Page mp = this;
+            Detail_Page DP = new Detail_Page(mp);
+            DP.Passvalue = id;  // 전달자(Passvalue)를 통해서 dp페이지로 전달
+            DP.ShowDialog(this);*/
         }
 
         private void button3_Click(object sender, EventArgs e)

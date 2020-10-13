@@ -290,15 +290,15 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label emp_id;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label na;
-        private System.Windows.Forms.Label emp_d;
-        private System.Windows.Forms.Label emp_addr;
-        private System.Windows.Forms.Label emp_bl;
-        private System.Windows.Forms.Label emp_tel;
-        private System.Windows.Forms.Label emp_etel;
+        public System.Windows.Forms.Label emp_id;
+        public System.Windows.Forms.Label na;
+        public System.Windows.Forms.Label emp_d;
+        public System.Windows.Forms.Label emp_addr;
+        public System.Windows.Forms.Label emp_bl;
+        public System.Windows.Forms.Label emp_tel;
+        public System.Windows.Forms.Label emp_etel;
     }
 }
 
