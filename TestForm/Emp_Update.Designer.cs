@@ -222,6 +222,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(617, 533);
             this.Controls.Add(this.txtPath);
             this.Controls.Add(this.button2);
@@ -243,6 +244,8 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Emp_Update";
             this.Text = "Emp_Update";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Emp_Update_FormClosing);

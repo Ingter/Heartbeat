@@ -233,5 +233,15 @@ namespace TestForm
                 mp.dataGridView1.Rows.Add(emp_info);
             }
         }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

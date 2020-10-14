@@ -218,6 +218,21 @@ namespace TestForm
                         dp.emp_d.Text = Dept_id;
 
                     }
+                    rdr.Close();
+                   
+                    cmd.CommandText = ($"select * from image where ImageNo = '{Passvalue2}'");
+                    rdr = cmd.ExecuteReader();
+                    while (rdr.Read())
+                    {
+                        string imgNum = rdr["ImageNo"].ToString();
+                        string ImgName = rdr["Image_name"] as string;
+
+                        if (imgNum != "")   // 등록해뒀던 이미지가 있는 직원만 이미지 불러오도록 함
+                        {
+                            dp.pictureBox1.Image = Image.FromFile(ImgName);
+                        }
+                    }
+                    rdr.Close();
 
                     this.Close();
                 }
