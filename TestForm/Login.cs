@@ -33,12 +33,7 @@ namespace TestForm
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Regis_Page RP = new Regis_Page();
-            RP.Show();
 
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {

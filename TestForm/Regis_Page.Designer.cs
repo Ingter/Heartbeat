@@ -49,7 +49,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Malgun Gothic", 24F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(64, 32);
+            this.label1.Location = new System.Drawing.Point(56, 32);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(437, 54);
             this.label1.TabIndex = 0;

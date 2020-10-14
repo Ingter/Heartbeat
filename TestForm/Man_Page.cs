@@ -286,5 +286,11 @@ namespace TestForm
                 dataGridView1.Rows.Add(emp_info);
             }
         }
+
+        private void Man_Regi_Click(object sender, EventArgs e)
+        {
+            Regis_Page RP = new Regis_Page();
+            RP.ShowDialog();
+        }
     }
 }
