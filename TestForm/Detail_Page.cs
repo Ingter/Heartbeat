@@ -17,8 +17,8 @@ namespace TestForm
     {
         string imgPath = "";
         string ImgName = "";
-        public string strConn = "Server=192.168.0.31;" +
-                                 "Database=test;" +
+        public string strConn = "Server=192.168.0.173;" +
+                                 "Database=heartbeat;" +
                                  "Uid=test;" +
                                  "Pwd=1234;" +
                                  "charset=utf8;";
@@ -73,7 +73,7 @@ namespace TestForm
             emp_id.Text = Passvalue;
 
             // 직원 이미지 불러오기
-            cmd.CommandText = ($"select * from image where ImageNo = '{Passvalue}'");
+            cmd.CommandText = ($"select * from image where ImageNo = {Passvalue}");
             rdr = cmd.ExecuteReader();
             while (rdr.Read())
             {
@@ -88,12 +88,12 @@ namespace TestForm
             rdr.Close();
 
             // 직원 정보 불러오기
-            cmd.CommandText = ($"select * from emp_info where emp_id = '{Passvalue}'");
+            cmd.CommandText = ($"select * from emp_info where emp_id = {Passvalue}");
             rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
             {
-                string Emp_id = rdr["emp_id"] as string;
+                string Emp_id = rdr["emp_id"].ToString();
 
                 string Emp_name = rdr["emp_name"] as string;
 
@@ -107,7 +107,7 @@ namespace TestForm
 
                 string blood_type = rdr["blood_type"] as string;
 
-                string Dept_id = rdr["dept_id"] as string;
+                string Dept_id = rdr["dept_id"].ToString();
 
                 na.Text = Emp_name;
                 emp_d.Text = Dept_id;
@@ -123,12 +123,12 @@ namespace TestForm
             conn.Close();
 
             conn.Open();
-            cmd.CommandText = ($"select * from emp_detail  where emp_id = '{Passvalue}'");
+            cmd.CommandText = ($"select * from emp_detail  where emp_id = {Passvalue}");
             rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
             {
-                string Emp_id = rdr["emp_id"] as string;
+                string Emp_id = rdr["emp_id"].ToString();
 
                 string Emp_name = rdr["emp_name"] as string;
 
@@ -159,13 +159,13 @@ namespace TestForm
                     conn.Open();
                     cmd.Connection = conn;
 
-                    cmd.CommandText = ($"delete from emp_info where emp_id = '{Passvalue}'");
+                    cmd.CommandText = ($"delete from emp_info where emp_id = {Passvalue}");
                     cmd.ExecuteNonQuery();
 
                     conn.Close();
 
                     conn.Open();
-                    cmd.CommandText = ($"delete from image where imageNO = '{emp_id.Text}'");
+                    cmd.CommandText = ($"delete from image where imageNO = {emp_id.Text}");
                     cmd.ExecuteNonQuery();
                     conn.Close();
 
@@ -212,7 +212,7 @@ namespace TestForm
 
             while (rdr.Read())
             {
-                string Emp_id = rdr["emp_id"] as string;
+                string Emp_id = rdr["emp_id"].ToString();
 
                 string Emp_name = rdr["emp_name"] as string;
 
@@ -226,7 +226,7 @@ namespace TestForm
 
                 string Blood_type = rdr["blood_type"] as string;
 
-                string dept_id = rdr["dept_id"] as string;
+                string dept_id = rdr["dept_id"].ToString();
 
                 string[] emp_info = new string[] { Emp_id, Emp_name, Emp_email, Emp_tel, Emp_addr, Emp_emer_tel, Blood_type, dept_id };
 

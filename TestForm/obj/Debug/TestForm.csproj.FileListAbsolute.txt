@@ -162,3 +162,44 @@ C:\Heartbeat\TestForm\obj\Debug\TestForm.csproj.CoreCompileInputs.cache
 C:\Heartbeat\TestForm\obj\Debug\TestForm.csproj.CopyComplete
 C:\Heartbeat\TestForm\obj\Debug\TestForm.exe
 C:\Heartbeat\TestForm\obj\Debug\TestForm.pdb
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\bin\Debug\TestForm.exe.config
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\bin\Debug\TestForm.exe
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\bin\Debug\TestForm.pdb
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\bin\Debug\Google.Protobuf.dll
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\bin\Debug\MySql.Data.dll
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\bin\Debug\Renci.SshNet.dll
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\bin\Debug\System.Buffers.dll
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\bin\Debug\System.Memory.dll
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\bin\Debug\Zstandard.Net.dll
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\bin\Debug\Google.Protobuf.xml
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\bin\Debug\K4os.Compression.LZ4.xml
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\bin\Debug\K4os.Compression.LZ4.Streams.xml
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\bin\Debug\K4os.Hash.xxHash.xml
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\bin\Debug\MySql.Data.xml
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\bin\Debug\Renci.SshNet.xml
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\bin\Debug\System.Buffers.xml
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\bin\Debug\System.Memory.xml
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\obj\Debug\TestForm.csprojAssemblyReference.cache
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\obj\Debug\TestForm.Detail_Page.resources
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\obj\Debug\TestForm.Emp_Update.resources
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\obj\Debug\TestForm.emp_Regis.resources
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\obj\Debug\TestForm.Login.resources
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\obj\Debug\TestForm.Man_Page.resources
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\obj\Debug\TestForm.Regis_Page.resources
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\obj\Debug\TestForm.Properties.Resources.resources
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\obj\Debug\TestForm.RemoveCheck.resources
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\obj\Debug\TestForm.csproj.GenerateResource.cache
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\obj\Debug\TestForm.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\obj\Debug\TestForm.csproj.CopyComplete
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\obj\Debug\TestForm.exe
+C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\obj\Debug\TestForm.pdb

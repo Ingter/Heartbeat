@@ -16,8 +16,8 @@ namespace TestForm
     {
         string imgPath = "";
 
-        public string strConn = "Server=192.168.0.31;" +
-                         "Database=test;" +
+        public string strConn = "Server=192.168.0.173;" +
+                         "Database=heartbeat;" +
                          "Uid=test;" +
                          "Pwd=1234;" +
                          "charset=utf8;";
@@ -59,12 +59,12 @@ namespace TestForm
 
             emp_name.Text = Passvalue2;
 
-            cmd.CommandText = ($"select * from emp_info where emp_id = '{Passvalue2}'");
+            cmd.CommandText = ($"select * from emp_info where emp_id = {Passvalue2}");
             rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
             {
-                string Emp_id = rdr["emp_id"] as string;
+                string Emp_id = rdr["emp_id"].ToString();
 
                 string Emp_name = rdr["emp_name"] as string;
 
@@ -78,7 +78,7 @@ namespace TestForm
 
                 string blood_type = rdr["blood_type"] as string;
 
-                string Dept_id = rdr["dept_id"] as string;
+                string Dept_id = rdr["dept_id"].ToString();
 
                 emp_name.Text = Emp_name;
                 emp_email.Text = Emp_email;
@@ -122,7 +122,7 @@ namespace TestForm
 
                 while (rdr.Read())  //DB 데이터 가져옴
                 {
-                    string EmpI = rdr["emp_id"] as string;  //직원 id 값 변수에 넣음
+                    string EmpI = rdr["emp_id"].ToString();  //직원 id 값 변수에 넣음
                     EmpID = Convert.ToInt32(EmpI);         // int 값으로 변경
                     if (pass == EmpID)
                         break;
@@ -156,15 +156,15 @@ namespace TestForm
 
                             if (ImageNumber == EmpID) // 사용자 정보에 원래 사진이 있었을 때 실행
                             {
-                                SQL = $"update image set Image = @Image, Image_name = @ImageName where ImageNo = '{EmpID}'";
-                                SQL2 = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = '{emp_d.Text}' where emp_id = '{Passvalue2}'";
+                                SQL = $"update image set Image = @Image, Image_name = @ImageName where ImageNo = {EmpID}";
+                                SQL2 = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = '{emp_d.Text}' where emp_id = {Passvalue2}";
                                 break;
                             }
 
                             else // 사용자 정보에 원래 사진이 없었을 때 실행asd
                             {
                                 SQL = $"INSERT INTO image (ImageNo, Image, Image_name) VALUES(@ImageNo, @Image, @ImageName)";
-                                SQL2 = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = '{emp_d.Text}' where emp_id = '{Passvalue2}'";
+                                SQL2 = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = {emp_d.Text} where emp_id = {Passvalue2}";
 
                             }
 
@@ -173,7 +173,7 @@ namespace TestForm
                     else
                     {
                         SQL = $"INSERT INTO image (ImageNo, Image, Image_name) VALUES(@ImageNo, @Image, @ImageName)";
-                        SQL2 = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = '{emp_d.Text}' where emp_id = '{Passvalue2}'";
+                        SQL2 = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = {emp_d.Text} where emp_id = {Passvalue2}";
                     }
 
                     rdr.Close();
@@ -191,12 +191,12 @@ namespace TestForm
                     MessageBox.Show("수정되었습니다.");
 
 
-                    cmd.CommandText = ($"select * from emp_info where emp_id = '{Passvalue2}'");
+                    cmd.CommandText = ($"select * from emp_info where emp_id = {Passvalue2}");
                     rdr = cmd.ExecuteReader();
 
                     while (rdr.Read())
                     {
-                        string Emp_id = rdr["emp_id"] as string;
+                        string Emp_id = rdr["emp_id"].ToString();
 
                         string Emp_name = rdr["emp_name"] as string;
 
@@ -208,7 +208,7 @@ namespace TestForm
 
                         string blood_type = rdr["blood_type"] as string;
 
-                        string Dept_id = rdr["dept_id"] as string;
+                        string Dept_id = rdr["dept_id"].ToString();
 
                         dp.na.Text = Emp_name;
                         dp.emp_tel.Text = Emp_tel;
@@ -220,7 +220,7 @@ namespace TestForm
                     }
                     rdr.Close();
                    
-                    cmd.CommandText = ($"select * from image where ImageNo = '{Passvalue2}'");
+                    cmd.CommandText = ($"select * from image where ImageNo = {Passvalue2}");
                     rdr = cmd.ExecuteReader();
                     while (rdr.Read())
                     {
@@ -240,15 +240,15 @@ namespace TestForm
 
                 else
                 {
-                    cmd.CommandText = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = '{emp_d.Text}' where emp_id = '{Passvalue2}'";
+                    cmd.CommandText = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = {emp_d.Text} where emp_id = {Passvalue2}";
                     cmd.ExecuteNonQuery();
 
-                    cmd.CommandText = ($"select * from emp_info where emp_id = '{Passvalue2}'");
+                    cmd.CommandText = ($"select * from emp_info where emp_id = {Passvalue2}");
                     rdr = cmd.ExecuteReader();
 
                     while (rdr.Read())
                     {
-                        string Emp_id = rdr["emp_id"] as string;
+                        string Emp_id = rdr["emp_id"].ToString();
 
                         string Emp_name = rdr["emp_name"] as string;
 
@@ -260,7 +260,7 @@ namespace TestForm
 
                         string blood_type = rdr["blood_type"] as string;
 
-                        string Dept_id = rdr["dept_id"] as string;
+                        string Dept_id = rdr["dept_id"].ToString();
 
                         dp.na.Text = Emp_name;
                         dp.emp_tel.Text = Emp_tel;

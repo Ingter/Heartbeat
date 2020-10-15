@@ -48,5 +48,10 @@ namespace TestForm
         {
             this.Close();
         }
+
+        private void RemoveCheck_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

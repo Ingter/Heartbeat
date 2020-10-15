@@ -36,7 +36,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.Location = new System.Drawing.Point(52, 53);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(248, 28);
@@ -74,6 +74,7 @@
             this.Controls.Add(this.label1);
             this.Name = "RemoveCheck";
             this.Text = "RemoveCheck";
+            this.Load += new System.EventHandler(this.RemoveCheck_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

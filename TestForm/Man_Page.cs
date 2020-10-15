@@ -17,8 +17,8 @@ namespace TestForm
     public partial class Man_Page : Form
     {
 
-        public string strConn = "Server=192.168.0.31;" +
-                               "Database=test;" +
+        public string strConn = "Server=192.168.0.173;" +
+                               "Database=heartbeat;" +
                                "Uid=test;" +
                                "Pwd=1234;" +
                                "charset=utf8;";
@@ -91,7 +91,7 @@ namespace TestForm
 
             while (rdr.Read())
             {
-                string Emp_id = rdr["emp_id"] as string;
+                string Emp_id = rdr["emp_id"].ToString();
 
                 string Emp_name = rdr["emp_name"] as string;
 
@@ -105,7 +105,7 @@ namespace TestForm
 
                 string Blood_type = rdr["blood_type"] as string;
 
-                string dept_id = rdr["dept_id"] as string;
+                string dept_id = rdr["dept_id"].ToString();
 
 
 
@@ -136,7 +136,7 @@ namespace TestForm
 
             if (comboBox1.SelectedIndex == 0)
             {
-                cmd.CommandText = ("select * from emp_info where dept_id = '1'");
+                cmd.CommandText = ("select * from emp_info where dept_id = 1");
                 rdr = cmd.ExecuteReader();
                 //StringBuilder sb = new StringBuilder();
                 dataGridView1.Rows.Clear();
@@ -144,7 +144,7 @@ namespace TestForm
 
                 while (rdr.Read())
                 {
-                    string Emp_id = rdr["emp_id"] as string;
+                    string Emp_id = rdr["emp_id"].ToString();
 
                     string Emp_name = rdr["emp_name"] as string;
 
@@ -158,7 +158,7 @@ namespace TestForm
 
                     string Blood_type = rdr["blood_type"] as string;
 
-                    string dept_id = rdr["dept_id"] as string;
+                    string dept_id = rdr["dept_id"].ToString();
 
 
                     string[] emp_info = new string[] { Emp_id, Emp_name, Emp_email, Emp_tel, Emp_addr, Emp_emer_tel, Blood_type, dept_id };
@@ -172,14 +172,14 @@ namespace TestForm
 
             else if (comboBox1.SelectedIndex == 1)
             {
-                cmd.CommandText = ("select * from emp_info where dept_id = '2'");
+                cmd.CommandText = ("select * from emp_info where dept_id = 2");
                 rdr = cmd.ExecuteReader();
                 //StringBuilder sb = new StringBuilder();
                 dataGridView1.Rows.Clear();
 
                 while (rdr.Read())
                 {
-                    string Emp_id = rdr["emp_id"] as string;
+                    string Emp_id = rdr["emp_id"].ToString();
 
                     string Emp_name = rdr["emp_name"] as string;
 
@@ -193,7 +193,7 @@ namespace TestForm
 
                     string Blood_type = rdr["blood_type"] as string;
 
-                    string dept_id = rdr["dept_id"] as string;
+                    string dept_id = rdr["dept_id"].ToString();
 
 
                     string[] emp_info = new string[] { Emp_id, Emp_name, Emp_email, Emp_tel, Emp_addr, Emp_emer_tel, Blood_type, dept_id };
@@ -213,7 +213,7 @@ namespace TestForm
 
                 while (rdr.Read())
                 {
-                    string Emp_id = rdr["emp_id"] as string;
+                    string Emp_id = rdr["emp_id"].ToString();
 
                     string Emp_name = rdr["emp_name"] as string;
 
@@ -227,7 +227,7 @@ namespace TestForm
 
                     string Blood_type = rdr["blood_type"] as string;
 
-                    string dept_id = rdr["dept_id"] as string;
+                    string dept_id = rdr["dept_id"].ToString();
 
                     string[] emp_info = new string[] { Emp_id, Emp_name, Emp_email, Emp_tel, Emp_addr, Emp_emer_tel, Blood_type, dept_id };
 
@@ -265,7 +265,7 @@ namespace TestForm
 
             while (rdr.Read())
             {
-                string Emp_id = rdr["emp_id"] as string;
+                string Emp_id = rdr["emp_id"].ToString();
 
                 string Emp_name = rdr["emp_name"] as string;
 
@@ -279,7 +279,7 @@ namespace TestForm
 
                 string Blood_type = rdr["blood_type"] as string;
 
-                string dept_id = rdr["dept_id"] as string;
+                string dept_id = rdr["dept_id"].ToString();
 
                 string[] emp_info = new string[] { Emp_id, Emp_name, Emp_email, Emp_tel, Emp_addr, Emp_emer_tel, Blood_type, dept_id };
 

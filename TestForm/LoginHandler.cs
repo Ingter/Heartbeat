@@ -10,8 +10,8 @@ namespace TestForm
     class LoginHandler
     {
 
-        public string strConn = "Server=192.168.0.31;" +
-                               "Database=test;" +
+        public string strConn = "Server=192.168.0.173;" +
+                               "Database=heartbeat;" +
                                "Uid=test;" +
                                "Pwd=1234;"
                                ;
