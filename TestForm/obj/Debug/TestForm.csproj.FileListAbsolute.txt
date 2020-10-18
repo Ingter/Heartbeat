@@ -203,3 +203,4 @@ C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm
 C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\obj\Debug\TestForm.csproj.CopyComplete
 C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\obj\Debug\TestForm.exe
 C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm\obj\Debug\TestForm.pdb
+C:\Heartbeat\TestForm\bin\Debug\netchartdir.xml
