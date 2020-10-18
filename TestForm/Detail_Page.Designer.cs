@@ -485,10 +485,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(982, 582);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Detail_Page";
-            this.Text = "Detail_Page";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Detail_Page_FormClosing);
             this.Load += new System.EventHandler(this.Detail_Page_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

@@ -157,7 +157,7 @@ namespace TestForm
             initChartViewer(winChartViewer1);
             initChartViewer(winChartViewer2);
 
-            drawChart(winChartViewer1, timeStamps1, dataHeartbeat, 0x70ff46, true); //RED, GREEN, BLUE
+            drawChart(winChartViewer1, timeStamps1, dataHeartbeat, 0x34ff46, true); //RED, GREEN, BLUE
             drawChart(winChartViewer2, timeStamps2, dataTemp, 0xff5846, true);
 
             winChartViewer1.updateViewPort(true, true);
@@ -276,11 +276,18 @@ namespace TestForm
             viewPortTimeStamps = (DateTime[])Chart.arraySlice(timeStamps, startIndex, noOfPoints);
             viewPortData = (double[])Chart.arraySlice(data, startIndex, noOfPoints);
 
-            XYChart c = new XYChart(776, 197, 0x000000, 0x000000);
+            XYChart c = new XYChart(776, 197, 0x787878, 0x787878);
 
-            c.setPlotArea(30, 10, c.getWidth() - 40, c.getHeight() - 50,
-                0x000000, -1, Chart.Transparent,
-                c.dashLineColor(0xffffff, 0x000303), c.dashLineColor(0xffffff, 0x000303));
+            /*            c.setPlotArea(30, 10, c.getWidth() - 40, c.getHeight() - 50,
+                            0x787878, -1, Chart.Transparent,
+                            c.dashLineColor(0xffffff, 0x000303), c.dashLineColor(0xffffff, 0x000303));
+            */
+
+                        c.setPlotArea(30, 10, c.getWidth() - 40, c.getHeight() - 50, 0x000000, 0x000000, Chart.LineColor, 0xc0c0c0, 0x000000
+                ).setGridWidth(2, 1, 1, 1);
+
+/*            c.setPlotArea(30, 10, c.getWidth() - 40, c.getHeight() - 50, c.linearGradientColor(0, 55, 0,
+    c.getHeight() - 35, 0xf5f5f5, 0x787878), -1, Chart.Transparent, 0xffffff, 0xffffff);*/
 
             c.xAxis().setColors(0xffffff, 0xffffff, 0xffffff);
             c.yAxis().setColors(0xffffff, 0xffffff, 0xffffff);
@@ -495,14 +502,14 @@ namespace TestForm
         private void winChartViewer1_ViewPortChanged_1(object sender, WinViewPortEventArgs e)
         {
             if (e.NeedUpdateChart)
-                drawChart(winChartViewer1, timeStamps1, dataHeartbeat, 0x70ff46, false);
+                drawChart(winChartViewer1, timeStamps1, dataHeartbeat, 0xff2222, false);
 
         }
 
         private void winChartViewer2_ViewPortChanged_1(object sender, WinViewPortEventArgs e)
         {
             if (e.NeedUpdateChart)
-                drawChart(winChartViewer2, timeStamps2, dataTemp, 0xff5846, false);
+                drawChart(winChartViewer2, timeStamps2, dataTemp, 0xfffa2b, false);
 
         }
 
