@@ -14,9 +14,13 @@ using System.Windows.Forms;
 namespace TestForm
 {
 
+ 
+
     public partial class Man_Page : Form
     {
 
+        
+     
         public string strConn = "Server=192.168.0.173;" +
                                "Database=heartbeat;" +
                                "Uid=test;" +
@@ -27,11 +31,18 @@ namespace TestForm
         public MySqlCommand cmd;
         public MySqlDataReader rdr;
 
+
         Login login;
+        string priority = "-1";
         public Man_Page()
         {
             InitializeComponent();
+        }
 
+        public Man_Page(string _priority)
+        {
+            InitializeComponent();
+            priority = _priority;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -63,29 +74,21 @@ namespace TestForm
 
         }
 
-        private void Man_Page_Load(object sender, EventArgs e)
+        public void Man_Page_Load(object sender, EventArgs e)
         {
+            if (priority.Equals("1"))
+                Man_Regi.Enabled = true;
+            else
+                Man_Regi.Enabled = false;
+
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
-            Login Li = new Login();
-            Li.loginEventHandler += new EventHandler(LoginSuccess);
-            switch (Li.ShowDialog())
-            {
-                case DialogResult.OK:
-                    Li.Close();
-                    break;
-
-                case DialogResult.Cancel:
-                    Dispose();
-                    break;
-            }
 
             conn = new MySqlConnection(strConn);
             cmd = new MySqlCommand();
             conn.Open();
             cmd.Connection = conn;
 
-            cmd.CommandText = ("select * from emp_info");
+                cmd.CommandText = ("select * from emp_info");
             rdr = cmd.ExecuteReader();
             StringBuilder sb = new StringBuilder();
 

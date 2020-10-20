@@ -16,7 +16,7 @@ namespace TestForm
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Man_Page());
+            Application.Run(new Login());
         }
     }
 }

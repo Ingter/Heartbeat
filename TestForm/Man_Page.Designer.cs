@@ -132,7 +132,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("맑은 고딕", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.Font = new System.Drawing.Font("Malgun Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(1067, 72);
@@ -144,7 +144,7 @@
             // button1
             // 
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.Font = new System.Drawing.Font("굴림", 12F);
+            this.button1.Font = new System.Drawing.Font("Gulim", 12F);
             this.button1.Location = new System.Drawing.Point(3, 39);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(222, 76);
@@ -157,7 +157,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("굴림", 12F);
+            this.label2.Font = new System.Drawing.Font("Gulim", 12F);
             this.label2.Location = new System.Drawing.Point(3, 282);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(222, 84);
@@ -182,7 +182,7 @@
             // button2
             // 
             this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.Font = new System.Drawing.Font("굴림", 12F);
+            this.button2.Font = new System.Drawing.Font("Gulim", 12F);
             this.button2.Location = new System.Drawing.Point(3, 121);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(222, 76);
@@ -194,7 +194,7 @@
             // Man_Regi
             // 
             this.Man_Regi.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Man_Regi.Font = new System.Drawing.Font("굴림", 12F);
+            this.Man_Regi.Font = new System.Drawing.Font("Gulim", 12F);
             this.Man_Regi.Location = new System.Drawing.Point(3, 203);
             this.Man_Regi.Name = "Man_Regi";
             this.Man_Regi.Size = new System.Drawing.Size(222, 76);
@@ -290,10 +290,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn 혈액형;
         private System.Windows.Forms.DataGridViewTextBoxColumn 부서번호;
         public System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button Man_Regi;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        public System.Windows.Forms.Button Man_Regi;
     }
 }
 

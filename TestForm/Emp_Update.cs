@@ -315,7 +315,6 @@ namespace TestForm
             } // end of try to catch finally
         }
 
-        // 부모 창한테 데이터 보내려고 하는데 안됨
        private void Emp_Update_FormClosing(object sender, FormClosingEventArgs e)
         {
             //((Detail_Page)(this.Owner)).
