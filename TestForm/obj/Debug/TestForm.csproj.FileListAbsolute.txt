@@ -148,7 +148,6 @@ C:\Heartbeat\TestForm\bin\Debug\System.Buffers.xml
 C:\Heartbeat\TestForm\bin\Debug\System.Memory.xml
 C:\Heartbeat\TestForm\bin\Debug\System.Numerics.Vectors.xml
 C:\Heartbeat\TestForm\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
-C:\Heartbeat\TestForm\obj\Debug\TestForm.csprojAssemblyReference.cache
 C:\Heartbeat\TestForm\obj\Debug\TestForm.Detail_Page.resources
 C:\Heartbeat\TestForm\obj\Debug\TestForm.Emp_Update.resources
 C:\Heartbeat\TestForm\obj\Debug\TestForm.emp_Regis.resources
@@ -207,3 +206,4 @@ C:\Heartbeat\TestForm\bin\Debug\netchartdir.xml
 C:\Heartbeat\TestForm\bin\Debug\MetroFramework.dll
 C:\Heartbeat\TestForm\bin\Debug\MetroFramework.Fonts.dll
 C:\Heartbeat\TestForm\bin\Debug\netchartdir.dll
+C:\Heartbeat\TestForm\obj\Debug\TestForm.csprojAssemblyReference.cache

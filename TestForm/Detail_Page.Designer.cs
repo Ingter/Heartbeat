@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -59,6 +60,7 @@
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.winChartViewer1 = new ChartDirector.WinChartViewer();
             this.winChartViewer2 = new ChartDirector.WinChartViewer();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -88,7 +90,7 @@
             // button1
             // 
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.Font = new System.Drawing.Font("돋움", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button1.Font = new System.Drawing.Font("Dotum", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button1.Location = new System.Drawing.Point(3, 435);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(217, 66);
@@ -100,7 +102,7 @@
             // button2
             // 
             this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.Font = new System.Drawing.Font("돋움", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button2.Font = new System.Drawing.Font("Dotum", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button2.Location = new System.Drawing.Point(3, 507);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(217, 66);
@@ -149,7 +151,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("돋움", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label2.Font = new System.Drawing.Font("Dotum", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label2.Location = new System.Drawing.Point(3, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(176, 40);
@@ -161,7 +163,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Font = new System.Drawing.Font("돋움", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label3.Font = new System.Drawing.Font("Dotum", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label3.Location = new System.Drawing.Point(3, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(176, 40);
@@ -173,7 +175,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Font = new System.Drawing.Font("돋움", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label4.Font = new System.Drawing.Font("Dotum", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label4.Location = new System.Drawing.Point(3, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(176, 40);
@@ -186,7 +188,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Font = new System.Drawing.Font("돋움", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label5.Font = new System.Drawing.Font("Dotum", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label5.Location = new System.Drawing.Point(3, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(176, 40);
@@ -198,7 +200,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Font = new System.Drawing.Font("돋움", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label6.Font = new System.Drawing.Font("Dotum", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label6.Location = new System.Drawing.Point(3, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(176, 40);
@@ -210,7 +212,7 @@
             // 
             this.emp_id.AutoSize = true;
             this.emp_id.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.emp_id.Font = new System.Drawing.Font("돋움", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.emp_id.Font = new System.Drawing.Font("Dotum", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.emp_id.Location = new System.Drawing.Point(3, 360);
             this.emp_id.Name = "emp_id";
             this.emp_id.Size = new System.Drawing.Size(217, 72);
@@ -222,7 +224,7 @@
             // 
             this.na.AutoSize = true;
             this.na.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.na.Font = new System.Drawing.Font("돋움", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.na.Font = new System.Drawing.Font("Dotum", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.na.Location = new System.Drawing.Point(3, 288);
             this.na.Name = "na";
             this.na.Size = new System.Drawing.Size(217, 72);
@@ -234,7 +236,7 @@
             // 
             this.emp_d.AutoSize = true;
             this.emp_d.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.emp_d.Font = new System.Drawing.Font("돋움", 13.8F);
+            this.emp_d.Font = new System.Drawing.Font("Dotum", 13.8F);
             this.emp_d.Location = new System.Drawing.Point(185, 0);
             this.emp_d.Name = "emp_d";
             this.emp_d.Size = new System.Drawing.Size(176, 40);
@@ -246,7 +248,7 @@
             // 
             this.emp_addr.AutoSize = true;
             this.emp_addr.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.emp_addr.Font = new System.Drawing.Font("돋움", 13.8F);
+            this.emp_addr.Font = new System.Drawing.Font("Dotum", 13.8F);
             this.emp_addr.Location = new System.Drawing.Point(185, 0);
             this.emp_addr.Name = "emp_addr";
             this.emp_addr.Size = new System.Drawing.Size(176, 40);
@@ -258,7 +260,7 @@
             // 
             this.emp_bl.AutoSize = true;
             this.emp_bl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.emp_bl.Font = new System.Drawing.Font("돋움", 13.8F);
+            this.emp_bl.Font = new System.Drawing.Font("Dotum", 13.8F);
             this.emp_bl.Location = new System.Drawing.Point(185, 0);
             this.emp_bl.Name = "emp_bl";
             this.emp_bl.Size = new System.Drawing.Size(176, 40);
@@ -270,7 +272,7 @@
             // 
             this.emp_tel.AutoSize = true;
             this.emp_tel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.emp_tel.Font = new System.Drawing.Font("돋움", 13.8F);
+            this.emp_tel.Font = new System.Drawing.Font("Dotum", 13.8F);
             this.emp_tel.Location = new System.Drawing.Point(185, 0);
             this.emp_tel.Name = "emp_tel";
             this.emp_tel.Size = new System.Drawing.Size(177, 40);
@@ -282,7 +284,7 @@
             // 
             this.emp_etel.AutoSize = true;
             this.emp_etel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.emp_etel.Font = new System.Drawing.Font("돋움", 13.8F);
+            this.emp_etel.Font = new System.Drawing.Font("Dotum", 13.8F);
             this.emp_etel.Location = new System.Drawing.Point(185, 0);
             this.emp_etel.Name = "emp_etel";
             this.emp_etel.Size = new System.Drawing.Size(177, 40);
@@ -481,6 +483,10 @@
             this.winChartViewer2.ViewPortChanged += new ChartDirector.WinViewPortEventHandler(this.winChartViewer2_ViewPortChanged_1);
             this.winChartViewer2.Click += new System.EventHandler(this.winChartViewer2_Click_1);
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // Detail_Page
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -546,6 +552,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
         private ChartDirector.WinChartViewer winChartViewer1;
         private ChartDirector.WinChartViewer winChartViewer2;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

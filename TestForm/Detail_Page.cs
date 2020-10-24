@@ -18,6 +18,7 @@ namespace TestForm
     {
         string imgPath = "";
         string ImgName = "";
+
         public string strConn = "Server=192.168.0.173;" +
                                  "Database=heartbeat;" +
                                  "Uid=test;" +
@@ -29,13 +30,14 @@ namespace TestForm
         public MySqlCommand cmd;
         public MySqlDataReader rdr;
 
+        private const int sampleSize = 50000;
+        private const int chartFullRange = 600; //600 Second(10Minute);
 
-        private DateTime[] timeStamps1;
-        private DateTime[] timeStamps2;
+        private DateTime[] timeStamps = new DateTime[sampleSize];
+        private double[] dataHeart_rate = new double[sampleSize];
+        private double[] dataTem_rate = new double[sampleSize];
 
-        private double[] dataTemp = null;
-        private double[] dataHeartbeat = null;
-
+        private int currentIndex = 0;
 
         private string dp_value;
 
@@ -125,8 +127,6 @@ namespace TestForm
                 emp_etel.Text = Emp_emer_tel;
                 emp_bl.Text = blood_type;
 
-
-
             }
 
             conn.Close();
@@ -150,83 +150,62 @@ namespace TestForm
                 dataGridView1.Rows.Add(rw);
 
             }
+            rdr.Close();
 
+            cmd.CommandText = ($"select * from real_time where emp_id = {Passvalue}");
+            rdr = cmd.ExecuteReader();
+            StringBuilder sb = new StringBuilder();
+
+            while (rdr.Read())
+            {
+//                string Emp_id = rdr["emp_id"].ToString();
+
+                string Heart_rate = rdr["heart_rate"].ToString();
+
+                string Tem_rate = rdr["tem_rate"].ToString();
+
+                string Time = rdr["time"] as string;
+
+                string[] Real_time_data = new string[] { Time,Heart_rate, Tem_rate };
+
+                dataGridView1.Rows.Add(Real_time_data);
+
+                //////////////////////
+                DateTime.TryParse(Time, out timeStamps[currentIndex]);
+                dataHeart_rate[currentIndex] = Convert.ToDouble(Heart_rate);
+                dataTem_rate[currentIndex] = Convert.ToDouble(Tem_rate);
+                currentIndex++;
+
+   
+            }
+            
+            rdr.Close();
+
+            timer1.Interval = 2000; //unit: (ms)
+            timer1.Start();
 
             loadData();
 
             initChartViewer(winChartViewer1);
             initChartViewer(winChartViewer2);
 
-            drawChart(winChartViewer1, timeStamps1, dataHeartbeat, 0x34ff46, true); //RED, GREEN, BLUE
-            drawChart(winChartViewer2, timeStamps2, dataTemp, 0xff5846, true);
+            realChart(winChartViewer1);
+            realChart(winChartViewer2);
+
+            drawChart(winChartViewer1, dataHeart_rate, 0x34ff46, true); //RED, GREEN, BLUE
+            drawChart(winChartViewer2, dataTem_rate, 0xff5846, true);
 
             winChartViewer1.updateViewPort(true, true);
             winChartViewer2.updateViewPort(true, true);
 
-
-
             conn.Close();
 
-
-
-
-
         }
-
-
 
         private void loadData()
         {
-            string pathHeart = System.Windows.Forms.Application.StartupPath + "\\" + "Heartbeat.log";
 
-            string[] strBuffer = System.IO.File.ReadAllLines(pathHeart);
-
-            timeStamps1 = new DateTime[strBuffer.Length];
-            dataHeartbeat = new double[strBuffer.Length];
-
-            //MessageBox.Show(Convert.ToString(strBuffer.Length));
-            //System.Diagnostics.Trace.Write(strTime.ToString());
-
-            for (int i = 0; i < strBuffer.Length; i++)
-            {
-                bool blineCheck;
-                string[] Str_temp = strBuffer[i].Split(new Char[] { });
-
-                blineCheck = DateTime.TryParse(Str_temp[0], out timeStamps1[i]);
-
-                if (!blineCheck)
-                {
-                    MessageBox.Show(string.Format("로그 파일에 알수 없는 문자열이 있습니다. Line : [{0}]", i));
-                    continue;
-                }
-                dataHeartbeat[i] = Convert.ToDouble(Str_temp[1]);
-            }
-
-            //string pathTemp = @"E:\TrendTest\WindowsFormsApp1\WindowsFormsApp1\Temperature.log";
-            string pathTemp = System.Windows.Forms.Application.StartupPath + "\\" + "Temperature.log";
-
-            string[] strBuffer2 = System.IO.File.ReadAllLines(pathTemp);
-
-            timeStamps2 = new DateTime[strBuffer2.Length];
-            dataTemp = new double[strBuffer2.Length];
-
-            for (int i = 0; i < strBuffer2.Length; i++)
-            {
-                bool blineCheck;
-                string[] Str_temp = strBuffer2[i].Split(new Char[] { });
-
-                blineCheck = DateTime.TryParse(Str_temp[0], out timeStamps2[i]);
-
-                if (!blineCheck)
-                {
-                    MessageBox.Show(string.Format("로그 파일에 알수 없는 문자열이 있습니다. Line : [{0}]", i));
-                    continue;
-                }
-                dataTemp[i] = Convert.ToDouble(Str_temp[1]);
-            }
         }
-
-
 
         private void initChartViewer(WinChartViewer viewer)
         {
@@ -234,20 +213,16 @@ namespace TestForm
             viewer.MouseUsage = WinChartMouseUsage.ScrollOnDrag;
         }
 
-
-
-
         private void winChartViewer1_Click(object sender, EventArgs e)
         {
             trackLineLabel((XYChart)winChartViewer1.Chart, winChartViewer1.PlotAreaMouseX);
             winChartViewer1.updateDisplay();
         }
 
-
         StringBuilder sb_d = new StringBuilder();
 
         //public void createChart(WinChartViewer viewer, int chartIndex)
-        public void drawChart(WinChartViewer viewer, DateTime[] timeStamps, double[] data, int color, bool init)
+        public void drawChart(WinChartViewer viewer, double[] data, int color, bool init)
         {
             int startIndex, endIndex;
 
@@ -267,8 +242,8 @@ namespace TestForm
             }
             else
             {
-                startIndex = (int)Math.Floor(Chart.bSearch(timeStamps, viewPortStartDate));//Trend
-                endIndex = (int)Math.Ceiling(Chart.bSearch(timeStamps, viewPortEndDate));//Trend
+                startIndex = (int)Math.Floor(Chart.bSearch2(timeStamps, 0, currentIndex, viewPortStartDate));//Real Trend
+                endIndex = (int)Math.Ceiling(Chart.bSearch2(timeStamps, 0, currentIndex, viewPortEndDate));//Real Trend
             }
 
             int noOfPoints = endIndex - startIndex + 1;
@@ -309,9 +284,10 @@ namespace TestForm
             layer.setXData(viewPortTimeStamps);
             layer.addDataSet(viewPortData, color, "Heart");
 
-            c.xAxis().setDateScale(viewPortStartDate, viewPortEndDate);
+            if (currentIndex > 0)
+                c.xAxis().setDateScale(viewPortStartDate, viewPortEndDate);
 
-            viewer.syncDateAxisWithViewPort("x", c.xAxis());
+            //viewer.syncDateAxisWithViewPort("x", c.xAxis());
 
             c.xAxis().setTickDensity(75);
             c.yAxis().setTickDensity(30);
@@ -400,6 +376,31 @@ namespace TestForm
             }
         }
 
+        public void realChart(WinChartViewer viewer)
+        {
+            if (currentIndex > 0)
+            {
+                DateTime startDate = timeStamps[0];
+                DateTime endDate = timeStamps[currentIndex - 1];
+
+                double duration = endDate.Subtract(startDate).TotalSeconds;
+                int zoomInLimit = 10;
+                if (duration < chartFullRange)  //initialFullRange: 60?
+                    //endDate = startDate.AddSeconds(Convert.ToDouble(timeStamps1[currentIndex1])); //initialFullRange: 60?
+                    endDate = startDate.AddSeconds(chartFullRange); //initialFullRange: 60?
+
+                int updateType = Chart.ScrollWithMax;
+                if (viewer.ViewPortLeft + viewer.ViewPortWidth < 0.999)
+                    updateType = Chart.KeepVisibleRange;
+                bool axisScaleHasChanged = viewer.updateFullRangeH("x", startDate, endDate, updateType);
+
+                viewer.ZoomInWidthLimit = zoomInLimit / (viewer.getValueAtViewPort("x", 1) -
+                    viewer.getValueAtViewPort("x", 0));
+
+                if (axisScaleHasChanged || (duration < chartFullRange)) //initialFullRange: 60?
+                    viewer.updateViewPort(true, false);
+            }
+        }
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -502,14 +503,14 @@ namespace TestForm
         private void winChartViewer1_ViewPortChanged_1(object sender, WinViewPortEventArgs e)
         {
             if (e.NeedUpdateChart)
-                drawChart(winChartViewer1, timeStamps1, dataHeartbeat, 0xff2222, false);
+                drawChart(winChartViewer1, dataHeart_rate, 0xff2222, false);
 
         }
 
         private void winChartViewer2_ViewPortChanged_1(object sender, WinViewPortEventArgs e)
         {
             if (e.NeedUpdateChart)
-                drawChart(winChartViewer2, timeStamps2, dataTemp, 0xfffa2b, false);
+                drawChart(winChartViewer2, dataTem_rate, 0xfffa2b, false);
 
         }
 
@@ -517,6 +518,46 @@ namespace TestForm
         {
             trackLineLabel((XYChart)winChartViewer2.Chart, winChartViewer2.PlotAreaMouseX);
             winChartViewer2.updateDisplay();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            conn = new MySqlConnection(strConn);
+            cmd = new MySqlCommand();
+            conn.Open();
+            cmd.Connection = conn;
+
+            currentIndex = 0;
+            dataGridView1.Rows.Clear();
+
+            cmd.CommandText = ($"select * from real_time where emp_id = {Passvalue}");
+            rdr = cmd.ExecuteReader();
+            StringBuilder sb = new StringBuilder();
+
+            while (rdr.Read())
+            {
+
+                //                string Emp_id = rdr["emp_id"].ToString();
+                string Heart_rate = rdr["heart_rate"].ToString();
+
+                string Tem_rate = rdr["tem_rate"].ToString();
+
+                string Time = rdr["time"] as string;
+
+                string[] Real_time_data = new string[] { Time, Heart_rate, Tem_rate };
+
+                dataGridView1.Rows.Add(Real_time_data);
+
+                //////////////////////
+                DateTime.TryParse(Time, out timeStamps[currentIndex]);
+                dataHeart_rate[currentIndex] = Convert.ToDouble(Heart_rate);
+                dataTem_rate[currentIndex] = Convert.ToDouble(Tem_rate);
+                currentIndex++;
+            }
+            rdr.Close();
+
+            realChart(winChartViewer1);
+            realChart(winChartViewer2);
         }
     }
 }
