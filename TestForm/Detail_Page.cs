@@ -129,15 +129,13 @@ namespace TestForm
 
             }
 
-            conn.Close();
+            rdr.Close();
 
-            conn.Open();
             cmd.CommandText = ($"select * from emp_detail  where emp_id = {Passvalue}");
             rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
             {
-                string Emp_id = rdr["emp_id"].ToString();
 
                 string Emp_name = rdr["emp_name"] as string;
 
@@ -154,31 +152,24 @@ namespace TestForm
 
             cmd.CommandText = ($"select * from real_time where emp_id = {Passvalue}");
             rdr = cmd.ExecuteReader();
-            StringBuilder sb = new StringBuilder();
 
             while (rdr.Read())
             {
-//                string Emp_id = rdr["emp_id"].ToString();
+
+                string Time = rdr["time"] as string;
 
                 string Heart_rate = rdr["heart_rate"].ToString();
 
                 string Tem_rate = rdr["tem_rate"].ToString();
 
-                string Time = rdr["time"] as string;
+                string[] Real_time_data = new string[] { Time, Heart_rate, Tem_rate };
 
-                string[] Real_time_data = new string[] { Time,Heart_rate, Tem_rate };
-
-                dataGridView1.Rows.Add(Real_time_data);
-
-                //////////////////////
                 DateTime.TryParse(Time, out timeStamps[currentIndex]);
                 dataHeart_rate[currentIndex] = Convert.ToDouble(Heart_rate);
                 dataTem_rate[currentIndex] = Convert.ToDouble(Tem_rate);
                 currentIndex++;
-
-   
             }
-            
+
             rdr.Close();
 
             timer1.Interval = 2000; //unit: (ms)
@@ -197,6 +188,7 @@ namespace TestForm
 
             winChartViewer1.updateViewPort(true, true);
             winChartViewer2.updateViewPort(true, true);
+
 
             conn.Close();
 
@@ -357,7 +349,7 @@ namespace TestForm
 
                         string label = "<*font,bgColor=" + color.ToString("x") + "*> " + c.formatValue(
                             dataSet.getValue(xIndex), "{value|P4}") + " <*/font*>";
-                        t = d.text(label, "Arial Bold", 8);
+                        t = d.text(label, "Arial Bold", 16);
 
                         // Draw the label on the right side of the dot if the mouse is on the left side the
                         // chart, and vice versa. This ensures the label will not go outside the chart image.
@@ -434,6 +426,7 @@ namespace TestForm
                 {
                     MessageBox.Show(ex.ToString());
                     MessageBox.Show("직원 삭제 실패");
+                    conn.Close();
                     this.Close();
                 }
 
@@ -522,13 +515,17 @@ namespace TestForm
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+
+            realChart(winChartViewer1);
+            realChart(winChartViewer2);
+
             conn = new MySqlConnection(strConn);
             cmd = new MySqlCommand();
             conn.Open();
             cmd.Connection = conn;
 
             currentIndex = 0;
-            dataGridView1.Rows.Clear();
+
 
             cmd.CommandText = ($"select * from real_time where emp_id = {Passvalue}");
             rdr = cmd.ExecuteReader();
@@ -538,15 +535,13 @@ namespace TestForm
             {
 
                 //                string Emp_id = rdr["emp_id"].ToString();
+                string Time = rdr["time"] as string;
+
                 string Heart_rate = rdr["heart_rate"].ToString();
 
                 string Tem_rate = rdr["tem_rate"].ToString();
 
-                string Time = rdr["time"] as string;
-
                 string[] Real_time_data = new string[] { Time, Heart_rate, Tem_rate };
-
-                dataGridView1.Rows.Add(Real_time_data);
 
                 //////////////////////
                 DateTime.TryParse(Time, out timeStamps[currentIndex]);
@@ -555,9 +550,36 @@ namespace TestForm
                 currentIndex++;
             }
             rdr.Close();
+        }
 
-            realChart(winChartViewer1);
-            realChart(winChartViewer2);
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+
+            conn = new MySqlConnection(strConn);
+            cmd = new MySqlCommand();
+            conn.Open();
+            cmd.Connection = conn;
+
+            dataGridView1.Rows.Clear();
+
+            cmd.CommandText = ($"select * from emp_detail  where emp_id = {Passvalue}");
+            rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+
+                string Emp_name = rdr["emp_name"] as string;
+
+                string Body_temp = rdr["body_temp"].ToString();
+
+                string Heart_rate = rdr["heart_rate"].ToString();
+
+                string[] rw = new string[] { Emp_name, Body_temp, Heart_rate };
+
+                dataGridView1.Rows.Add(rw);
+
+            }
+            rdr.Close();
         }
     }
 }

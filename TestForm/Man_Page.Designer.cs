@@ -262,6 +262,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Man_Page";
             this.Text = "+";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Man_Page_FormClosing);
             this.Load += new System.EventHandler(this.Man_Page_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);

@@ -43,7 +43,8 @@ namespace TestForm
                     DialogResult = DialogResult.OK;
                     Man_Page mp = new Man_Page(proiroty);
                     this.Visible = false;
-                    mp.Show();
+                    mp.ShowDialog();
+                    this.Close();
                 }
                 else
                 {
@@ -73,10 +74,7 @@ namespace TestForm
             return true;
         }
 
-        private void Login_FormClosing(object sender, FormClosingEventArgs e)
-        {
 
-        }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {

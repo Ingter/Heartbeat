@@ -61,6 +61,7 @@
             this.winChartViewer1 = new ChartDirector.WinChartViewer();
             this.winChartViewer2 = new ChartDirector.WinChartViewer();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -487,6 +488,10 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // timer2
+            // 
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
             // Detail_Page
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -553,6 +558,7 @@
         private ChartDirector.WinChartViewer winChartViewer1;
         private ChartDirector.WinChartViewer winChartViewer2;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timer2;
     }
 }
 

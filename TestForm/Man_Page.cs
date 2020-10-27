@@ -295,5 +295,18 @@ namespace TestForm
             Regis_Page RP = new Regis_Page();
             RP.ShowDialog();
         }
+
+        private void Man_Page_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("종료하시겠습니까?", "YesOrNo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+            }
+            else
+            {
+                e.Cancel = true;
+                return;
+            }
+        
+        }
     }
 }
