@@ -137,13 +137,13 @@ namespace TestForm
             while (rdr.Read())
             {
 
-                string Emp_name = rdr["emp_name"] as string;
+                string Time = rdr["time"] as string;
 
                 string Body_temp = rdr["body_temp"].ToString();
 
                 string Heart_rate = rdr["heart_rate"].ToString();
 
-                string[] rw = new string[] { Emp_name, Body_temp, Heart_rate };
+                string[] rw = new string[] { Time, Heart_rate, Body_temp };
 
                 dataGridView1.Rows.Add(rw);
 
@@ -172,7 +172,7 @@ namespace TestForm
 
             rdr.Close();
 
-            timer1.Interval = 2000; //unit: (ms)
+            timer1.Interval = 5000; //unit: (ms)
             timer1.Start();
 
             loadData();
@@ -201,7 +201,7 @@ namespace TestForm
 
         private void initChartViewer(WinChartViewer viewer)
         {
-            viewer.MouseWheelZoomRatio = 1.1;
+            viewer.MouseWheelZoomRatio = 2;
             viewer.MouseUsage = WinChartMouseUsage.ScrollOnDrag;
         }
 
@@ -574,7 +574,7 @@ namespace TestForm
 
                 string Heart_rate = rdr["heart_rate"].ToString();
 
-                string[] rw = new string[] { Emp_name, Body_temp, Heart_rate };
+                string[] rw = new string[] { Emp_name, Heart_rate, Body_temp };
 
                 dataGridView1.Rows.Add(rw);
 
