@@ -16,8 +16,8 @@ namespace TestForm
     public partial class emp_Regis : Form
     {
         string imgPath = "";
-        public string strConn = "Server=192.168.0.173;" +
-                               "Database=heartbeat;" +
+        public string strConn = "Server=192.168.0.31;" +
+                               "Database=test;" +
                                "Uid=test;" +
                                "Pwd=1234;" +
                                "charset=utf8;";
@@ -27,13 +27,6 @@ namespace TestForm
         public MySqlDataReader rdr;
 
         OpenFileDialog ofd = new OpenFileDialog();
-
-        Man_Page mp;
-        public emp_Regis(Man_Page _mp)
-        {
-            InitializeComponent();
-            mp = _mp;
-        }
 
         public emp_Regis()
         {
@@ -90,114 +83,71 @@ namespace TestForm
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            try
-            {
+            UInt32 FileSize;
+            byte[] rawData;
+             FileStream fs;
+            int ImgNum = 0;
 
-                UInt32 FileSize;
-                byte[] rawData;
-                FileStream fs;
-                int ImgNum = 0;
-
-                conn = new MySqlConnection(strConn);
-                conn.Open();
-
-                cmd = new MySqlCommand();
-
-                cmd.Connection = conn;
-
-
-                cmd.CommandText = ("select * from emp_info");
-
-                rdr = cmd.ExecuteReader();
-
-                while (rdr.Read())
-                {
-                    string ImgN = textBox1.Text;
-                    ImgNum = Convert.ToInt32(ImgN);
-                }
-                rdr.Close();
-
-                string SQL;
-                string SQL2;
-                if (imgPath != "")
-                {
-
-                    fs = new FileStream(imgPath, FileMode.Open, FileAccess.Read);
-                    FileSize = (UInt32)fs.Length;
-
-                    rawData = new byte[FileSize];
-                    fs.Read(rawData, 0, (int)FileSize);
-                    fs.Close();
-
-                    SQL = $"INSERT INTO image (ImageNo, Image, Image_name) VALUES(@ImageNo, @Image, @ImageName)";
-                    SQL2 = $"insert into emp_info (emp_id, emp_name, emp_email, emp_tel, emp_addr, emp_emer_tel, blood_type, dept_id) values ({textBox1.Text},'{textBox2.Text}','{textBox3.Text}','{textBox4.Text}','{textBox5.Text}','{textBox6.Text}','{textBox7.Text}',{textBox8.Text})";
-
-                    cmd.CommandText = SQL;
-
-                    cmd.Parameters.AddWithValue("@ImageNo", ImgNum);
-                    cmd.Parameters.AddWithValue("@Image", rawData);
-                    cmd.Parameters.AddWithValue("@ImageName", imgPath);
-
-                    cmd.ExecuteNonQuery();
-
-                    cmd.CommandText = SQL2;
-                    cmd.ExecuteNonQuery();
-
-                    MessageBox.Show("작업자 등록이 완료되었습니다.");
-                    this.Close();
-                }
-
-                else
-                {
-                    cmd.CommandText = $"insert into emp_info (emp_id, emp_name, emp_email, emp_tel, emp_addr, emp_emer_tel, blood_type, dept_id) " +
-            $"values ({textBox1.Text},'{textBox2.Text}','{textBox3.Text}','{textBox4.Text}'," +
-            $"'{textBox5.Text}','{textBox6.Text}','{textBox7.Text}',{textBox8.Text})";
-                    cmd.ExecuteNonQuery();
-
-                    MessageBox.Show("작업자 등록이 완료되었습니다.");
-                    this.Close();
-                }
-
-            }
-            catch(MySqlException)
-            {
-                MessageBox.Show("중복된 ID입니다.");
-            }
-        }
-
-        private void emp_Regis_FormClosing(object sender, FormClosingEventArgs e)
-        {
             conn = new MySqlConnection(strConn);
-            cmd = new MySqlCommand();
             conn.Open();
+
+            cmd = new MySqlCommand();
+            
             cmd.Connection = conn;
 
-            cmd.CommandText = ("select * from emp_info;");
+
+            cmd.CommandText = ("select * from emp_info");
+
             rdr = cmd.ExecuteReader();
-            mp.dataGridView1.Rows.Clear();
 
             while (rdr.Read())
             {
-                string Emp_id = rdr["emp_id"].ToString();
-
-                string Emp_name = rdr["emp_name"] as string;
-
-                string Emp_email = rdr["emp_email"] as string;
-
-                string Emp_tel = rdr["emp_tel"] as string;
-
-                string Emp_addr = rdr["emp_addr"] as string;
-
-                string Emp_emer_tel = rdr["emp_emer_tel"] as string;
-
-                string Blood_type = rdr["blood_type"] as string;
-
-                string dept_id = rdr["dept_id"].ToString();
-
-                string[] emp_info = new string[] { Emp_id, Emp_name, Emp_email, Emp_tel, Emp_addr, Emp_emer_tel, Blood_type, dept_id };
-
-                mp.dataGridView1.Rows.Add(emp_info);
+                string ImgN = textBox1.Text;
+                ImgNum = Convert.ToInt32(ImgN);
             }
+            rdr.Close();
+
+            string SQL;
+            string SQL2;
+            if (imgPath != "")
+            {
+
+                fs = new FileStream(imgPath, FileMode.Open, FileAccess.Read);
+                FileSize = (UInt32)fs.Length;
+
+                rawData = new byte[FileSize];
+                fs.Read(rawData, 0, (int)FileSize);
+                fs.Close();
+
+                SQL = $"INSERT INTO image (ImageNo, Image, Image_name) VALUES(@ImageNo, @Image, @ImageName)";
+                SQL2 = $"insert into emp_info (emp_id, emp_name, emp_email, emp_tel, emp_addr, emp_emer_tel, blood_type, dept_id) values ('{textBox1.Text}','{textBox2.Text}','{textBox3.Text}','{textBox4.Text}','{textBox5.Text}','{textBox6.Text}','{textBox7.Text}','{textBox8.Text}')";
+
+                cmd.CommandText = SQL;
+
+                cmd.Parameters.AddWithValue("@ImageNo", ImgNum);
+                cmd.Parameters.AddWithValue("@Image", rawData);
+                cmd.Parameters.AddWithValue("@ImageName", imgPath);
+
+                cmd.ExecuteNonQuery();
+
+                cmd.CommandText = SQL2;
+                cmd.ExecuteNonQuery();
+
+                MessageBox.Show("작업자 등록이 완료되었습니다.");
+                this.Close();
+            }
+
+            else
+            {
+                cmd.CommandText = $"insert into emp_info (emp_id, emp_name, emp_email, emp_tel, emp_addr, emp_emer_tel, blood_type, dept_id) " +
+        $"values ('{textBox1.Text}','{textBox2.Text}','{textBox3.Text}','{textBox4.Text}'," +
+        $"'{textBox5.Text}','{textBox6.Text}','{textBox7.Text}','{textBox8.Text}')";
+                cmd.ExecuteNonQuery();
+
+                MessageBox.Show("작업자 등록이 완료되었습니다.");
+                this.Close();
+            }
+
         }
     }   
 }
