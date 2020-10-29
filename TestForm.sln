@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.30611.23
+VisualStudioVersion = 16.0.30406.217
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestForm1", "TestForm1\TestForm1.csproj", "{2EC2C921-6925-48F5-80C8-47ED6C396C78}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestForm", "TestForm\TestForm.csproj", "{2EC2C921-6925-48F5-80C8-47ED6C396C78}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +26,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {4890E80A-382E-46D6-BEB2-9EAA5F1874D7}
+		SolutionGuid = {B8EAA747-79BD-4DEE-B6FD-54EFFDA0E033}
 	EndGlobalSection
 EndGlobal
