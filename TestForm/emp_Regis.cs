@@ -88,6 +88,11 @@ namespace TestForm
             this.Close();
         }
 
+
+
+
+
+
         private void button1_Click_1(object sender, EventArgs e)
         {
             try
@@ -119,8 +124,24 @@ namespace TestForm
 
                 string SQL;
                 string SQL2;
+                int a = 0;
+                int b = 0;
+
+
+
+
                 if (imgPath != "")
                 {
+
+                    if (comboBox2.SelectedIndex == 0)
+                    {
+                        a = 1;
+                    }
+                    else if (comboBox2.SelectedIndex == 1)
+                    {
+                        a = 2;
+                    }
+
 
                     fs = new FileStream(imgPath, FileMode.Open, FileAccess.Read);
                     FileSize = (UInt32)fs.Length;
@@ -130,7 +151,7 @@ namespace TestForm
                     fs.Close();
 
                     SQL = $"INSERT INTO image (ImageNo, Image, Image_name) VALUES(@ImageNo, @Image, @ImageName)";
-                    SQL2 = $"insert into emp_info (emp_id, emp_name, emp_email, emp_tel, emp_addr, emp_emer_tel, blood_type, dept_id) values ({textBox1.Text},'{textBox2.Text}','{textBox3.Text}','{textBox4.Text}','{textBox5.Text}','{textBox6.Text}','{textBox7.Text}',{textBox8.Text})";
+                    SQL2 = $"insert into emp_info (emp_id, emp_name, emp_email, emp_tel, emp_addr, emp_emer_tel, blood_type, dept_id) values ({textBox1.Text},'{textBox2.Text}','{textBox3.Text}','{textBox4.Text}','{textBox5.Text}','{textBox6.Text}','{comboBox1.Text}',{a})";
 
                     cmd.CommandText = SQL;
 
@@ -149,9 +170,19 @@ namespace TestForm
 
                 else
                 {
+
+                    if (comboBox2.SelectedIndex == 0)
+                    {
+                        a = 1;
+                    }
+                    else if (comboBox2.SelectedIndex == 1)
+                    {
+                        a = 2;
+                    }
+
                     cmd.CommandText = $"insert into emp_info (emp_id, emp_name, emp_email, emp_tel, emp_addr, emp_emer_tel, blood_type, dept_id) " +
-            $"values ({textBox1.Text},'{textBox2.Text}','{textBox3.Text}','{textBox4.Text}'," +
-            $"'{textBox5.Text}','{textBox6.Text}','{textBox7.Text}',{textBox8.Text})";
+                     $"values ({textBox1.Text},'{textBox2.Text}','{textBox3.Text}','{textBox4.Text}'," +
+                    $"'{textBox5.Text}','{textBox6.Text}','{comboBox1.Text}',{a})";
                     cmd.ExecuteNonQuery();
 
                     MessageBox.Show("작업자 등록이 완료되었습니다.");
@@ -159,8 +190,10 @@ namespace TestForm
                 }
 
             }
-            catch(MySqlException)
+            catch(MySqlException ex)
             {
+
+                MessageBox.Show(ex.ToString());
                 MessageBox.Show("중복된 ID입니다.");
             }
         }

@@ -121,7 +121,19 @@ namespace TestForm
                 string Dept_id = rdr["dept_id"].ToString();
 
                 na.Text = Emp_name;
-                emp_d.Text = Dept_id;
+
+                if(Dept_id=="1")
+                {
+                    emp_d.Text = "포장팀";
+                }
+
+                else if (Dept_id =="2")
+                {
+                    emp_d.Text = "검수팀";
+                }
+
+                //emp_d.Text = Dept_id;
+
                 emp_tel.Text = Emp_tel;
                 emp_addr.Text = Emp_addr;
                 emp_etel.Text = Emp_emer_tel;

@@ -142,7 +142,7 @@ namespace TestForm
 
             if (comboBox1.SelectedIndex == 0)
             {
-                cmd.CommandText = ("select * from emp_info where dept_id = 1");
+                cmd.CommandText = ("select * from emp_info where dept_id = 1 order by emp_id");
                 rdr = cmd.ExecuteReader();
                 //StringBuilder sb = new StringBuilder();
                 dataGridView1.Rows.Clear();
@@ -178,7 +178,7 @@ namespace TestForm
 
             else if (comboBox1.SelectedIndex == 1)
             {
-                cmd.CommandText = ("select * from emp_info where dept_id = 2");
+                cmd.CommandText = ("select * from emp_info where dept_id = 2 order by emp_id");
                 rdr = cmd.ExecuteReader();
                 //StringBuilder sb = new StringBuilder();
                 dataGridView1.Rows.Clear();
@@ -212,7 +212,7 @@ namespace TestForm
             }
             else if (comboBox1.SelectedIndex == 2)
             {
-                cmd.CommandText = ("select * from emp_info;");
+                cmd.CommandText = ("select * from emp_info  order by emp_id");
                 rdr = cmd.ExecuteReader();
                 //StringBuilder sb = new StringBuilder();
                 dataGridView1.Rows.Clear();
