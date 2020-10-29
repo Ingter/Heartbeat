@@ -47,7 +47,7 @@ namespace TestForm
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-
+            label2.Text = DateTime.Now.ToString("시간 : HH : mm : ss");
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -120,6 +120,9 @@ namespace TestForm
 
                 dataGridView1.Rows.Add(emp_info);
 
+                label2.Text = DateTime.Now.ToString("시간 : HH : mm : ss");
+                timer1.Interval = 1000;
+                timer1.Start();
             }
 
 
