@@ -14,8 +14,8 @@ namespace TestForm
     public partial class Regis_Page : Form
     {
 
-        public string strConn = "Server=192.168.0.31;" +
-                                "Database=test;" +
+        public string strConn = "Server=192.168.0.173;" +
+                                "Database=heartbeat;" +
                                 "Uid=test;" +
                                 "Pwd=1234;" +
                                 "charset=utf8;";
@@ -23,7 +23,7 @@ namespace TestForm
         public MySqlConnection conn;
         public MySqlCommand cmd;
         public MySqlDataReader rdr;
-
+        public int i; //매니저 등급 (1-최종/ 2-부)
 
         public Regis_Page()
         {
@@ -47,15 +47,16 @@ namespace TestForm
             try
             {
                 cmd.CommandText = $"insert into manager_info (manager_id, manager_pw, manager_name, " +
-                                  $"manager_email, manager_tel) values " +
-                                  $"('{textBox1.Text}','{textBox3.Text}','{textBox2.Text}','{textBox4.Text}','{textBox5.Text}')";
+                                  $"manager_email, manager_tel, manager_grade) values " +
+                                  $"('{textBox1.Text}','{textBox3.Text}','{textBox2.Text}','{textBox4.Text}','{textBox5.Text}',{i})";
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("관리자 등록 완료되었습니다.");
                 this.Close();
             }
             
-            catch(MySqlException)
+            catch(MySqlException ex)
             {
+                MessageBox.Show(ex.ToString());
                 MessageBox.Show("중복된 아이디, 비밀빈호 입니다.");
                 this.Close();
             }
@@ -65,6 +66,16 @@ namespace TestForm
         {
             this.Close();
 
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            i = 1;
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            i = 2;
         }
     }
 }

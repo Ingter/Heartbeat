@@ -6,12 +6,15 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 using System.Windows.Forms;
 
 namespace TestForm
 {
 
-    public delegate void EventHandler(string userName);
+
+
+    //public delegate void EventHandler(string userName);
 
     public partial class Login : Form 
     {
@@ -21,41 +24,34 @@ namespace TestForm
         {
             InitializeComponent();
         }
-        /*
-        public Login(Man_Page mp)
-        {
-            InitializeComponent();
-            this.mp = mp;
-        }
-        */
+
         private void Login_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Regis_Page RP = new Regis_Page();
-            RP.Show();
-
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            LoginHandler loginHandler = new LoginHandler();
+            DbManager login = new DbManager();
             if (ControlCheck())
             {
-                if (loginHandler.LoginCheck(textBox1.Text, textBox2.Text))
+                if (login.LoginCheck(textBox1.Text, textBox2.Text, out string proiroty))
                 {
                     string userName = textBox1.Text;
-                    loginEventHandler(userName);
+                    //loginEventHandler(userName);
                     DialogResult = DialogResult.OK;
+                    Man_Page mp = new Man_Page(proiroty);
+                    this.Visible = false;
+                    mp.ShowDialog();
+                    this.Close();
                 }
                 else
                 {
                     MessageBox.Show("로그인 실패");
                     textBox1.Clear();
                     textBox2.Clear();
+                    
                 }
             }
 
@@ -78,19 +74,13 @@ namespace TestForm
             return true;
         }
 
-        private void Login_FormClosing(object sender, FormClosingEventArgs e)
-        {
 
-        }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
 
-        }
     }
 }
