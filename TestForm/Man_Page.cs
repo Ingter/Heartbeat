@@ -76,6 +76,9 @@ namespace TestForm
 
         public void Man_Page_Load(object sender, EventArgs e)
         {
+            this.dataGridView1.Font = new Font("Malgun Gothic", 9, FontStyle.Bold);
+            this.dataGridView1.DefaultCellStyle.Font = new Font("Gothic", 9, FontStyle.Regular);
+
             if (priority.Equals("1"))
                 Man_Regi.Enabled = true;
             else
@@ -308,5 +311,7 @@ namespace TestForm
             }
         
         }
+
+
     }
 }

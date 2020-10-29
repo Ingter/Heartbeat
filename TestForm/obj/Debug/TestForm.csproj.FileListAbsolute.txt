@@ -155,7 +155,6 @@ C:\Heartbeat\TestForm\obj\Debug\TestForm.Login.resources
 C:\Heartbeat\TestForm\obj\Debug\TestForm.Man_Page.resources
 C:\Heartbeat\TestForm\obj\Debug\TestForm.Regis_Page.resources
 C:\Heartbeat\TestForm\obj\Debug\TestForm.Properties.Resources.resources
-C:\Heartbeat\TestForm\obj\Debug\TestForm.RemoveCheck.resources
 C:\Heartbeat\TestForm\obj\Debug\TestForm.csproj.GenerateResource.cache
 C:\Heartbeat\TestForm\obj\Debug\TestForm.csproj.CoreCompileInputs.cache
 C:\Heartbeat\TestForm\obj\Debug\TestForm.csproj.CopyComplete

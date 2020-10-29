@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Detail_Page));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -499,7 +500,9 @@
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(982, 582);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Detail_Page";
+            this.Text = "Emp Detail Page";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Detail_Page_FormClosing);
             this.Load += new System.EventHandler(this.Detail_Page_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
