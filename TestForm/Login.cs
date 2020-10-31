@@ -25,6 +25,15 @@ namespace TestForm
             InitializeComponent();
         }
 
+
+        Man_Page mp;
+        public Login(Man_Page _mp)
+        {
+            InitializeComponent();
+            mp = _mp;
+        }
+
+
         private void Login_Load(object sender, EventArgs e)
         {
 
