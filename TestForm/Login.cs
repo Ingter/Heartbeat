@@ -25,15 +25,6 @@ namespace TestForm
             InitializeComponent();
         }
 
-
-        Man_Page mp;
-        public Login(Man_Page _mp)
-        {
-            InitializeComponent();
-            mp = _mp;
-        }
-
-
         private void Login_Load(object sender, EventArgs e)
         {
 
@@ -50,10 +41,11 @@ namespace TestForm
                     string userName = textBox1.Text;
                     //loginEventHandler(userName);
                     DialogResult = DialogResult.OK;
-                    Man_Page mp = new Man_Page(proiroty);
+                    Login ls = this;
+                    Man_Page mp = new Man_Page(proiroty,ls);
                     this.Visible = false;
                     mp.ShowDialog();
-                    this.Close();
+                    
                 }
                 else
                 {
@@ -90,6 +82,16 @@ namespace TestForm
 
         }
 
-
+        private void Login_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("종료하시겠습니까?", "YesOrNo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+            }
+            else
+            {
+                e.Cancel = true;
+                return;
+            }
+        }
     }
 }

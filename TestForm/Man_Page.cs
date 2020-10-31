@@ -14,7 +14,7 @@ using System.Windows.Forms;
 namespace TestForm
 {
 
- 
+
 
     public partial class Man_Page : Form
     {
@@ -32,22 +32,24 @@ namespace TestForm
         public MySqlDataReader rdr;
         string a;
 
-        Login login;
+        Login ls;
         string priority = "-1";
         public Man_Page()
         {
             InitializeComponent();
         }
 
-        public Man_Page(string _priority)
+
+        public Man_Page(string _priority, Login _ls)
         {
             InitializeComponent();
             priority = _priority;
+            ls = _ls;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-
+            label2.Text = DateTime.Now.ToString("시간 : HH : mm : ss");
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -117,7 +119,11 @@ namespace TestForm
 
                 string dept_id = rdr["dept_id"].ToString();
 
-
+                if(Man_Regi.Enabled == false)               //버튼 사용 불가 계정으로 진입 시 관리자 버튼 디자인
+                {
+                    Man_Regi.BackColor = Color.FromArgb(130,39,34);
+                    Man_Regi.FlatAppearance.BorderColor = Color.FromArgb(130, 39, 34);
+                }
 
                 if (dept_id == "1")
                 {
@@ -128,11 +134,15 @@ namespace TestForm
                 {
                     a = "검수팀";
                 }
+
                 string[] emp_info = new string[] { Emp_id, Emp_name, Emp_email,
                                                     Emp_tel, Emp_addr, Emp_emer_tel, Blood_type, a };
 
                 dataGridView1.Rows.Add(emp_info);
 
+                label2.Text = DateTime.Now.ToString("시간 : HH : mm : ss");
+                timer1.Interval = 1000;
+                timer1.Start();
             }
 
 
@@ -153,7 +163,7 @@ namespace TestForm
             comboBox1.SelectedIndex = 2; 
         }
 
-            private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
             conn = new MySqlConnection(strConn);
@@ -307,7 +317,40 @@ namespace TestForm
             DP.ShowDialog(this);*/
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            conn = new MySqlConnection(strConn);
+            cmd = new MySqlCommand();
+            conn.Open();
+            cmd.Connection = conn;
 
+            cmd.CommandText = ("select * from emp_info;");
+            rdr = cmd.ExecuteReader();
+            dataGridView1.Rows.Clear();
+
+            while (rdr.Read())
+            {
+                string Emp_id = rdr["emp_id"].ToString();
+
+                string Emp_name = rdr["emp_name"] as string;
+
+                string Emp_email = rdr["emp_email"] as string;
+
+                string Emp_tel = rdr["emp_tel"] as string;
+
+                string Emp_addr = rdr["emp_addr"] as string;
+
+                string Emp_emer_tel = rdr["emp_emer_tel"] as string;
+
+                string Blood_type = rdr["blood_type"] as string;
+
+                string dept_id = rdr["dept_id"].ToString();
+
+                string[] emp_info = new string[] { Emp_id, Emp_name, Emp_email, Emp_tel, Emp_addr, Emp_emer_tel, Blood_type, dept_id };
+
+                dataGridView1.Rows.Add(emp_info);
+            }
+        }
 
         private void Man_Regi_Click(object sender, EventArgs e)
         {
@@ -317,24 +360,19 @@ namespace TestForm
 
         private void Man_Page_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (MessageBox.Show("종료하시겠습니까?", "YesOrNo", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-            }
-            else
-            {
-                e.Cancel = true;
-                return;
-            }
-        
+            ls.Visible = true;
         }
 
-      /*  private void button3_Click_1(object sender, EventArgs e)
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
-            Man_Page mp = this;
-            this.Close();        
-            Login ls = new Login();
-            ls.ShowDialog();
-            
-        }*/
+
+        }
+
+        private void Logout_Click(object sender, EventArgs e)
+        {
+            this.Close();
+
+        }
+
     }
 }

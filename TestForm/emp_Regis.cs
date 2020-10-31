@@ -232,5 +232,6 @@ namespace TestForm
                 mp.dataGridView1.Rows.Add(emp_info);
             }
         }
+
     }   
 }
