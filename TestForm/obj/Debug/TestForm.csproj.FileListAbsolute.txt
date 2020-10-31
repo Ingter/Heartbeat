@@ -204,6 +204,5 @@ C:\Users\Admin\Documents\카카오톡 받은 파일\Heartbeat\Heartbeat\TestForm
 C:\Heartbeat\TestForm\bin\Debug\netchartdir.xml
 C:\Heartbeat\TestForm\bin\Debug\MetroFramework.dll
 C:\Heartbeat\TestForm\bin\Debug\MetroFramework.Fonts.dll
-C:\Heartbeat\TestForm\bin\Debug\netchartdir.dll
 C:\Heartbeat\TestForm\obj\Debug\TestForm.csprojAssemblyReference.cache
 C:\Heartbeat\TestForm\obj\Debug\TestForm.RFID.resources

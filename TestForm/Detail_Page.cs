@@ -11,6 +11,7 @@ using Oracle.ManagedDataAccess.Client;
 using MySql.Data.MySqlClient;
 using System.IO;
 using ChartDirector;
+using System.Management;
 
 namespace TestForm
 {
@@ -450,6 +451,8 @@ namespace TestForm
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Login ln = new Login();
+            ln.update();
             Detail_Page dp = this;
             Emp_Update eu = new Emp_Update(dp);
             eu.Passvalue2 = Passvalue;  // 전달자(Passvalue)를 통해서 dp페이지로 전달
@@ -592,5 +595,9 @@ namespace TestForm
             rdr.Close();
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

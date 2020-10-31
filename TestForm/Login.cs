@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,7 +9,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI.WebControls;
 using System.Windows.Forms;
-
 namespace TestForm
 {
 
@@ -20,6 +20,23 @@ namespace TestForm
     {
         public event EventHandler loginEventHandler;
         //Man_Page mp;
+
+        private int g_rHandle, g_retCode;
+        private byte g_Sec, g_SID;
+        private byte[] g_pKey = new byte[6];
+        private bool g_isConnected = false;
+
+        public string strConn = "Server=192.168.0.31;" +
+                       "Database=test;" +
+                       "Uid=test;" +
+                       "Pwd=1234;" +
+                       "charset=utf8;";
+
+        public MySqlConnection conn;
+        public MySqlCommand cmd;
+        public MySqlDataReader rdr;
+
+       
         public Login()
         {
             InitializeComponent();
@@ -27,7 +44,19 @@ namespace TestForm
 
         private void Login_Load(object sender, EventArgs e)
         {
-
+            timer1.Interval = 1000;
+            timer1.Start();
+            
+        }
+        public void update()
+        {
+            timer1.Stop();
+        }
+        public void update_done()
+        {
+            timer1.Interval = 1000;
+            timer1.Start();
+            
         }
 
 
@@ -92,6 +121,156 @@ namespace TestForm
                 e.Cancel = true;
                 return;
             }
+        }
+
+        public void timer1_Tick(object sender, EventArgs e)
+        {
+            if (!g_isConnected)
+            {
+                RFID_conn();
+                //MessageBox.Show("RFID 연결상태를 확인해주세요.");
+            }
+            else
+            {
+                {
+                    string time = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+                    
+
+                    byte[] TagLength = new byte[51];
+                    byte TagFound = 0;
+                    byte[] TagType = new byte[51];
+                    byte[] SN = new byte[451];
+                    int ctr;
+                    string snstr;
+                    g_retCode = ACR120U.ACR120_ListTags(g_rHandle, ref TagFound, ref TagType[0], ref TagLength[0], ref SN[0]);
+
+                    if (g_retCode < 0)
+                    {
+                        //DisplayMessage(ACR120U.GetErrMsg(g_retCode));
+                    }
+                    else
+                    {
+
+                        //DisplayMessage("List Tag Success");
+                        //DisplayMessage("Tag Found: " + String.Format("{0}", TagFound));
+
+                        // Parse the serial number array
+                        snstr = "";
+                        for (ctr = 0; ctr < TagLength[0]; ctr++)
+                        {
+
+                            snstr = snstr + string.Format("{0:X2} ", SN[ctr]);
+
+                        }
+                        Detail_Page DP = new Detail_Page();
+                        DP.Passvalue = snstr;  // 전달자(Passvalue)를 통해서 dp페이지로 전달
+
+                        conn = new MySqlConnection(strConn);
+                        cmd = new MySqlCommand();
+                        conn.Open();
+                        cmd.Connection = conn;
+                        cmd.CommandText = ($"select rfid from emp_info ");
+                        rdr = cmd.ExecuteReader();
+                        int work = 0;
+                        while (rdr.Read())
+                        {
+                            string rfid = rdr["rfid"] as string;
+                            if (rfid == snstr)
+                                work = 1;
+                        }
+                        rdr.Close();
+                        if (work == 1)
+                        {
+                            cmd.CommandText = $"insert into rfid (rfid, time) values " +
+                                              $"('{snstr}', '{time}')";
+                            cmd.ExecuteNonQuery();
+
+                        }
+
+                        if (string.IsNullOrEmpty(snstr) == false)
+                        {
+                            timer1.Stop();
+                            Delay(2000);
+                            timer1.Start();
+                            return;
+                        }
+                        conn.Close();
+                    }
+                }
+            }
+            //여기에 update에서 클릭이 들어온다면
+            //timer1.stop();
+            //수정완료 클릭이 들어오면
+            //timer1.start();
+
+        }
+        private void RFID_conn()
+        {
+
+            int ctr = 0;
+            byte[] FirmwareVer = new byte[31];
+            byte[] FirmwareVer1 = new byte[20];
+            byte infolen = 0x00;
+            string FirmStr;
+            ACR120U.tReaderStatus ReaderStat = new ACR120U.tReaderStatus();
+
+
+            
+            g_rHandle = ACR120U.ACR120_Open(0);
+            if (g_rHandle != 0)
+            {
+                //DisplayMessage("[X] " + ACR120U.GetErrMsg(g_rHandle));
+            }
+            else
+            {
+
+                //DisplayMessage("Connected to USB" + string.Format("{0}", 0 + 1));
+                g_isConnected = true;
+
+                //Get the DLL version the program is using
+                g_retCode = ACR120U.ACR120_RequestDLLVersion(ref infolen, ref FirmwareVer[0]);
+                if (g_retCode < 0) ;
+
+                //DisplayMessage("[X] " + ACR120U.GetErrMsg(g_retCode));
+
+                else
+                {
+                    FirmStr = "";
+                    for (ctr = 0; ctr < Convert.ToInt16(infolen) - 1; ctr++)
+                        FirmStr = FirmStr + char.ToString((char)(FirmwareVer[ctr]));
+                    //DisplayMessage("DLL Version : " + FirmStr);
+                }
+
+                //Routine to get the firmware version.
+                g_retCode = ACR120U.ACR120_Status(g_rHandle, ref FirmwareVer1[0], ref ReaderStat);
+                if (g_retCode < 0) ;
+
+                //DisplayMessage("[X] " + ACR120U.GetErrMsg(g_retCode));
+
+                else
+                {
+                    FirmStr = "";
+                    for (ctr = 0; ctr < Convert.ToInt16(infolen); ctr++)
+                        if ((FirmwareVer1[ctr] != 0x00) && (FirmwareVer1[ctr] != 0xFF))
+                            FirmStr = FirmStr + char.ToString((char)(FirmwareVer1[ctr]));
+                    //DisplayMessage("Firmware Version : " + FirmStr);
+                }
+                
+            }
+        }
+        private static DateTime Delay(int MS)
+        {
+            DateTime ThisMoment = DateTime.Now;
+            TimeSpan duration = new TimeSpan(0, 0, 0, 0, MS);
+            DateTime AfterWards = ThisMoment.Add(duration);
+
+            while (AfterWards >= ThisMoment)
+            {
+                System.Windows.Forms.Application.DoEvents();
+                ThisMoment = DateTime.Now;
+            }
+
+            return DateTime.Now;
         }
     }
 }

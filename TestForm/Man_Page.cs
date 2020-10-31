@@ -50,7 +50,10 @@ namespace TestForm
         private void timer1_Tick(object sender, EventArgs e)
         {
             label2.Text = DateTime.Now.ToString("시간 : HH : mm : ss");
+
+
         }
+        
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
