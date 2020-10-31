@@ -30,7 +30,7 @@ namespace TestForm
         public MySqlConnection conn;
         public MySqlCommand cmd;
         public MySqlDataReader rdr;
-
+        string a;
 
         Login login;
         string priority = "-1";
@@ -47,7 +47,7 @@ namespace TestForm
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            label2.Text = DateTime.Now.ToString("시간 : HH : mm : ss");
+
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -76,6 +76,10 @@ namespace TestForm
 
         public void Man_Page_Load(object sender, EventArgs e)
         {
+            comboBox_init();
+
+            label2.Text = System.DateTime.  Now.ToString("hh:mm:ss");
+
             this.dataGridView1.Font = new Font("Malgun Gothic", 9, FontStyle.Bold);
             this.dataGridView1.DefaultCellStyle.Font = new Font("Gothic", 9, FontStyle.Regular);
 
@@ -115,14 +119,23 @@ namespace TestForm
 
 
 
+                if (dept_id == "1")
+                {
+                    a = "포장팀";
+                }
+
+                else if (dept_id == "2")
+                {
+                    a = "검수팀";
+                }
+
+
+
                 string[] emp_info = new string[] { Emp_id, Emp_name, Emp_email,
-                                                    Emp_tel, Emp_addr, Emp_emer_tel, Blood_type, dept_id };
+                                                    Emp_tel, Emp_addr, Emp_emer_tel, Blood_type, a };
 
                 dataGridView1.Rows.Add(emp_info);
 
-                label2.Text = DateTime.Now.ToString("시간 : HH : mm : ss");
-                timer1.Interval = 1000;
-                timer1.Start();
             }
 
 
@@ -132,7 +145,16 @@ namespace TestForm
 
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+
+        public void comboBox_init()
+        {
+            //comboBox1.Items.Add("검수팀");
+            //comboBox1.Items.Add("포장팀");
+            //comboBox1.Items.Add("전체");
+            comboBox1.SelectedIndex = 2; 
+        }
+
+            private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
             conn = new MySqlConnection(strConn);
