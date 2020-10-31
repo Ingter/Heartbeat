@@ -59,10 +59,6 @@ namespace TestForm
             InitializeComponent();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
 
         private void Detail_Page_Load(object sender, EventArgs e)
         {
@@ -143,7 +139,7 @@ namespace TestForm
 
             rdr.Close();
 
-            cmd.CommandText = ($"select * from emp_detail  where emp_id = {Passvalue}");
+            cmd.CommandText = ($"select * from emp_detail where emp_id = {Passvalue}");
             rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
@@ -186,6 +182,8 @@ namespace TestForm
 
             timer1.Interval = 5000; //unit: (ms)
             timer1.Start();
+            timer2.Interval = 30000;
+            timer2.Start();
 
             loadData();
 
@@ -564,9 +562,9 @@ namespace TestForm
             rdr.Close();
         }
 
-        private void timer2_Tick(object sender, EventArgs e)
+       private void timer2_Tick(object sender, EventArgs e)
         {
-
+            
             conn = new MySqlConnection(strConn);
             cmd = new MySqlCommand();
             conn.Open();
@@ -574,24 +572,25 @@ namespace TestForm
 
             dataGridView1.Rows.Clear();
 
-            cmd.CommandText = ($"select * from emp_detail  where emp_id = {Passvalue}");
+            cmd.CommandText = ($"select * from emp_detail where emp_id = {Passvalue}");
             rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
             {
 
-                string Emp_name = rdr["emp_name"] as string;
+                string Time = rdr["time"] as string;
 
                 string Body_temp = rdr["body_temp"].ToString();
 
                 string Heart_rate = rdr["heart_rate"].ToString();
 
-                string[] rw = new string[] { Emp_name, Heart_rate, Body_temp };
+                string[] rw = new string[] { Time, Heart_rate, Body_temp };
 
                 dataGridView1.Rows.Add(rw);
 
             }
             rdr.Close();
         }
+
     }
 }

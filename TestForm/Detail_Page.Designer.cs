@@ -51,6 +51,7 @@
             this.emp_etel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.button3 = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -63,7 +64,7 @@
             this.winChartViewer2 = new ChartDirector.WinChartViewer();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.button3 = new System.Windows.Forms.Button();
+            this.timer3 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -130,7 +131,6 @@
             this.dataGridView1.RowTemplate.Height = 27;
             this.dataGridView1.Size = new System.Drawing.Size(741, 151);
             this.dataGridView1.TabIndex = 3;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // 시간
             // 
@@ -336,6 +336,17 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(223, 630);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
+            // button3
+            // 
+            this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button3.Font = new System.Drawing.Font("Dotum", 13.8F);
+            this.button3.Location = new System.Drawing.Point(3, 570);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(217, 57);
+            this.button3.TabIndex = 14;
+            this.button3.Text = "RFID";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 1;
@@ -495,17 +506,7 @@
             // timer2
             // 
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
-            // 
-            // button3
-            // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button3.Font = new System.Drawing.Font("Dotum", 13.8F);
-            this.button3.Location = new System.Drawing.Point(3, 570);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(217, 57);
-            this.button3.TabIndex = 14;
-            this.button3.Text = "RFID";
-            this.button3.UseVisualStyleBackColor = true;
+
             // 
             // Detail_Page
             // 
@@ -577,6 +578,7 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Timer timer3;
     }
 }
 
