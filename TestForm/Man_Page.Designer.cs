@@ -32,6 +32,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Man_Page));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.이름 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.이메일 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TEL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.주소 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EMER_TEL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.혈액형 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.부서명 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
@@ -42,14 +50,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.이름 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.이메일 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TEL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.주소 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EMER_TEL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.혈액형 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.부서명 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -83,6 +83,54 @@
             this.dataGridView1.Size = new System.Drawing.Size(827, 367);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.MinimumWidth = 6;
+            this.ID.Name = "ID";
+            // 
+            // 이름
+            // 
+            this.이름.HeaderText = "이름";
+            this.이름.MinimumWidth = 6;
+            this.이름.Name = "이름";
+            // 
+            // 이메일
+            // 
+            this.이메일.HeaderText = "이메일";
+            this.이메일.MinimumWidth = 6;
+            this.이메일.Name = "이메일";
+            // 
+            // TEL
+            // 
+            this.TEL.HeaderText = "TEL";
+            this.TEL.MinimumWidth = 6;
+            this.TEL.Name = "TEL";
+            // 
+            // 주소
+            // 
+            this.주소.HeaderText = "주소";
+            this.주소.MinimumWidth = 6;
+            this.주소.Name = "주소";
+            // 
+            // EMER_TEL
+            // 
+            this.EMER_TEL.HeaderText = "EMER_TEL";
+            this.EMER_TEL.MinimumWidth = 6;
+            this.EMER_TEL.Name = "EMER_TEL";
+            // 
+            // 혈액형
+            // 
+            this.혈액형.HeaderText = "혈액형";
+            this.혈액형.MinimumWidth = 6;
+            this.혈액형.Name = "혈액형";
+            // 
+            // 부서명
+            // 
+            this.부서명.HeaderText = "부서명";
+            this.부서명.MinimumWidth = 6;
+            this.부서명.Name = "부서명";
             // 
             // button1
             // 
@@ -168,7 +216,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 373F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(1067, 373);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
@@ -253,54 +301,6 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Management Page";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.MinimumWidth = 6;
-            this.ID.Name = "ID";
-            // 
-            // 이름
-            // 
-            this.이름.HeaderText = "이름";
-            this.이름.MinimumWidth = 6;
-            this.이름.Name = "이름";
-            // 
-            // 이메일
-            // 
-            this.이메일.HeaderText = "이메일";
-            this.이메일.MinimumWidth = 6;
-            this.이메일.Name = "이메일";
-            // 
-            // TEL
-            // 
-            this.TEL.HeaderText = "TEL";
-            this.TEL.MinimumWidth = 6;
-            this.TEL.Name = "TEL";
-            // 
-            // 주소
-            // 
-            this.주소.HeaderText = "주소";
-            this.주소.MinimumWidth = 6;
-            this.주소.Name = "주소";
-            // 
-            // EMER_TEL
-            // 
-            this.EMER_TEL.HeaderText = "EMER_TEL";
-            this.EMER_TEL.MinimumWidth = 6;
-            this.EMER_TEL.Name = "EMER_TEL";
-            // 
-            // 혈액형
-            // 
-            this.혈액형.HeaderText = "혈액형";
-            this.혈액형.MinimumWidth = 6;
-            this.혈액형.Name = "혈액형";
-            // 
-            // 부서명
-            // 
-            this.부서명.HeaderText = "부서명";
-            this.부서명.MinimumWidth = 6;
-            this.부서명.Name = "부서명";
             // 
             // Man_Page
             // 

@@ -361,6 +361,8 @@ namespace TestForm
         private void Man_Page_FormClosing(object sender, FormClosingEventArgs e)
         {
             ls.Visible = true;
+            ls.textBox1.Text = "";
+            ls.textBox2.Text = "";
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
