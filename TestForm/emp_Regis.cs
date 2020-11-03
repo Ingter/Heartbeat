@@ -29,10 +29,21 @@ namespace TestForm
         OpenFileDialog ofd = new OpenFileDialog();
 
         Man_Page mp;
-        public emp_Regis(Man_Page _mp)
+
+
+        private string Form2_value;
+        public string Passvalue
+        {
+            get { return this.Form2_value; }
+            set { this.Form2_value = value; }  // 다른폼(Form1)에서 전달받은 값을 쓰기
+        }
+
+        public UserInfo userInfo;
+        public emp_Regis(Man_Page _mp, UserInfo _uinfo)
         {
             InitializeComponent();
             mp = _mp;
+            userInfo = _uinfo;
         }
 
         public emp_Regis()
@@ -43,6 +54,7 @@ namespace TestForm
         private void Form1_Load(object sender, EventArgs e)
         {
 
+            
         }
 
         private void button3_Click(object sender, EventArgs e) //이미지 저장 버튼
@@ -233,5 +245,9 @@ namespace TestForm
             }
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            textBox7.Text = userInfo.SnStr;
+        }
     }   
 }

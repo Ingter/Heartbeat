@@ -18,6 +18,7 @@ namespace TestForm
 
     public partial class Login : Form 
     {
+        public UserInfo userinfo = new UserInfo();
         public event EventHandler loginEventHandler;
         //Man_Page mp;
 
@@ -35,8 +36,8 @@ namespace TestForm
         public MySqlConnection conn;
         public MySqlCommand cmd;
         public MySqlDataReader rdr;
+        
 
-       
         public Login()
         {
             InitializeComponent();
@@ -48,16 +49,7 @@ namespace TestForm
             timer1.Start();
             
         }
-        public void update()
-        {
-            timer1.Stop();
-        }
-        public void update_done()
-        {
-            timer1.Interval = 1000;
-            timer1.Start();
-            
-        }
+
 
 
         private void button1_Click(object sender, EventArgs e)
@@ -67,12 +59,17 @@ namespace TestForm
             {
                 if (login.LoginCheck(textBox1.Text, textBox2.Text, out string proiroty))
                 {
-                    string userName = textBox1.Text;
+                    
+                    //string userName = textBox1.Text;
+                    userinfo.priority = proiroty;
+                    userinfo.UserName = textBox1.Text;
+
                     //loginEventHandler(userName);
                     DialogResult = DialogResult.OK;
                     Login ls = this;
-                    Man_Page mp = new Man_Page(proiroty,ls);
+                    Man_Page mp = new Man_Page(userinfo, ls);
                     this.Visible = false;
+                    //mp.Passvalue = snstr;
                     mp.ShowDialog();
                     
                 }
@@ -83,7 +80,16 @@ namespace TestForm
                     textBox2.Clear();
                     
                 }
+                emp_Regis ers = new emp_Regis(); // 인스턴스화(객체 생성)
+                //ers.Passvalue = snstr;
+                //Man_Page mp = new Man_Page();
+               
+
             }
+
+
+
+            rdr.Close();
 
         }
 
@@ -160,6 +166,7 @@ namespace TestForm
                         {
 
                             snstr = snstr + string.Format("{0:X2} ", SN[ctr]);
+                            userinfo.SnStr = snstr;
 
                         }
                         Detail_Page DP = new Detail_Page();
@@ -178,14 +185,19 @@ namespace TestForm
                             if (rfid == snstr)
                                 work = 1;
                         }
-                        rdr.Close();
-                        if (work == 1)
+                        
+                        //label1.Text = snstr;
+                      
+                        
+
+/*                        if (work == 1)
                         {
                             cmd.CommandText = $"insert into rfid (rfid, time) values " +
                                               $"('{snstr}', '{time}')";
                             cmd.ExecuteNonQuery();
 
-                        }
+                   
+                        }*/
 
                         if (string.IsNullOrEmpty(snstr) == false)
                         {
@@ -195,6 +207,7 @@ namespace TestForm
                             return;
                         }
                         conn.Close();
+
                     }
                 }
             }

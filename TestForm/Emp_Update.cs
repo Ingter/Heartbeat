@@ -281,8 +281,7 @@ namespace TestForm
                 MessageBox.Show(ex.ToString());
                 MessageBox.Show("수정되었습니다.");
             }
-            Login ln = new Login();
-            ln.update_done();
+
 
         }
 

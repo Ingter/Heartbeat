@@ -182,6 +182,7 @@
     <Compile Include="RFID.Designer.cs">
       <DependentUpon>RFID.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserInfo.cs" />
     <EmbeddedResource Include="Detail_Page.resx">
       <DependentUpon>Detail_Page.cs</DependentUpon>
     </EmbeddedResource>

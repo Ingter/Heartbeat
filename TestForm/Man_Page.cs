@@ -33,17 +33,17 @@ namespace TestForm
         string a;
 
         Login ls;
-        string priority = "-1";
+        public UserInfo userInfo;
         public Man_Page()
         {
             InitializeComponent();
         }
 
 
-        public Man_Page(string _priority, Login _ls)
+        public Man_Page(UserInfo _uinfo, Login _ls)
         {
             InitializeComponent();
-            priority = _priority;
+            userInfo = _uinfo;
             ls = _ls;
         }
 
@@ -53,7 +53,15 @@ namespace TestForm
 
 
         }
-        
+
+        private string Form2_value;
+        public string Passvalue
+        {
+            get { return this.Form2_value; }
+            set { this.Form2_value = value; }  // 다른폼(Form1)에서 전달받은 값을 쓰기
+        }
+
+
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -81,6 +89,9 @@ namespace TestForm
 
         public void Man_Page_Load(object sender, EventArgs e)
         {
+
+            label1.Text = Passvalue;
+
             comboBox_init();
 
             label2.Text = System.DateTime.  Now.ToString("hh:mm:ss");
@@ -88,7 +99,7 @@ namespace TestForm
             this.dataGridView1.Font = new Font("Malgun Gothic", 9, FontStyle.Bold);
             this.dataGridView1.DefaultCellStyle.Font = new Font("Gothic", 9, FontStyle.Regular);
 
-            if (priority.Equals("1"))
+            if (userInfo.priority.Equals("1"))
                 Man_Regi.Enabled = true;
             else
                 Man_Regi.Enabled = false;
@@ -311,7 +322,7 @@ namespace TestForm
         {
 
             Man_Page mp = this;
-            emp_Regis f1 = new emp_Regis(mp);
+            emp_Regis f1 = new emp_Regis(mp, userInfo);
             f1.ShowDialog(this);
 
 /*            Man_Page mp = this;
