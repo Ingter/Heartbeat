@@ -1,13 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.UI.WebControls;
 using System.Windows.Forms;
 namespace TestForm
 {
@@ -16,7 +8,7 @@ namespace TestForm
 
     //public delegate void EventHandler(string userName);
 
-    public partial class Login : Form 
+    public partial class Login : Form
     {
         public UserInfo userinfo = new UserInfo();
         public event EventHandler loginEventHandler;
@@ -27,16 +19,16 @@ namespace TestForm
         private byte[] g_pKey = new byte[6];
         private bool g_isConnected = false;
 
-        public string strConn = "Server=192.168.0.31;" +
-                       "Database=test;" +
-                       "Uid=test;" +
-                       "Pwd=1234;" +
-                       "charset=utf8;";
+        public string strConn = "Server=192.168.0.173;" +
+                               "Database=heartbeat;" +
+                               "Uid=test;" +
+                               "Pwd=1234;" +
+                               "charset=utf8;";
 
         public MySqlConnection conn;
         public MySqlCommand cmd;
         public MySqlDataReader rdr;
-        
+
 
         public Login()
         {
@@ -47,7 +39,7 @@ namespace TestForm
         {
             timer1.Interval = 1000;
             timer1.Start();
-            
+
         }
 
 
@@ -59,7 +51,7 @@ namespace TestForm
             {
                 if (login.LoginCheck(textBox1.Text, textBox2.Text, out string proiroty))
                 {
-                    
+
                     //string userName = textBox1.Text;
                     userinfo.priority = proiroty;
                     userinfo.UserName = textBox1.Text;
@@ -71,25 +63,25 @@ namespace TestForm
                     this.Visible = false;
                     //mp.Passvalue = snstr;
                     mp.ShowDialog();
-                    
+
                 }
                 else
                 {
                     MessageBox.Show("로그인 실패");
                     textBox1.Clear();
                     textBox2.Clear();
-                    
+
                 }
                 emp_Regis ers = new emp_Regis(); // 인스턴스화(객체 생성)
-                //ers.Passvalue = snstr;
-                //Man_Page mp = new Man_Page();
-               
+                                                 //ers.Passvalue = snstr;
+                                                 //Man_Page mp = new Man_Page();
 
+                login.rdr.Close();
             }
 
 
 
-            login.rdr.Close();
+
 
         }
 
@@ -140,7 +132,7 @@ namespace TestForm
             {
                 {
                     string time = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
-                    
+
 
                     byte[] TagLength = new byte[51];
                     byte TagFound = 0;
@@ -176,28 +168,53 @@ namespace TestForm
                         cmd = new MySqlCommand();
                         conn.Open();
                         cmd.Connection = conn;
-                        cmd.CommandText = ($"select rfid from emp_info ");
+                        cmd.CommandText = ($"select rfid from emp_info");
                         rdr = cmd.ExecuteReader();
                         int work = 0;
+                        string Emp_id = "";
+                        string Emp_name = "";
+                        string rfid = "";
+
                         while (rdr.Read())
                         {
-                            string rfid = rdr["rfid"] as string;
+
+                            // Emp_id = rdr["emp_id"].ToString();
+                            // Emp_name = rdr["emp_name"] as string;
+                            rfid = rdr["rfid"] as string;
+                            Console.WriteLine(rfid);
                             if (rfid == snstr)
                                 work = 1;
-                        }
-                        
-                        //label1.Text = snstr;
-                      
-                        
 
-/*                        if (work == 1)
+                        }
+                        rdr.Close();
+
+
+                        cmd.CommandText = ($"select emp_id, emp_name from emp_info where rfid = '{snstr} '");
+                        rdr = cmd.ExecuteReader();
+
+                        while (rdr.Read())
                         {
-                            cmd.CommandText = $"insert into rfid (rfid, time) values " +
-                                              $"('{snstr}', '{time}')";
+
+                            Emp_id = rdr["emp_id"].ToString();
+                            Emp_name = rdr["emp_name"] as string;
+                            label1.Text = Emp_id;
+                            label2.Text = Emp_name;
+
+                        }
+                        rdr.Close();
+
+                        //label1.Text = snstr;
+
+                        if (work == 1)
+                        {
+
+
+                            cmd.CommandText = $"insert into attendance_check (emp_id, emp_name, time) " +
+                                                 $"values('{Emp_id}','{Emp_name}','{time}')";
                             cmd.ExecuteNonQuery();
 
-                   
-                        }*/
+
+                        }
 
                         if (string.IsNullOrEmpty(snstr) == false)
                         {
@@ -206,6 +223,7 @@ namespace TestForm
                             timer1.Start();
                             return;
                         }
+
                         conn.Close();
 
                     }
@@ -228,7 +246,7 @@ namespace TestForm
             ACR120U.tReaderStatus ReaderStat = new ACR120U.tReaderStatus();
 
 
-            
+
             g_rHandle = ACR120U.ACR120_Open(0);
             if (g_rHandle != 0)
             {
@@ -268,7 +286,7 @@ namespace TestForm
                             FirmStr = FirmStr + char.ToString((char)(FirmwareVer1[ctr]));
                     //DisplayMessage("Firmware Version : " + FirmStr);
                 }
-                
+
             }
         }
         private static DateTime Delay(int MS)

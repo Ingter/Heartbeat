@@ -163,7 +163,7 @@ namespace TestForm
                     fs.Close();
 
                     SQL = $"INSERT INTO image (ImageNo, Image, Image_name) VALUES(@ImageNo, @Image, @ImageName)";
-                    SQL2 = $"insert into emp_info (emp_id, emp_name, emp_email, emp_tel, emp_addr, emp_emer_tel, blood_type, dept_id) values ({textBox1.Text},'{textBox2.Text}','{textBox3.Text}','{textBox4.Text}','{textBox5.Text}','{textBox6.Text}','{comboBox1.Text}',{a})";
+                    SQL2 = $"insert into emp_info (emp_id, emp_name, emp_email, emp_tel, emp_addr, emp_emer_tel, blood_type, dept_id, rfid) values ({textBox1.Text},'{textBox2.Text}','{textBox3.Text}','{textBox4.Text}','{textBox5.Text}','{textBox6.Text}','{comboBox1.Text}',{a} ,'{textBox7.Text}')";
 
                     cmd.CommandText = SQL;
 
@@ -192,9 +192,9 @@ namespace TestForm
                         a = 2;
                     }
 
-                    cmd.CommandText = $"insert into emp_info (emp_id, emp_name, emp_email, emp_tel, emp_addr, emp_emer_tel, blood_type, dept_id) " +
+                    cmd.CommandText = $"insert into emp_info (emp_id, emp_name, emp_email, emp_tel, emp_addr, emp_emer_tel, blood_type, dept_id, rfid) " +
                      $"values ({textBox1.Text},'{textBox2.Text}','{textBox3.Text}','{textBox4.Text}'," +
-                    $"'{textBox5.Text}','{textBox6.Text}','{comboBox1.Text}',{a})";
+                    $"'{textBox5.Text}','{textBox6.Text}'  ,'{comboBox1.Text}',{a} ,'{textBox7.Text}')";
                     cmd.ExecuteNonQuery();
 
                     MessageBox.Show("작업자 등록이 완료되었습니다.");
@@ -239,15 +239,12 @@ namespace TestForm
 
                 string dept_id = rdr["dept_id"].ToString();
 
-                string[] emp_info = new string[] { Emp_id, Emp_name, Emp_email, Emp_tel, Emp_addr, Emp_emer_tel, Blood_type, dept_id };
+
+
+                string[] emp_info = new string[] { Emp_id, Emp_name, Emp_email, Emp_tel, Emp_addr, Emp_emer_tel, Blood_type, dept_id};
 
                 mp.dataGridView1.Rows.Add(emp_info);
             }
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            textBox7.Text = userInfo.SnStr;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
