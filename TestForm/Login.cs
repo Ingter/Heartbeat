@@ -89,7 +89,7 @@ namespace TestForm
 
 
 
-            rdr.Close();
+            login.rdr.Close();
 
         }
 

@@ -53,7 +53,7 @@ namespace TestForm
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            timer1.Start();
             
         }
 
@@ -246,6 +246,11 @@ namespace TestForm
         }
 
         private void button4_Click(object sender, EventArgs e)
+        {
+            textBox7.Text = userInfo.SnStr;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
         {
             textBox7.Text = userInfo.SnStr;
         }
