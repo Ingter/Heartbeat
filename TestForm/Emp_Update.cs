@@ -52,6 +52,27 @@ namespace TestForm
 
         private void Emp_Update_Load(object sender, EventArgs e)  // 창 로드
         {
+            string[] bl = { "rh+ A","rh+ B","rh+ O","rh+ AB","rh- A","rh- B","rh- O","rh- AB"};
+            string[] d = { "포장팀", "검수팀" };
+
+
+            // 각 콤보박스에 데이타를 초기화
+            emp_bl.Items.AddRange(bl);
+            emp_d.Items.AddRange(d);
+
+            string a;
+
+            // 처음 선택값 지정. 첫째 아이템 선택
+            //emp_bl.SelectedIndex = 0;
+           // emp_d.SelectedIndex = 0;
+           
+
+
+
+
+
+
+
             conn = new MySqlConnection(strConn);
             cmd = new MySqlCommand();
             conn.Open();
@@ -80,13 +101,26 @@ namespace TestForm
 
                 string Dept_id = rdr["dept_id"].ToString();
 
+
+                if(Dept_id=="1")
+                {
+                    a = "포장팀";
+                    emp_d.Text = a;
+                }
+                else if (Dept_id == "2")
+                {
+                    a = "검수팀";
+                    emp_d.Text = a;
+                }
+
+
                 emp_name.Text = Emp_name;
                 emp_email.Text = Emp_email;
                 emp_tel.Text = Emp_tel;
                 emp_etel.Text = Emp_emer_tel;
                 emp_addr.Text = Emp_addr;
                 emp_bl.Text = blood_type;
-                emp_d.Text = Dept_id;
+                //emp_d.Text = a;
                 
 
             }

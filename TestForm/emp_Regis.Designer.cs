@@ -383,6 +383,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "emp_Regis";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Emp Resistration Page";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.emp_Regis_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);

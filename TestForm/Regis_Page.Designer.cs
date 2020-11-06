@@ -253,6 +253,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Regis_Page";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manager Registration Page";
             this.Load += new System.EventHandler(this.Regis_Page_Load);
             this.ResumeLayout(false);

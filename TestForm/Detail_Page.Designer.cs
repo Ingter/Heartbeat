@@ -517,6 +517,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Detail_Page";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Emp Detail Page";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Detail_Page_FormClosing);
             this.Load += new System.EventHandler(this.Detail_Page_Load);

@@ -462,6 +462,8 @@ namespace TestForm
 
         private void Detail_Page_FormClosing(object sender, FormClosingEventArgs e)
         {
+            string a = "";
+
             conn = new MySqlConnection(strConn);
             cmd = new MySqlCommand();
             conn.Open();
@@ -489,7 +491,18 @@ namespace TestForm
 
                 string dept_id = rdr["dept_id"].ToString();
 
-                string[] emp_info = new string[] { Emp_id, Emp_name, Emp_email, Emp_tel, Emp_addr, Emp_emer_tel, Blood_type, dept_id };
+
+                if (dept_id == "1")
+                {
+                    a = "포장팀";
+                }
+
+                else if (dept_id == "2")
+                {
+                    a = "검수팀";
+                }
+
+                string[] emp_info = new string[] { Emp_id, Emp_name, Emp_email, Emp_tel, Emp_addr, Emp_emer_tel, Blood_type, a };
 
                 mp.dataGridView1.Rows.Add(emp_info);
             }

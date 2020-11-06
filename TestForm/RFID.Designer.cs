@@ -146,6 +146,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Name = "RFID";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RFID";
             this.Load += new System.EventHandler(this.RFID_Load);
             this.ResumeLayout(false);

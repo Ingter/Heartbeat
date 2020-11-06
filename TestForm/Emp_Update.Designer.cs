@@ -42,13 +42,13 @@
             this.label10 = new System.Windows.Forms.Label();
             this.emp_tel = new System.Windows.Forms.TextBox();
             this.emp_etel = new System.Windows.Forms.TextBox();
-            this.emp_d = new System.Windows.Forms.TextBox();
             this.emp_addr = new System.Windows.Forms.TextBox();
-            this.emp_bl = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.txtPath = new System.Windows.Forms.TextBox();
+            this.emp_bl = new System.Windows.Forms.ComboBox();
+            this.emp_d = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -136,9 +136,9 @@
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(66)))), ((int)(((byte)(57)))));
             this.label9.Location = new System.Drawing.Point(312, 304);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(83, 20);
+            this.label9.Size = new System.Drawing.Size(68, 20);
             this.label9.TabIndex = 8;
-            this.label9.Text = "부서번호 : ";
+            this.label9.Text = "부서명 : ";
             // 
             // emp_name
             // 
@@ -183,14 +183,6 @@
             this.emp_etel.Size = new System.Drawing.Size(280, 27);
             this.emp_etel.TabIndex = 13;
             // 
-            // emp_d
-            // 
-            this.emp_d.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.emp_d.Location = new System.Drawing.Point(400, 304);
-            this.emp_d.Name = "emp_d";
-            this.emp_d.Size = new System.Drawing.Size(64, 27);
-            this.emp_d.TabIndex = 16;
-            // 
             // emp_addr
             // 
             this.emp_addr.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -198,14 +190,6 @@
             this.emp_addr.Name = "emp_addr";
             this.emp_addr.Size = new System.Drawing.Size(280, 27);
             this.emp_addr.TabIndex = 14;
-            // 
-            // emp_bl
-            // 
-            this.emp_bl.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.emp_bl.Location = new System.Drawing.Point(184, 304);
-            this.emp_bl.Name = "emp_bl";
-            this.emp_bl.Size = new System.Drawing.Size(64, 27);
-            this.emp_bl.TabIndex = 15;
             // 
             // pictureBox1
             // 
@@ -262,6 +246,22 @@
             this.txtPath.Size = new System.Drawing.Size(144, 27);
             this.txtPath.TabIndex = 21;
             // 
+            // emp_bl
+            // 
+            this.emp_bl.FormattingEnabled = true;
+            this.emp_bl.Location = new System.Drawing.Point(184, 304);
+            this.emp_bl.Name = "emp_bl";
+            this.emp_bl.Size = new System.Drawing.Size(112, 23);
+            this.emp_bl.TabIndex = 22;
+            // 
+            // emp_d
+            // 
+            this.emp_d.FormattingEnabled = true;
+            this.emp_d.Location = new System.Drawing.Point(392, 304);
+            this.emp_d.Name = "emp_d";
+            this.emp_d.Size = new System.Drawing.Size(72, 23);
+            this.emp_d.TabIndex = 23;
+            // 
             // Emp_Update
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -269,13 +269,13 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Snow;
             this.ClientSize = new System.Drawing.Size(617, 533);
+            this.Controls.Add(this.emp_d);
+            this.Controls.Add(this.emp_bl);
             this.Controls.Add(this.txtPath);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.emp_bl);
             this.Controls.Add(this.emp_addr);
-            this.Controls.Add(this.emp_d);
             this.Controls.Add(this.emp_etel);
             this.Controls.Add(this.emp_tel);
             this.Controls.Add(this.label10);
@@ -294,6 +294,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Emp_Update";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Emp Info Update Page";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Emp_Update_FormClosing);
             this.Load += new System.EventHandler(this.Emp_Update_Load);
@@ -317,12 +318,12 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox emp_tel;
         private System.Windows.Forms.TextBox emp_etel;
-        private System.Windows.Forms.TextBox emp_d;
         private System.Windows.Forms.TextBox emp_addr;
-        private System.Windows.Forms.TextBox emp_bl;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox txtPath;
+        private System.Windows.Forms.ComboBox emp_bl;
+        private System.Windows.Forms.ComboBox emp_d;
     }
 }

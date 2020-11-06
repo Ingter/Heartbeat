@@ -311,6 +311,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Man_Page";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main Page";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Man_Page_FormClosing);
             this.Load += new System.EventHandler(this.Man_Page_Load);
