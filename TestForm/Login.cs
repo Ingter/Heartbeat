@@ -43,6 +43,11 @@ namespace TestForm
         }
 
 
+        private void textBox2_KeyDown(object sender, KeyEventArgs e)
+        { if (e.KeyCode == Keys.Enter)
+            { this.button1_Click(sender, e); }
+        }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
