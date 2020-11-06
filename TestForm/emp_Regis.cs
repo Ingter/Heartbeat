@@ -202,10 +202,16 @@ namespace TestForm
                 }
 
             }
-            catch(MySqlException ex)
+            catch(FormatException ex)
             {
 
-                MessageBox.Show(ex.ToString());
+                //MessageBox.Show(ex.ToString());
+                MessageBox.Show("모든 정보를 입력해주세요.");
+            }
+            catch (MySqlException ex)
+            {
+
+                //MessageBox.Show(ex.ToString());
                 MessageBox.Show("중복된 ID입니다.");
             }
         }
@@ -220,6 +226,8 @@ namespace TestForm
             cmd.CommandText = ("select * from emp_info;");
             rdr = cmd.ExecuteReader();
             mp.dataGridView1.Rows.Clear();
+
+            string a = "";
 
             while (rdr.Read())
             {
@@ -239,9 +247,17 @@ namespace TestForm
 
                 string dept_id = rdr["dept_id"].ToString();
 
+                if (dept_id == "1")
+                {
+                    a = "포장팀";
+                }
 
+                else if (dept_id == "2")
+                {
+                    a = "검수팀";
+                }
 
-                string[] emp_info = new string[] { Emp_id, Emp_name, Emp_email, Emp_tel, Emp_addr, Emp_emer_tel, Blood_type, dept_id};
+                string[] emp_info = new string[] { Emp_id, Emp_name, Emp_email, Emp_tel, Emp_addr, Emp_emer_tel, Blood_type, a};
 
                 mp.dataGridView1.Rows.Add(emp_info);
             }

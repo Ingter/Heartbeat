@@ -69,10 +69,6 @@ namespace TestForm
 
 
 
-
-
-
-
             conn = new MySqlConnection(strConn);
             cmd = new MySqlCommand();
             conn.Open();

@@ -89,9 +89,6 @@ namespace TestForm
 
         public void Man_Page_Load(object sender, EventArgs e)
         {
-
-            label1.Text = Passvalue;
-
             comboBox_init();
 
             label2.Text = System.DateTime.  Now.ToString("hh:mm:ss");
@@ -174,7 +171,7 @@ namespace TestForm
             //comboBox1.Items.Add("검수팀");
             //comboBox1.Items.Add("포장팀");
             //comboBox1.Items.Add("전체");
-            comboBox1.SelectedIndex = 2; 
+            comboBox1.SelectedIndex = 0; 
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -188,7 +185,7 @@ namespace TestForm
 
 
 
-            if (comboBox1.SelectedIndex == 0)
+            if (comboBox1.SelectedIndex == 2)
             {
                 cmd.CommandText = ("select * from emp_info where dept_id = 1 order by emp_id");
                 rdr = cmd.ExecuteReader();
@@ -274,7 +271,7 @@ namespace TestForm
                 }
 
             }
-            else if (comboBox1.SelectedIndex == 2)
+            else if (comboBox1.SelectedIndex == 0) //전체
             {
                 cmd.CommandText = ("select * from emp_info order by emp_id");
                 rdr = cmd.ExecuteReader();

@@ -29,7 +29,12 @@ namespace TestForm
         public MySqlCommand cmd;
         public MySqlDataReader rdr;
 
+        public int stop = 0;
 
+        public void stop_message(int a)
+        {
+            stop = a;
+        }
         public Login()
         {
             InitializeComponent();
@@ -135,6 +140,7 @@ namespace TestForm
             }
             else
             {
+
                 {
                     string time = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
 
@@ -202,8 +208,6 @@ namespace TestForm
 
                             Emp_id = rdr["emp_id"].ToString();
                             Emp_name = rdr["emp_name"] as string;
-                            label1.Text = Emp_id;
-                            label2.Text = Emp_name;
 
                         }
                         rdr.Close();

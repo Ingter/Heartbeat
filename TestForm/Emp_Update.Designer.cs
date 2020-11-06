@@ -49,6 +49,8 @@
             this.txtPath = new System.Windows.Forms.TextBox();
             this.emp_bl = new System.Windows.Forms.ComboBox();
             this.emp_d = new System.Windows.Forms.ComboBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -90,7 +92,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(66)))), ((int)(((byte)(57)))));
-            this.label5.Location = new System.Drawing.Point(112, 360);
+            this.label5.Location = new System.Drawing.Point(112, 384);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(39, 20);
             this.label5.TabIndex = 4;
@@ -193,7 +195,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(176, 352);
+            this.pictureBox1.Location = new System.Drawing.Point(184, 376);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(128, 144);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -211,7 +213,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("맑은 고딕", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(320, 352);
+            this.button1.Location = new System.Drawing.Point(328, 376);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(72, 32);
             this.button1.TabIndex = 19;
@@ -230,7 +232,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(360, 448);
+            this.button2.Location = new System.Drawing.Point(368, 472);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(104, 48);
             this.button2.TabIndex = 20;
@@ -241,13 +243,14 @@
             // txtPath
             // 
             this.txtPath.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtPath.Location = new System.Drawing.Point(320, 392);
+            this.txtPath.Location = new System.Drawing.Point(328, 416);
             this.txtPath.Name = "txtPath";
             this.txtPath.Size = new System.Drawing.Size(144, 27);
             this.txtPath.TabIndex = 21;
             // 
             // emp_bl
             // 
+            this.emp_bl.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.emp_bl.FormattingEnabled = true;
             this.emp_bl.Location = new System.Drawing.Point(184, 304);
             this.emp_bl.Name = "emp_bl";
@@ -256,11 +259,31 @@
             // 
             // emp_d
             // 
+            this.emp_d.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.emp_d.FormattingEnabled = true;
             this.emp_d.Location = new System.Drawing.Point(392, 304);
             this.emp_d.Name = "emp_d";
             this.emp_d.Size = new System.Drawing.Size(72, 23);
             this.emp_d.TabIndex = 23;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.textBox1.Location = new System.Drawing.Point(184, 337);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(280, 27);
+            this.textBox1.TabIndex = 24;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(66)))), ((int)(((byte)(57)))));
+            this.label1.Location = new System.Drawing.Point(106, 339);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(52, 20);
+            this.label1.TabIndex = 25;
+            this.label1.Text = "RFID :";
             // 
             // Emp_Update
             // 
@@ -269,6 +292,8 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Snow;
             this.ClientSize = new System.Drawing.Size(617, 533);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.emp_d);
             this.Controls.Add(this.emp_bl);
             this.Controls.Add(this.txtPath);
@@ -325,5 +350,7 @@
         private System.Windows.Forms.TextBox txtPath;
         private System.Windows.Forms.ComboBox emp_bl;
         private System.Windows.Forms.ComboBox emp_d;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label1;
     }
 }
