@@ -50,6 +50,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -302,6 +303,10 @@
             this.label1.Text = "Management Page";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // timer2
+            // 
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
             // Man_Page
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -348,6 +353,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn EMER_TEL;
         private System.Windows.Forms.DataGridViewTextBoxColumn 혈액형;
         private System.Windows.Forms.DataGridViewTextBoxColumn 부서명;
+        private System.Windows.Forms.Timer timer2;
     }
 }
 
