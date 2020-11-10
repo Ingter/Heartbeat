@@ -168,6 +168,7 @@
     <Compile Include="Man_Page.Designer.cs">
       <DependentUpon>Man_Page.cs</DependentUpon>
     </Compile>
+    <Compile Include="MyRFID.cs" />
     <Compile Include="Regis_Page.cs">
       <SubType>Form</SubType>
     </Compile>

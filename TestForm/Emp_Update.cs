@@ -30,6 +30,9 @@ namespace TestForm
         OpenFileDialog ofd = new OpenFileDialog();
 
         private string eu_value;
+        public UserInfo userinfo;
+
+        public Login fm_login;
 
         public string Passvalue2
         {
@@ -38,11 +41,19 @@ namespace TestForm
   
         }
 
+
         Detail_Page dp;
         public Emp_Update(Detail_Page _dp)
         {
             InitializeComponent();
             dp = _dp;
+            
+        }
+
+        public Emp_Update(UserInfo _userinfo)
+        {
+            InitializeComponent();
+            userinfo = _userinfo;
         }
 
         public Emp_Update()
@@ -54,8 +65,11 @@ namespace TestForm
         {
             string[] bl = { "rh+ A","rh+ B","rh+ O","rh+ AB","rh- A","rh- B","rh- O","rh- AB"};
             string[] d = { "포장팀", "검수팀" };
+            Emp_Update eu = this;
 
-
+           // Login lo = new Login(eu);
+            //lo.userinfo.stop = 1;  // 전달자(Passvalue)를 통해서 dp페이지로 전달
+            //lo.stop = 1;
             // 각 콤보박스에 데이타를 초기화
             emp_bl.Items.AddRange(bl);
             emp_d.Items.AddRange(d);
@@ -117,11 +131,11 @@ namespace TestForm
                 emp_addr.Text = Emp_addr;
                 emp_bl.Text = blood_type;
                 //emp_d.Text = a;
-                
 
             }
+            //fm_login.stop = 1;
 
-          
+
 
         }
 
@@ -348,7 +362,17 @@ namespace TestForm
 
        private void Emp_Update_FormClosing(object sender, FormClosingEventArgs e)
         {
+
+            Emp_Update eu = this;
+           // Login lo = new Login(eu);
             //((Detail_Page)(this.Owner)).
+            //lo.stop = 0;
+            //lo.userinfo.stop = 0;
         }
+
+        
+
+
+
     }
 }

@@ -84,7 +84,6 @@ namespace TestForm
             Detail_Page DP = new Detail_Page(mp);
             DP.Passvalue = id;  // 전달자(Passvalue)를 통해서 dp페이지로 전달
             DP.ShowDialog(this);
-
         }
 
         public void Man_Page_Load(object sender, EventArgs e)

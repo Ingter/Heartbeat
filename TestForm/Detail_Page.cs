@@ -42,6 +42,7 @@ namespace TestForm
 
         private string dp_value;
 
+
         public string Passvalue
         {
             get { return this.dp_value; }
@@ -49,6 +50,8 @@ namespace TestForm
         }
 
         Man_Page mp;
+
+        public UserInfo userInfo;
         public Detail_Page(Man_Page _mp)
         {
             InitializeComponent();
@@ -456,7 +459,6 @@ namespace TestForm
             Emp_Update eu = new Emp_Update(dp);
             eu.Passvalue2 = Passvalue;  // 전달자(Passvalue)를 통해서 dp페이지로 전달
             eu.ShowDialog(this);
-
 
         }
 
