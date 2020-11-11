@@ -245,6 +245,7 @@ namespace TestForm
                     dataGridView1.Rows.Add(emp_info);
 
                 }
+                rdr.Close();
 
 
             }
@@ -289,7 +290,7 @@ namespace TestForm
 
 
                 }
-
+                rdr.Close();
             }
             else if (comboBox1.SelectedIndex == 0) //전체
             {
@@ -381,6 +382,8 @@ namespace TestForm
 
                 dataGridView1.Rows.Add(emp_info);
             }
+
+            rdr.Close();
         }
 
         private void Man_Regi_Click(object sender, EventArgs e)
@@ -409,6 +412,11 @@ namespace TestForm
 
         private void timer2_Tick(object sender, EventArgs e)
         {
+            conn = new MySqlConnection(strConn);
+            cmd = new MySqlCommand();
+            conn.Open();
+            cmd.Connection = conn;
+
             cmd.CommandText = "Select count(*) from emp_detail";
             rdr = cmd.ExecuteReader();
 
@@ -423,11 +431,6 @@ namespace TestForm
                 if (b != temp)  // emp_detail 테이블에 새 행이 들어왔을 때 실행
                 {
                     temp = b;
-
-                    conn = new MySqlConnection(strConn);
-                    cmd = new MySqlCommand();
-                    conn.Open();
-                    cmd.Connection = conn;
 
                     cmd.CommandText = (
                         "SELECT * FROM emp_detail ORDER BY seq DESC LIMIT 1; ");
@@ -463,29 +466,22 @@ namespace TestForm
                         string Blood_type = rdr["blood_type"] as string;
                         string Body_temp = rdr["body_temp"].ToString();
                         string Heart_rate = rdr["heart_rate"].ToString();
-
-
+                        
                         rdr.Close();
-
-
                         cmd.CommandText = $"insert into tp (emp_id, emp_name, tel, emer_tel, blood_type, body_temp, heart_rate) " +
-                         $"values ({Emp_id}, '{Emp_name}'," +
-                        $"'{Emp_tel}','{Emp_emer_tel}','{Blood_type}',{Body_temp} ,{Heart_rate})";
+                          $"values ({Emp_id}, '{Emp_name}'," +
+                            $"'{Emp_tel}','{Emp_emer_tel}','{Blood_type}',{Body_temp} ,{Heart_rate})";
                         cmd.ExecuteNonQuery();
-
                         MessageBox.Show($"{Emp_name} 님 이상 발생!");
-
-                     
-
-                    /*            for (int i = 0; i <dataGridView1.Rows.Count; i++)
-                                {
-
-                                    if (dataGridView1.Columns[i].Name == $"{Emp_id}")
+                        /*            for (int i = 0; i <dataGridView1.Rows.Count; i++)
                                     {
-                                        dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.Red;
-                                    }
-                                }*//////////////////////////////행 색깔 바꾸는 거 try 중
-                }
+
+                                        if (dataGridView1.Columns[i].Name == $"{Emp_id}")
+                                        {
+                                            dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.Red;
+                                        }
+                                    }*//////////////////////////////행 색깔 바꾸는 거 try 중
+                    }
 
                 }
             }
