@@ -95,7 +95,8 @@ namespace TestForm
 
         public void Man_Page_Load(object sender, EventArgs e)
         {
-            comboBox_init();
+
+          comboBox_init();
 
             label2.Text = System.DateTime.Now.ToString("hh:mm:ss");
 
@@ -177,6 +178,12 @@ namespace TestForm
             timer2.Interval = 2000;
             timer2.Start();
 
+            cmd.CommandText = (
+            "SELECT * FROM emp_detail ORDER BY seq DESC LIMIT 1; ");
+            rdr = cmd.ExecuteReader();
+
+
+
         }
         private void LoginSuccess(string userName)
         {
@@ -184,7 +191,7 @@ namespace TestForm
         }
 
 
-
+       
 
         public void comboBox_init()
         {
@@ -466,21 +473,39 @@ namespace TestForm
                         string Blood_type = rdr["blood_type"] as string;
                         string Body_temp = rdr["body_temp"].ToString();
                         string Heart_rate = rdr["heart_rate"].ToString();
-                        
+
                         rdr.Close();
                         cmd.CommandText = $"insert into tp (emp_id, emp_name, tel, emer_tel, blood_type, body_temp, heart_rate) " +
                           $"values ({Emp_id}, '{Emp_name}'," +
                             $"'{Emp_tel}','{Emp_emer_tel}','{Blood_type}',{Body_temp} ,{Heart_rate})";
                         cmd.ExecuteNonQuery();
-                        MessageBox.Show($"{Emp_name} 님 이상 발생!");
-                        /*            for (int i = 0; i <dataGridView1.Rows.Count; i++)
-                                    {
 
-                                        if (dataGridView1.Columns[i].Name == $"{Emp_id}")
-                                        {
-                                            dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.Red;
-                                        }
-                                    }*//////////////////////////////행 색깔 바꾸는 거 try 중
+
+                        foreach (DataGridViewRow row in dataGridView1.Rows)
+                        {
+
+                            if (row.Cells[1].Value != null)
+                            {
+                                if (row.Cells[1].Value.ToString() == Emp_name)
+                                {
+                                    dataGridView1.Rows[row.Index].DefaultCellStyle.BackColor = Color.Red;
+
+                                }
+
+                            }
+
+                        }
+                        DialogResult result = MessageBox.Show($"{Emp_name} 님 이상 발생!");
+                        foreach (DataGridViewRow row in dataGridView1.Rows)
+                        {
+                            if (result == DialogResult.OK)
+                            {
+                                dataGridView1.Rows[row.Index].DefaultCellStyle.BackColor = Color.White;
+                            }
+                        }
+
+                        //  int count=0;
+
                     }
 
                 }
@@ -489,7 +514,7 @@ namespace TestForm
             {
 
                 MessageBox.Show(ex.ToString());
-                MessageBox.Show("오류ㅜㅜㅜㅜㅜㅜㅜㅜ");
+                MessageBox.Show("오류 발생");
             }
         }
     }
