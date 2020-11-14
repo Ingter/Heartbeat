@@ -198,6 +198,7 @@ namespace TestForm
                 if (imgPath != "")  // 사용자가 이미지를 등록했을 때  실행
                 {
 
+
                     fs = new FileStream($@"C:\Heartbeat\employee_pic\{imgPath}", FileMode.Open, FileAccess.Read);
                     FileSize = (UInt32)fs.Length;
 
@@ -217,20 +218,32 @@ namespace TestForm
                         while (rdr.Read())
                         {
 
+                            int a = 0;
+
+                            if (emp_d.Text == "포장팀")
+                            {
+                                a = 1;
+                            }
+                            else
+                            {
+                                a = 2;
+                            }
+
+
                             string ImageNum = rdr["ImageNo"].ToString();
                             int ImageNumber = Convert.ToInt32(ImageNum);
 
                             if (ImageNumber == EmpID) // 사용자 정보에 원래 사진이 있었을 때 실행
                             {
                                 SQL = $"update image set Image = @Image, Image_name = @ImageName where ImageNo = {EmpID}";
-                                SQL2 = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = '{emp_d.Text}' where emp_id = {Passvalue2}";
+                                SQL2 = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = '{a}' where emp_id = {Passvalue2}";
                                 break;
                             }
 
                             else // 사용자 정보에 원래 사진이 없었을 때 실행asd
                             {
                                 SQL = $"INSERT INTO image (ImageNo, Image, Image_name) VALUES(@ImageNo, @Image, @ImageName)";
-                                SQL2 = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = {emp_d.Text} where emp_id = {Passvalue2}";
+                                SQL2 = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = {a} where emp_id = {Passvalue2}";
 
                             }
 
@@ -238,8 +251,19 @@ namespace TestForm
                     }
                     else
                     {
+                        int a = 0;
+
+                        if (emp_d.Text == "포장팀")
+                        {
+                            a = 1;
+                        }
+                        else
+                        {
+                            a = 2;
+                        }
+
                         SQL = $"INSERT INTO image (ImageNo, Image, Image_name) VALUES(@ImageNo, @Image, @ImageName)";
-                        SQL2 = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = {emp_d.Text} where emp_id = {Passvalue2}";
+                        SQL2 = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = {a} where emp_id = {Passvalue2}";
                     }
 
                     rdr.Close();
@@ -306,7 +330,20 @@ namespace TestForm
 
                 else
                 {
-                    cmd.CommandText = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = {emp_d.Text} where emp_id = {Passvalue2}";
+                    int a = 0;
+
+                    if(emp_d.Text=="포장팀")
+                    {
+                        a = 1;
+                    }
+                    else
+                    {
+                        a = 2;
+                    }
+
+                    
+
+                    cmd.CommandText = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = {a} where emp_id = {Passvalue2}";
                     cmd.ExecuteNonQuery();
 
                     cmd.CommandText = ($"select * from emp_info where emp_id = {Passvalue2}");
