@@ -24,9 +24,12 @@ namespace TestForm
         // public MySqlConnection conn;
         public MySqlCommand cmd;
         public MySqlDataReader rdr;
+        public string snstr = "";
 
-        public void Read_RFID_And_UPDATE_UserInfo(UserInfo userinfo)
+        public void Read_RFID_And_UPDATE_UserInfo()
         {
+            //snstr = "";
+
             if (!g_isConnected)
             {
                 RFID_conn();
@@ -34,7 +37,7 @@ namespace TestForm
             }
             else
             {
-                string time = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+                //string time = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
 
 
                 byte[] TagLength = new byte[51];
@@ -42,21 +45,13 @@ namespace TestForm
                 byte[] TagType = new byte[51];
                 byte[] SN = new byte[451];
                 int ctr;
-                string snstr;
+                
                 g_retCode = ACR120U.ACR120_ListTags(g_rHandle, ref TagFound, ref TagType[0], ref TagLength[0], ref SN[0]);
 
-                if (g_retCode < 0)
-                {
-                    //DisplayMessage(ACR120U.GetErrMsg(g_retCode));
-                }
+                if (g_retCode < 0) ;
                 else
                 {
 
-                    //DisplayMessage("List Tag Success");
-                    //DisplayMessage("Tag Found: " + String.Format("{0}", TagFound));
-
-                    // Parse the serial number array
-                    snstr = "";
                     for (ctr = 0; ctr < TagLength[0]; ctr++)
                     {
 
@@ -64,7 +59,7 @@ namespace TestForm
                         //userinfo.SnStr = snstr;
 
                     }
-                    userinfo.SnStr = snstr;
+                    //userinfo.SnStr = snstr;
                     /*                    Detail_Page DP = new Detail_Page();
                                         DP.Passvalue = snstr;  // 전달자(Passvalue)를 통해서 dp페이지로 전달*/
 
@@ -74,27 +69,18 @@ namespace TestForm
                     cmd.Connection = conn;
                     cmd.CommandText = ($"select rfid from emp_info");
                     rdr = cmd.ExecuteReader();
-                    int work = 0;
                     string Emp_id = "";
                     string Emp_name = "";
                     string rfid = "";
 
                     while (rdr.Read())
                     {
-
-                        // Emp_id = rdr["emp_id"].ToString();
-                        // Emp_name = rdr["emp_name"] as string;
                         rfid = rdr["rfid"] as string;
                         Console.WriteLine(rfid);
-                        if (rfid == snstr)
-                            work = 1;
 
                     }
                     rdr.Close();
 
-
-                    cmd.CommandText = ($"select emp_id, emp_name from emp_info where rfid = '{snstr} '");
-                    rdr = cmd.ExecuteReader();
 
                     while (rdr.Read())
                     {
@@ -105,23 +91,23 @@ namespace TestForm
                     }
                     rdr.Close();
 
-                    Emp_Update f1 = new Emp_Update(userinfo);
+                    //Emp_Update f1 = new Emp_Update(userinfo);
 
 
-                    if (work == 1)
-                    {
-                        cmd.CommandText = $"insert into attendance_check (emp_id, emp_name, time) " +
-                                             $"values('{Emp_id}','{Emp_name}','{time}')";
-                        cmd.ExecuteNonQuery();
-                    }
+                    /*                    if (work == 1)
+                                        {
+                                            cmd.CommandText = $"insert into attendance_check (emp_id, emp_name, time) " +
+                                                                 $"values('{Emp_id}','{Emp_name}','{time}')";
+                                            cmd.ExecuteNonQuery();
+                                        }*/
 
-/*                    if (string.IsNullOrEmpty(snstr) == false)
-                    {
-                        timer1.Stop();
-                        Delay(2000);
-                        timer1.Start();
-                        return;
-                    }*/
+                    /*                    if (string.IsNullOrEmpty(snstr) == false)
+                                        {
+                                            timer1.Stop();
+                                            Delay(2000);
+                                            timer1.Start();
+                                            return;
+                                        }*/
 
                     conn.Close();
 

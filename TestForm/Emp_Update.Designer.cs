@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Emp_Update));
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -49,8 +50,9 @@
             this.txtPath = new System.Windows.Forms.TextBox();
             this.emp_bl = new System.Windows.Forms.ComboBox();
             this.emp_d = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.emp_rfid = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -266,13 +268,13 @@
             this.emp_d.Size = new System.Drawing.Size(72, 23);
             this.emp_d.TabIndex = 23;
             // 
-            // textBox1
+            // emp_rfid
             // 
-            this.textBox1.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.textBox1.Location = new System.Drawing.Point(184, 337);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(280, 27);
-            this.textBox1.TabIndex = 24;
+            this.emp_rfid.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.emp_rfid.Location = new System.Drawing.Point(184, 337);
+            this.emp_rfid.Name = "emp_rfid";
+            this.emp_rfid.Size = new System.Drawing.Size(280, 27);
+            this.emp_rfid.TabIndex = 24;
             // 
             // label1
             // 
@@ -285,6 +287,10 @@
             this.label1.TabIndex = 25;
             this.label1.Text = "RFID :";
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // Emp_Update
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -293,7 +299,7 @@
             this.BackColor = System.Drawing.Color.Snow;
             this.ClientSize = new System.Drawing.Size(617, 533);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.emp_rfid);
             this.Controls.Add(this.emp_d);
             this.Controls.Add(this.emp_bl);
             this.Controls.Add(this.txtPath);
@@ -350,7 +356,8 @@
         private System.Windows.Forms.TextBox txtPath;
         private System.Windows.Forms.ComboBox emp_bl;
         private System.Windows.Forms.ComboBox emp_d;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox emp_rfid;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Timer timer1;
     }
 }

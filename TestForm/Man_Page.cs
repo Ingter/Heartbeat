@@ -475,10 +475,6 @@ namespace TestForm
                         string Heart_rate = rdr["heart_rate"].ToString();
 
                         rdr.Close();
-                        cmd.CommandText = $"insert into tp (emp_id, emp_name, tel, emer_tel, blood_type, body_temp, heart_rate) " +
-                          $"values ({Emp_id}, '{Emp_name}'," +
-                            $"'{Emp_tel}','{Emp_emer_tel}','{Blood_type}',{Body_temp} ,{Heart_rate})";
-                        cmd.ExecuteNonQuery();
 
 
                         foreach (DataGridViewRow row in dataGridView1.Rows)

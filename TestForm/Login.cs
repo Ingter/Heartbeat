@@ -143,7 +143,7 @@ namespace TestForm
         MyRFID mrfid = new MyRFID();
         public void timer1_Tick(object sender, EventArgs e)
         {
-            mrfid.Read_RFID_And_UPDATE_UserInfo(userinfo);
+            //mrfid.Read_RFID_And_UPDATE_UserInfo(userinfo);
  
             
             //여기에 update에서 클릭이 들어온다면

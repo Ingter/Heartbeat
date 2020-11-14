@@ -65,7 +65,7 @@ namespace TestForm
         {
             string[] bl = { "rh+ A","rh+ B","rh+ O","rh+ AB","rh- A","rh- B","rh- O","rh- AB"};
             string[] d = { "포장팀", "검수팀" };
-            Emp_Update eu = this;
+            
 
            // Login lo = new Login(eu);
             //lo.userinfo.stop = 1;  // 전달자(Passvalue)를 통해서 dp페이지로 전달
@@ -79,7 +79,7 @@ namespace TestForm
             // 처음 선택값 지정. 첫째 아이템 선택
             //emp_bl.SelectedIndex = 0;
            // emp_d.SelectedIndex = 0;
-           
+            
 
 
 
@@ -111,6 +111,8 @@ namespace TestForm
 
                 string Dept_id = rdr["dept_id"].ToString();
 
+                string RFID = rdr["rfid"] as string;
+
 
                 if(Dept_id=="1")
                 {
@@ -130,10 +132,30 @@ namespace TestForm
                 emp_etel.Text = Emp_emer_tel;
                 emp_addr.Text = Emp_addr;
                 emp_bl.Text = blood_type;
-                //emp_d.Text = a;
+                emp_rfid.Text = RFID;
 
             }
-            //fm_login.stop = 1;
+            rdr.Close();
+            string RFID_STATUS = "";
+            cmd.CommandText = ($"select RFID_STATUS from RFID_STATUS");
+            rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                RFID_STATUS = rdr["RFID_STATUS"].ToString();
+
+            }
+            rdr.Close();
+            if (RFID_STATUS == "1")
+            {
+                RFID_STATUS = "0";
+                cmd.CommandText = ($"update RFID_STATUS set rfid_status ='{RFID_STATUS}'");
+                cmd.ExecuteNonQuery();
+            }
+            conn.Close();
+
+
+            timer1.Start();
 
 
 
@@ -363,16 +385,40 @@ namespace TestForm
        private void Emp_Update_FormClosing(object sender, FormClosingEventArgs e)
         {
 
-            Emp_Update eu = this;
-           // Login lo = new Login(eu);
-            //((Detail_Page)(this.Owner)).
-            //lo.stop = 0;
-            //lo.userinfo.stop = 0;
+            conn = new MySqlConnection(strConn);
+            cmd = new MySqlCommand();
+            conn.Open();
+            cmd.Connection = conn;
+
+            string RFID_STATUS = "";
+            cmd.CommandText = ($"select RFID_STATUS from RFID_STATUS");
+            rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                RFID_STATUS = rdr["RFID_STATUS"].ToString();
+
+            }
+            rdr.Close();
+            if (RFID_STATUS == "0")
+            {
+                RFID_STATUS = "1";
+                cmd.CommandText = ($"update RFID_STATUS set rfid_status ='{RFID_STATUS}'");
+                cmd.ExecuteNonQuery();
+            }
+            conn.Close();
+
+            timer1.Stop();
         }
 
-        
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            MyRFID myRFID = new MyRFID();
+            myRFID.Read_RFID_And_UPDATE_UserInfo(); //이것의 함수를 string만들어서 리턴을 rfid값하던가
 
+            if(myRFID.snstr!="")
+            emp_rfid.Text=myRFID.snstr; //이것의 값을 rfid값하던가 하셈
 
-
+        }
     }
 }
