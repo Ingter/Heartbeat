@@ -66,8 +66,7 @@ namespace TestForm
 
         private void Detail_Page_Load(object sender, EventArgs e)
         {
-
-
+           
             UInt32 FileSize;
             byte[] rawData;
             FileStream fs;
@@ -205,6 +204,12 @@ namespace TestForm
 
 
             conn.Close();
+
+
+
+            label1.Text = DateTime.Now.ToString("HH : mm : ss");
+            timer4.Interval = 1000;
+            timer4.Start();
 
         }
 
@@ -611,6 +616,12 @@ namespace TestForm
 
         private void button3_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void timer4_Tick(object sender, EventArgs e)
+        {
+            label1.Text = DateTime.Now.ToString(" HH : mm : ss");
 
         }
     }

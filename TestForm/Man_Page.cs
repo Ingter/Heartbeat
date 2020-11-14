@@ -513,5 +513,10 @@ namespace TestForm
                 MessageBox.Show("오류 발생");
             }
         }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

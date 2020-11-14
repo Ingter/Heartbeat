@@ -302,6 +302,7 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Management Page";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // timer2
             // 
