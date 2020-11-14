@@ -621,7 +621,7 @@ namespace TestForm
 
         private void timer4_Tick(object sender, EventArgs e)
         {
-            label1.Text = DateTime.Now.ToString(" HH : mm : ss");
+            label1.Text = DateTime.Now.ToString("HH : mm : ss");
 
         }
     }
