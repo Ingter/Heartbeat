@@ -154,7 +154,7 @@ namespace TestForm
             }
             conn.Close();
 
-
+            timer1.Interval = 1000;
             timer1.Start();
 
 
@@ -175,6 +175,7 @@ namespace TestForm
                 int EmpID = 0;
                 int pass = Convert.ToInt32(Passvalue2);
                 int CountRow = 0;
+                int overlap = 0;
 
                 conn = new MySqlConnection(strConn);
                 conn.Open();
@@ -189,11 +190,22 @@ namespace TestForm
                 while (rdr.Read())  //DB 데이터 가져옴
                 {
                     string EmpI = rdr["emp_id"].ToString();  //직원 id 값 변수에 넣음
+                    string em_rfid = rdr["RFID"] as string;
                     EmpID = Convert.ToInt32(EmpI);         // int 값으로 변경
-                    if (pass == EmpID)
-                        break;
+                    if (em_rfid == snstr)
+                        overlap = 1;
+
+/*                    if (pass == EmpID)
+                        break;*/
                 }
                 rdr.Close();
+                if (overlap == 1)
+                {
+                    cmd.CommandText = ($"delete from emp_info where rfid = '{snstr}'");
+                    cmd.ExecuteNonQuery();
+
+                    conn.Close();
+                }
 
                 if (imgPath != "")  // 사용자가 이미지를 등록했을 때  실행
                 {
@@ -232,19 +244,18 @@ namespace TestForm
 
                             string ImageNum = rdr["ImageNo"].ToString();
                             int ImageNumber = Convert.ToInt32(ImageNum);
-
+//여기 바꿔야 
                             if (ImageNumber == EmpID) // 사용자 정보에 원래 사진이 있었을 때 실행
                             {
                                 SQL = $"update image set Image = @Image, Image_name = @ImageName where ImageNo = {EmpID}";
-                                SQL2 = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = '{a}' where emp_id = {Passvalue2}";
+                                SQL2 = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = '{a}', rfid= '{snstr}' where emp_id = {Passvalue2}";
                                 break;
                             }
 
                             else // 사용자 정보에 원래 사진이 없었을 때 실행asd
                             {
                                 SQL = $"INSERT INTO image (ImageNo, Image, Image_name) VALUES(@ImageNo, @Image, @ImageName)";
-                                SQL2 = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = {a} where emp_id = {Passvalue2}";
-
+                                SQL2 = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = {a}, rfid= '{snstr}' where emp_id = {Passvalue2}";
                             }
 
                         }
@@ -263,7 +274,7 @@ namespace TestForm
                         }
 
                         SQL = $"INSERT INTO image (ImageNo, Image, Image_name) VALUES(@ImageNo, @Image, @ImageName)";
-                        SQL2 = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = {a} where emp_id = {Passvalue2}";
+                        SQL2 = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = {a}, rfid= '{snstr}' where emp_id = {Passvalue2}";
                     }
 
                     rdr.Close();
@@ -450,12 +461,170 @@ namespace TestForm
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            MyRFID myRFID = new MyRFID();
-            myRFID.Read_RFID_And_UPDATE_UserInfo(); //이것의 함수를 string만들어서 리턴을 rfid값하던가
+            /*            MyRFID.Read_RFID_And_UPDATE_UserInfo();
+                        MyRFID myRFID = new MyRFID();
+                        string aa = "";
+                        aa = myRFID.Read_RFID_And_UPDATE_UserInfo(); //이것의 함수를 string만들어서 리턴을 rfid값하던가
 
-            if(myRFID.snstr!="")
-            emp_rfid.Text=myRFID.snstr; //이것의 값을 rfid값하던가 하셈
+                        *//*            if(myRFID.snstr!="")
+                                    emp_rfid.Text=myRFID.snstr; //이것의 값을 rfid값하던가 하셈*//*
+                        string bb =MyRFID.snstr;
+                        if (aa != "")
+                            emp_rfid.Text = aa;*/
+            Read_RFID_And_UPDATE_UserInfo();
+            if (snstr != "")
+                emp_rfid.Text = snstr;
 
+
+
+
+
+        }
+        private int g_rHandle, g_retCode;
+        private bool g_isConnected = false;
+        public string snstr = "";
+
+        public void Read_RFID_And_UPDATE_UserInfo()
+        {
+
+            if (!g_isConnected)
+            {
+                RFID_conn();
+                //MessageBox.Show("RFID 연결상태를 확인해주세요.");
+            }
+            else
+            {
+
+                byte[] TagLength = new byte[51];
+                byte TagFound = 0;
+                byte[] TagType = new byte[51];
+                byte[] SN = new byte[451];
+                int ctr;
+                snstr = "";
+
+                g_retCode = ACR120U.ACR120_ListTags(g_rHandle, ref TagFound, ref TagType[0], ref TagLength[0], ref SN[0]);
+
+                if (g_retCode < 0) ;
+                else
+                {
+
+                    for (ctr = 0; ctr < TagLength[0]; ctr++)
+                    {
+
+                        snstr = snstr + string.Format("{0:X2} ", SN[ctr]);
+                        //userinfo.SnStr = snstr;
+
+                    }
+                    //userinfo.SnStr = snstr;
+                    /*                    Detail_Page DP = new Detail_Page();
+                                        DP.Passvalue = snstr;  // 전달자(Passvalue)를 통해서 dp페이지로 전달*/
+
+                    conn = new MySqlConnection(strConn);
+                    cmd = new MySqlCommand();
+                    conn.Open();
+                    cmd.Connection = conn;
+                    cmd.CommandText = ($"select rfid from emp_info");
+                    rdr = cmd.ExecuteReader();
+                    string Emp_id = "";
+                    string Emp_name = "";
+                    string rfid = "";
+
+                    while (rdr.Read())
+                    {
+                        rfid = rdr["rfid"] as string;
+                        Console.WriteLine(rfid);
+
+                    }
+                    rdr.Close();
+                    //snstr = rfid;
+
+
+/*                    while (rdr.Read())
+                    {
+
+                        Emp_id = rdr["emp_id"].ToString();
+                        Emp_name = rdr["emp_name"] as string;
+
+                    }
+                    rdr.Close();*/
+
+                    //Emp_Update f1 = new Emp_Update(userinfo);
+
+
+                    /*                    if (work == 1)
+                                        {
+                                            cmd.CommandText = $"insert into attendance_check (emp_id, emp_name, time) " +
+                                                                 $"values('{Emp_id}','{Emp_name}','{time}')";
+                                            cmd.ExecuteNonQuery();
+                                        }*/
+
+                    /*                    if (string.IsNullOrEmpty(snstr) == false)
+                                        {
+                                            timer1.Stop();
+                                            Delay(2000);
+                                            timer1.Start();
+                                            return;
+                                        }*/
+
+                    conn.Close();
+
+                }
+            }
+        }
+
+        private void RFID_conn()
+        {
+
+            int ctr = 0;
+            byte[] FirmwareVer = new byte[31];
+            byte[] FirmwareVer1 = new byte[20];
+            byte infolen = 0x00;
+            string FirmStr;
+            ACR120U.tReaderStatus ReaderStat = new ACR120U.tReaderStatus();
+
+
+
+            g_rHandle = ACR120U.ACR120_Open(0);
+            if (g_rHandle != 0)
+            {
+                //DisplayMessage("[X] " + ACR120U.GetErrMsg(g_rHandle));
+            }
+            else
+            {
+
+                //DisplayMessage("Connected to USB" + string.Format("{0}", 0 + 1));
+                g_isConnected = true;
+
+                //Get the DLL version the program is using
+                g_retCode = ACR120U.ACR120_RequestDLLVersion(ref infolen, ref FirmwareVer[0]);
+                if (g_retCode < 0) ;
+
+                //DisplayMessage("[X] " + ACR120U.GetErrMsg(g_retCode));
+
+                else
+                {
+                    FirmStr = "";
+                    for (ctr = 0; ctr < Convert.ToInt16(infolen) - 1; ctr++)
+                        FirmStr = FirmStr + char.ToString((char)(FirmwareVer[ctr]));
+                    //DisplayMessage("DLL Version : " + FirmStr);
+                }
+
+                //Routine to get the firmware version.
+                g_retCode = ACR120U.ACR120_Status(g_rHandle, ref FirmwareVer1[0], ref ReaderStat);
+                if (g_retCode < 0) ;
+
+                //DisplayMessage("[X] " + ACR120U.GetErrMsg(g_retCode));
+
+                else
+                {
+                    FirmStr = "";
+                    for (ctr = 0; ctr < Convert.ToInt16(infolen); ctr++)
+                        if ((FirmwareVer1[ctr] != 0x00) && (FirmwareVer1[ctr] != 0xFF))
+                            FirmStr = FirmStr + char.ToString((char)(FirmwareVer1[ctr]));
+                    //DisplayMessage("Firmware Version : " + FirmStr);
+                }
+
+            }
         }
     }
 }

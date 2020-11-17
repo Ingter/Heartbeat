@@ -206,4 +206,3 @@ C:\Heartbeat\TestForm\bin\Debug\MetroFramework.dll
 C:\Heartbeat\TestForm\bin\Debug\MetroFramework.Fonts.dll
 C:\Heartbeat\TestForm\obj\Debug\TestForm.csprojAssemblyReference.cache
 C:\Heartbeat\TestForm\obj\Debug\TestForm.RFID.resources
-C:\Heartbeat\TestForm\bin\Debug\netchartdir.dll
