@@ -166,7 +166,7 @@ namespace TestForm
             }
             rdr.Close();
 
-            cmd.CommandText = "Select count(*) from emp_detail";
+            cmd.CommandText = "Select count(*) from emp_emer";
             rdr = cmd.ExecuteReader();
 
             rdr.Read();
@@ -179,7 +179,7 @@ namespace TestForm
             timer2.Start();
 
             cmd.CommandText = (
-            "SELECT * FROM emp_detail ORDER BY seq DESC LIMIT 1; ");
+            "SELECT * FROM emp_emer ORDER BY seq DESC LIMIT 1; ");
             rdr = cmd.ExecuteReader();
 
 
@@ -424,7 +424,7 @@ namespace TestForm
             conn.Open();
             cmd.Connection = conn;
 
-            cmd.CommandText = "Select count(*) from emp_detail";
+            cmd.CommandText = "Select count(*) from emp_emer";
             rdr = cmd.ExecuteReader();
 
             rdr.Read();
@@ -435,12 +435,12 @@ namespace TestForm
 
             try
             {
-                if (b != temp)  // emp_detail 테이블에 새 행이 들어왔을 때 실행
+                if (b != temp)  // emp_emer 테이블에 새 행이 들어왔을 때 실행
                 {
                     temp = b;
 
                     cmd.CommandText = (
-                        "SELECT * FROM emp_detail ORDER BY seq DESC LIMIT 1; ");
+                        "SELECT * FROM emp_emer ORDER BY seq DESC LIMIT 1; ");
                     rdr = cmd.ExecuteReader();
 
                     rdr.Read();
@@ -464,7 +464,7 @@ namespace TestForm
 
                         cmd.CommandText = (
                         "select emp_tel, emp_emer_tel, blood_type, body_temp, heart_rate from emp_info right join " +
-                        "emp_detail on emp_info.emp_id = emp_detail.emp_id where emp_detail.emp_id = 1234 ORDER BY seq DESC LIMIT 1");
+                        "emp_emer on emp_info.emp_id = emp_emer.emp_id where emp_emer.emp_id = 1234 ORDER BY seq DESC LIMIT 1");
                         rdr = cmd.ExecuteReader();
 
                         rdr.Read();

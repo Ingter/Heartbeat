@@ -218,11 +218,11 @@ namespace TestForm
                     fs.Read(rawData, 0, (int)FileSize);
                     fs.Close();
 
-                    cmd.CommandText = ("select count(*) from image");
+                    cmd.CommandText = ("select count(*) from emp_img");
                     object count = cmd.ExecuteScalar();
                     CountRow = Convert.ToInt32(count);
 
-                    cmd.CommandText = ($"select * from image");
+                    cmd.CommandText = ($"select * from emp_img");
                     rdr = cmd.ExecuteReader();
 
                     if (CountRow != 0) //테이블에 행이 있을 때 실행
@@ -247,14 +247,14 @@ namespace TestForm
 //여기 바꿔야 
                             if (ImageNumber == EmpID) // 사용자 정보에 원래 사진이 있었을 때 실행
                             {
-                                SQL = $"update image set Image = @Image, Image_name = @ImageName where ImageNo = {EmpID}";
+                                SQL = $"update emp_img set Image = @Image, Image_name = @ImageName where ImageNo = {EmpID}";
                                 SQL2 = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = '{a}', rfid= '{snstr}' where emp_id = {Passvalue2}";
                                 break;
                             }
 
                             else // 사용자 정보에 원래 사진이 없었을 때 실행asd
                             {
-                                SQL = $"INSERT INTO image (ImageNo, Image, Image_name) VALUES(@ImageNo, @Image, @ImageName)";
+                                SQL = $"INSERT INTO emp_img (ImageNo, Image, Image_name) VALUES(@ImageNo, @Image, @ImageName)";
                                 SQL2 = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = {a}, rfid= '{snstr}' where emp_id = {Passvalue2}";
                             }
 
@@ -273,7 +273,7 @@ namespace TestForm
                             a = 2;
                         }
 
-                        SQL = $"INSERT INTO image (ImageNo, Image, Image_name) VALUES(@ImageNo, @Image, @ImageName)";
+                        SQL = $"INSERT INTO emp_img (ImageNo, Image, Image_name) VALUES(@ImageNo, @Image, @ImageName)";
                         SQL2 = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = {a}, rfid= '{snstr}' where emp_id = {Passvalue2}";
                     }
 
@@ -321,7 +321,7 @@ namespace TestForm
                     }
                     rdr.Close();
                    
-                    cmd.CommandText = ($"select * from image where ImageNo = {Passvalue2}");
+                    cmd.CommandText = ($"select * from emp_img where ImageNo = {Passvalue2}");
                     rdr = cmd.ExecuteReader();
                     while (rdr.Read())
                     {

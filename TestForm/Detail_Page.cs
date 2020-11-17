@@ -83,7 +83,7 @@ namespace TestForm
             emp_id.Text = Passvalue;
 
             // 직원 이미지 불러오기
-            cmd.CommandText = ($"select * from image where ImageNo = {Passvalue}");
+            cmd.CommandText = ($"select * from emp_img where ImageNo = {Passvalue}");
             rdr = cmd.ExecuteReader();
             while (rdr.Read())
             {
@@ -142,7 +142,7 @@ namespace TestForm
 
             rdr.Close();
 
-            cmd.CommandText = ($"select * from emp_detail where emp_id = {Passvalue}");
+            cmd.CommandText = ($"select * from emp_emer where emp_id = {Passvalue}");
             rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
@@ -161,7 +161,7 @@ namespace TestForm
             }
             rdr.Close();
 
-            cmd.CommandText = ($"select * from real_time where emp_id = {Passvalue}");
+            cmd.CommandText = ($"select * from real_time_data where emp_id = {Passvalue}");
             rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
@@ -432,7 +432,7 @@ namespace TestForm
                     conn.Close();
 
                     conn.Open();
-                    cmd.CommandText = ($"delete from image where imageNO = {emp_id.Text}");
+                    cmd.CommandText = ($"delete from emp_img where imageNO = {emp_id.Text}");
                     cmd.ExecuteNonQuery();
                     conn.Close();
 
@@ -559,7 +559,7 @@ namespace TestForm
             currentIndex = 0;
 
 
-            cmd.CommandText = ($"select * from real_time where emp_id = {Passvalue}");
+            cmd.CommandText = ($"select * from real_time_data where emp_id = {Passvalue}");
             rdr = cmd.ExecuteReader();
             StringBuilder sb = new StringBuilder();
 
@@ -594,7 +594,7 @@ namespace TestForm
 
             dataGridView1.Rows.Clear();
 
-            cmd.CommandText = ($"select * from emp_detail where emp_id = {Passvalue}");
+            cmd.CommandText = ($"select * from emp_emer where emp_id = {Passvalue}");
             rdr = cmd.ExecuteReader();
 
             while (rdr.Read())

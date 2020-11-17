@@ -162,7 +162,7 @@ namespace TestForm
                     fs.Read(rawData, 0, (int)FileSize);
                     fs.Close();
 
-                    SQL = $"INSERT INTO image (ImageNo, Image, Image_name) VALUES(@ImageNo, @Image, @ImageName)";
+                    SQL = $"INSERT INTO emp_img (ImageNo, Image, Image_name) VALUES(@ImageNo, @Image, @ImageName)";
                     SQL2 = $"insert into emp_info (emp_id, emp_name, emp_email, emp_tel, emp_addr, emp_emer_tel, blood_type, dept_id, rfid) values ({textBox1.Text},'{textBox2.Text}','{textBox3.Text}','{textBox4.Text}','{textBox5.Text}','{textBox6.Text}','{comboBox1.Text}',{a} ,'{textBox7.Text}')";
 
                     cmd.CommandText = SQL;
