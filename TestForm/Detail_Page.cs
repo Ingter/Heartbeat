@@ -31,7 +31,7 @@ namespace TestForm
         public MySqlCommand cmd;
         public MySqlDataReader rdr;
 
-        private const int sampleSize = 50000;
+        private const int sampleSize = 250000;
         private const int chartFullRange = 600; //600 Second(10Minute);
 
         private DateTime[] timeStamps = new DateTime[sampleSize];
@@ -39,7 +39,7 @@ namespace TestForm
         private double[] dataTem_rate = new double[sampleSize];
 
         private int currentIndex = 0;
-
+        private int CountRow = 0;
         private string dp_value;
 
 
@@ -81,6 +81,8 @@ namespace TestForm
             cmd.Connection = conn;
 
             emp_id.Text = Passvalue;
+
+
 
             // 직원 이미지 불러오기
             cmd.CommandText = ($"select * from emp_img where ImageNo = {Passvalue}");
@@ -142,6 +144,8 @@ namespace TestForm
 
             rdr.Close();
 
+
+
             cmd.CommandText = ($"select * from emp_emer where emp_id = {Passvalue}");
             rdr = cmd.ExecuteReader();
 
@@ -161,6 +165,14 @@ namespace TestForm
             }
             rdr.Close();
 
+            int LineIndex = 0;
+            currentIndex = 0;
+
+            cmd.CommandText = ($"select count(*) from real_time_data where emp_id= {Passvalue}");
+            //해당 직원의 체온,심박수 값의 갯수를 가져옵니다.
+            object count = cmd.ExecuteScalar();
+            CountRow = Convert.ToInt32(count);
+
             cmd.CommandText = ($"select * from real_time_data where emp_id = {Passvalue}");
             rdr = cmd.ExecuteReader();
 
@@ -175,10 +187,15 @@ namespace TestForm
 
                 string[] Real_time_data = new string[] { Time, Heart_rate, Tem_rate };
 
-                DateTime.TryParse(Time, out timeStamps[currentIndex]);
-                dataHeart_rate[currentIndex] = Convert.ToDouble(Heart_rate);
-                dataTem_rate[currentIndex] = Convert.ToDouble(Tem_rate);
-                currentIndex++;
+
+                if (LineIndex > CountRow - sampleSize + 100)
+                {
+                    DateTime.TryParse(Time, out timeStamps[currentIndex]);
+                    dataHeart_rate[currentIndex] = Convert.ToDouble(Heart_rate);
+                    dataTem_rate[currentIndex] = Convert.ToDouble(Tem_rate);
+                    currentIndex++;        // 체온, 심박수 값을 배열에 추가합니다.
+                }
+                LineIndex++;
             }
 
             rdr.Close();
@@ -556,8 +573,14 @@ namespace TestForm
             conn.Open();
             cmd.Connection = conn;
 
+            int LineIndex = 0;
             currentIndex = 0;
 
+
+            cmd.CommandText = ($"select count(*) from real_time_data where emp_id= {Passvalue}");
+            //해당 직원의 체온,심박수 값의 갯수를 가져옵니다.
+            object count = cmd.ExecuteScalar();
+            CountRow = Convert.ToInt32(count);
 
             cmd.CommandText = ($"select * from real_time_data where emp_id = {Passvalue}");
             rdr = cmd.ExecuteReader();
@@ -576,11 +599,16 @@ namespace TestForm
                 string[] Real_time_data = new string[] { Time, Heart_rate, Tem_rate };
 
                 //////////////////////
-                DateTime.TryParse(Time, out timeStamps[currentIndex]);
-                dataHeart_rate[currentIndex] = Convert.ToDouble(Heart_rate);
-                dataTem_rate[currentIndex] = Convert.ToDouble(Tem_rate);
-                currentIndex++;
+                if (LineIndex > CountRow - sampleSize + 100)
+                {
+                    DateTime.TryParse(Time, out timeStamps[currentIndex]);
+                    dataHeart_rate[currentIndex] = Convert.ToDouble(Heart_rate);
+                    dataTem_rate[currentIndex] = Convert.ToDouble(Tem_rate);
+                    currentIndex++;
+                }
+                LineIndex++;
             }
+
             rdr.Close();
         }
 
