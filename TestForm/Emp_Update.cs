@@ -152,6 +152,7 @@ namespace TestForm
                 cmd.CommandText = ($"update RFID_STATUS set rfid_status ='{RFID_STATUS}'");
                 cmd.ExecuteNonQuery();
             }
+
             conn.Close();
 
             timer1.Interval = 1000;
@@ -173,6 +174,7 @@ namespace TestForm
                 byte[] rawData;
                 FileStream fs;
                 int EmpID = 0;
+                int em_id = 0;
                 int pass = Convert.ToInt32(Passvalue2);
                 int CountRow = 0;
                 int overlap = 0;
@@ -191,17 +193,17 @@ namespace TestForm
                 {
                     string EmpI = rdr["emp_id"].ToString();  //직원 id 값 변수에 넣음
                     string em_rfid = rdr["RFID"] as string;
-                    EmpID = Convert.ToInt32(EmpI);         // int 값으로 변경
+                    em_id = Convert.ToInt32(EmpI);         // int 값으로 변경
                     if (em_rfid == snstr&&snstr!="")
                         overlap = 1;
 
-/*                    if (pass == EmpID)
-                        break;*/
+                    if (pass == em_id)
+                        EmpID = em_id;
                 }
                 rdr.Close();
                 if (overlap == 1)
                 {
-                    cmd.CommandText = ($"update emp_info set rfid ='null' where rfid ='{snstr}'");
+                    cmd.CommandText = ($"update emp_info set rfid = '' where rfid ='{snstr}'");
                     cmd.ExecuteNonQuery();
                 }
 
@@ -223,7 +225,7 @@ namespace TestForm
                     cmd.CommandText = ($"select * from emp_img");
                     rdr = cmd.ExecuteReader();
 
-                    if (CountRow != 0) //테이블에 행이 있을 때 실행
+                    if (CountRow != 0) //테이블에 행이 있을 때 
                     {
                         while (rdr.Read())
                         {
@@ -246,14 +248,14 @@ namespace TestForm
                             if (ImageNumber == EmpID) // 사용자 정보에 원래 사진이 있었을 때 실행
                             {
                                 SQL = $"update emp_img set Image = @Image, Image_name = @ImageName where ImageNo = {EmpID}";
-                                SQL2 = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = '{a}', rfid= '{snstr}' where emp_id = {Passvalue2}";
+                                SQL2 = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = '{a}', rfid= '{emp_rfid.Text}' where emp_id = {Passvalue2}";
                                 break;
                             }
 
                             else // 사용자 정보에 원래 사진이 없었을 때 실행asd
                             {
                                 SQL = $"INSERT INTO emp_img (ImageNo, Image, Image_name) VALUES(@ImageNo, @Image, @ImageName)";
-                                SQL2 = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = {a}, rfid= '{snstr}' where emp_id = {Passvalue2}";
+                                SQL2 = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = {a}, rfid= '{emp_rfid.Text}' where emp_id = {Passvalue2}";
                             }
 
                         }
@@ -272,7 +274,7 @@ namespace TestForm
                         }
 
                         SQL = $"INSERT INTO emp_img (ImageNo, Image, Image_name) VALUES(@ImageNo, @Image, @ImageName)";
-                        SQL2 = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = {a}, rfid= '{snstr}' where emp_id = {Passvalue2}";
+                        SQL2 = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = {a}, rfid= '{emp_rfid.Text}' where emp_id = {Passvalue2}";
                     }
 
                     rdr.Close();
@@ -287,9 +289,9 @@ namespace TestForm
 
                     cmd.CommandText = SQL2;
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("수정되었습니다.");
+                    
 
-
+                    //conn.Open();
                     cmd.CommandText = ($"select * from emp_info where emp_id = {Passvalue2}");
                     rdr = cmd.ExecuteReader();
 
@@ -315,6 +317,7 @@ namespace TestForm
                         dp.emp_addr.Text = Emp_addr;
                         dp.emp_bl.Text = blood_type;
                         dp.emp_d.Text = Dept_id;
+                        
 
                     }
                     rdr.Close();
@@ -331,12 +334,12 @@ namespace TestForm
                             dp.pictureBox1.Image = Image.FromFile(ImgName);
                         }
                     }
+                    MessageBox.Show("수정되었습니다.");
                     rdr.Close();
-
                     this.Close();
                 }
 
-
+                //사진없음
                 else
                 {
                     int a = 0;
@@ -352,7 +355,7 @@ namespace TestForm
 
                     
 
-                    cmd.CommandText = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = {a}, rfid= '{snstr}' where emp_id = {Passvalue2}";
+                    cmd.CommandText = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = {a}, rfid= '{emp_rfid.Text}' where emp_id = {Passvalue2}";
                     cmd.ExecuteNonQuery();
 
                     cmd.CommandText = ($"select * from emp_info where emp_id = {Passvalue2}");
@@ -391,9 +394,9 @@ namespace TestForm
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
-                MessageBox.Show("수정되었습니다.");
+                //MessageBox.Show("수정되었습니다.");
             }
-            conn.Close();
+            
 
 
         }
