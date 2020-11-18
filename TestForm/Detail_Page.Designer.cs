@@ -123,7 +123,7 @@
             // dataGridView1
             // 
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.Snow;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.시간,
@@ -158,7 +158,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Snow;
+            this.label2.BackColor = System.Drawing.Color.White;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Font = new System.Drawing.Font("돋움", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(66)))), ((int)(((byte)(57)))));
@@ -172,7 +172,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Snow;
+            this.label3.BackColor = System.Drawing.Color.White;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Font = new System.Drawing.Font("돋움", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(66)))), ((int)(((byte)(57)))));
@@ -186,7 +186,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Snow;
+            this.label4.BackColor = System.Drawing.Color.White;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Font = new System.Drawing.Font("돋움", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(66)))), ((int)(((byte)(57)))));
@@ -201,7 +201,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Snow;
+            this.label5.BackColor = System.Drawing.Color.White;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label5.Font = new System.Drawing.Font("돋움", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(66)))), ((int)(((byte)(57)))));
@@ -215,7 +215,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Snow;
+            this.label6.BackColor = System.Drawing.Color.White;
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label6.Font = new System.Drawing.Font("돋움", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(66)))), ((int)(((byte)(57)))));
@@ -229,7 +229,7 @@
             // emp_id
             // 
             this.emp_id.AutoSize = true;
-            this.emp_id.BackColor = System.Drawing.Color.Snow;
+            this.emp_id.BackColor = System.Drawing.Color.White;
             this.emp_id.Dock = System.Windows.Forms.DockStyle.Fill;
             this.emp_id.Font = new System.Drawing.Font("돋움", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.emp_id.Location = new System.Drawing.Point(3, 378);
@@ -242,7 +242,7 @@
             // na
             // 
             this.na.AutoSize = true;
-            this.na.BackColor = System.Drawing.Color.Snow;
+            this.na.BackColor = System.Drawing.Color.White;
             this.na.Dock = System.Windows.Forms.DockStyle.Fill;
             this.na.Font = new System.Drawing.Font("돋움", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.na.Location = new System.Drawing.Point(3, 315);
@@ -255,7 +255,7 @@
             // emp_d
             // 
             this.emp_d.AutoSize = true;
-            this.emp_d.BackColor = System.Drawing.Color.Snow;
+            this.emp_d.BackColor = System.Drawing.Color.White;
             this.emp_d.Dock = System.Windows.Forms.DockStyle.Fill;
             this.emp_d.Font = new System.Drawing.Font("돋움", 13.8F);
             this.emp_d.ForeColor = System.Drawing.Color.Black;
@@ -269,7 +269,7 @@
             // emp_addr
             // 
             this.emp_addr.AutoSize = true;
-            this.emp_addr.BackColor = System.Drawing.Color.Snow;
+            this.emp_addr.BackColor = System.Drawing.Color.White;
             this.emp_addr.Dock = System.Windows.Forms.DockStyle.Fill;
             this.emp_addr.Font = new System.Drawing.Font("돋움", 13.8F);
             this.emp_addr.ForeColor = System.Drawing.Color.Black;
@@ -283,7 +283,7 @@
             // emp_bl
             // 
             this.emp_bl.AutoSize = true;
-            this.emp_bl.BackColor = System.Drawing.Color.Snow;
+            this.emp_bl.BackColor = System.Drawing.Color.White;
             this.emp_bl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.emp_bl.Font = new System.Drawing.Font("돋움", 13.8F);
             this.emp_bl.ForeColor = System.Drawing.Color.Black;
@@ -297,7 +297,7 @@
             // emp_tel
             // 
             this.emp_tel.AutoSize = true;
-            this.emp_tel.BackColor = System.Drawing.Color.Snow;
+            this.emp_tel.BackColor = System.Drawing.Color.White;
             this.emp_tel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.emp_tel.Font = new System.Drawing.Font("돋움", 13.8F);
             this.emp_tel.ForeColor = System.Drawing.Color.Black;
@@ -311,7 +311,7 @@
             // emp_etel
             // 
             this.emp_etel.AutoSize = true;
-            this.emp_etel.BackColor = System.Drawing.Color.Snow;
+            this.emp_etel.BackColor = System.Drawing.Color.White;
             this.emp_etel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.emp_etel.Font = new System.Drawing.Font("돋움", 13.8F);
             this.emp_etel.ForeColor = System.Drawing.Color.Black;
@@ -324,7 +324,7 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.Snow;
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.White;
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.36309F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 76.6369F));
@@ -343,7 +343,7 @@
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.BackColor = System.Drawing.Color.Snow;
+            this.tableLayoutPanel2.BackColor = System.Drawing.Color.White;
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.pictureBox1, 0, 0);
@@ -368,13 +368,14 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Snow;
+            this.label1.BackColor = System.Drawing.Color.White;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("굴림", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.Location = new System.Drawing.Point(3, 567);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(217, 63);
             this.label1.TabIndex = 14;
+            this.label1.Text = "00:00";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel3
@@ -398,7 +399,7 @@
             // 
             // tableLayoutPanel4
             // 
-            this.tableLayoutPanel4.BackColor = System.Drawing.Color.Snow;
+            this.tableLayoutPanel4.BackColor = System.Drawing.Color.White;
             this.tableLayoutPanel4.ColumnCount = 2;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -495,7 +496,7 @@
             // 
             // tableLayoutPanel10
             // 
-            this.tableLayoutPanel10.BackColor = System.Drawing.Color.Snow;
+            this.tableLayoutPanel10.BackColor = System.Drawing.Color.White;
             this.tableLayoutPanel10.ColumnCount = 2;
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));

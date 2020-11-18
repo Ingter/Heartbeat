@@ -53,6 +53,7 @@
             this.emp_rfid = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -217,7 +218,7 @@
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(328, 376);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(72, 32);
+            this.button1.Size = new System.Drawing.Size(136, 32);
             this.button1.TabIndex = 19;
             this.button1.Text = "변경";
             this.button1.UseVisualStyleBackColor = false;
@@ -234,9 +235,9 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(368, 472);
+            this.button2.Location = new System.Drawing.Point(400, 464);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(104, 48);
+            this.button2.Size = new System.Drawing.Size(64, 48);
             this.button2.TabIndex = 20;
             this.button2.Text = "수정";
             this.button2.UseVisualStyleBackColor = false;
@@ -247,7 +248,7 @@
             this.txtPath.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.txtPath.Location = new System.Drawing.Point(328, 416);
             this.txtPath.Name = "txtPath";
-            this.txtPath.Size = new System.Drawing.Size(144, 27);
+            this.txtPath.Size = new System.Drawing.Size(136, 27);
             this.txtPath.TabIndex = 21;
             // 
             // emp_bl
@@ -291,13 +292,33 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(66)))), ((int)(((byte)(57)))));
+            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(66)))), ((int)(((byte)(57)))));
+            this.button3.FlatAppearance.BorderSize = 2;
+            this.button3.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(57)))), ((int)(((byte)(61)))));
+            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(57)))), ((int)(((byte)(61)))));
+            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(157)))), ((int)(((byte)(57)))), ((int)(((byte)(61)))));
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(328, 464);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(64, 48);
+            this.button3.TabIndex = 26;
+            this.button3.Text = "취소";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // Emp_Update
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackColor = System.Drawing.Color.Snow;
-            this.ClientSize = new System.Drawing.Size(617, 533);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(617, 551);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.emp_rfid);
             this.Controls.Add(this.emp_d);
@@ -359,5 +380,6 @@
         private System.Windows.Forms.TextBox emp_rfid;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button button3;
     }
 }

@@ -53,6 +53,31 @@ namespace TestForm
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
+            conn = new MySqlConnection(strConn);
+            cmd = new MySqlCommand();
+            conn.Open();
+            cmd.Connection = conn;
+
+            string RFID_STATUS = "";
+            cmd.CommandText = ($"select RFID_STATUS from RFID_STATUS");
+            rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                RFID_STATUS = rdr["RFID_STATUS"].ToString();
+
+            }
+            rdr.Close();
+            if (RFID_STATUS == "1")
+            {
+                RFID_STATUS = "0";
+                cmd.CommandText = ($"update RFID_STATUS set rfid_status ='{RFID_STATUS}'");
+                cmd.ExecuteNonQuery();
+            }
+            conn.Close();
+
+            timer1.Interval = 1000;
             timer1.Start();
             
         }
@@ -114,7 +139,7 @@ namespace TestForm
                 byte[] rawData;
                 FileStream fs;
                 int ImgNum = 0;
-
+                int overlap = 0;
                 conn = new MySqlConnection(strConn);
                 conn.Open();
 
@@ -131,8 +156,20 @@ namespace TestForm
                 {
                     string ImgN = textBox1.Text;
                     ImgNum = Convert.ToInt32(ImgN);
+                    string EmpI = rdr["emp_id"].ToString();  //직원 id 값 변수에 넣음
+                    string em_rfid = rdr["RFID"] as string;
+                    if (em_rfid == snstr&& snstr!="")
+                        overlap = 1;
                 }
                 rdr.Close();
+
+
+                if (overlap == 1)
+                {
+                    cmd.CommandText = ($"update emp_info set rfid ='null' where rfid ='{snstr}'");
+                    cmd.ExecuteNonQuery();
+                }
+
 
                 string SQL;
                 string SQL2;
@@ -261,11 +298,183 @@ namespace TestForm
 
                 mp.dataGridView1.Rows.Add(emp_info);
             }
+            rdr.Close();
+
+            string RFID_STATUS = "";
+            cmd.CommandText = ($"select RFID_STATUS from RFID_STATUS");
+            rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                RFID_STATUS = rdr["RFID_STATUS"].ToString();
+
+            }
+            rdr.Close();
+            if (RFID_STATUS == "0")
+            {
+                RFID_STATUS = "1";
+                cmd.CommandText = ($"update RFID_STATUS set rfid_status ='{RFID_STATUS}'");
+                cmd.ExecuteNonQuery();
+            }
+
+
+            conn.Close();
+            timer1.Stop();
+
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            textBox7.Text = userInfo.SnStr;
+            Read_RFID_And_UPDATE_UserInfo();
+            if (snstr != "")
+                textBox7.Text = snstr;
+        }
+
+        private int g_rHandle, g_retCode;
+        private bool g_isConnected = false;
+        public string snstr = "";
+
+        public void Read_RFID_And_UPDATE_UserInfo()
+        {
+
+            if (!g_isConnected)
+            {
+                RFID_conn();
+                //MessageBox.Show("RFID 연결상태를 확인해주세요.");
+            }
+            else
+            {
+
+                byte[] TagLength = new byte[51];
+                byte TagFound = 0;
+                byte[] TagType = new byte[51];
+                byte[] SN = new byte[451];
+                int ctr;
+                snstr = "";
+
+                g_retCode = ACR120U.ACR120_ListTags(g_rHandle, ref TagFound, ref TagType[0], ref TagLength[0], ref SN[0]);
+
+                if (g_retCode < 0) ;
+                else
+                {
+
+                    for (ctr = 0; ctr < TagLength[0]; ctr++)
+                    {
+
+                        snstr = snstr + string.Format("{0:X2} ", SN[ctr]);
+                        //userinfo.SnStr = snstr;
+
+                    }
+                    //userinfo.SnStr = snstr;
+                    /*                    Detail_Page DP = new Detail_Page();
+                                        DP.Passvalue = snstr;  // 전달자(Passvalue)를 통해서 dp페이지로 전달*/
+
+                    conn = new MySqlConnection(strConn);
+                    cmd = new MySqlCommand();
+                    conn.Open();
+                    cmd.Connection = conn;
+                    cmd.CommandText = ($"select rfid from emp_info");
+                    rdr = cmd.ExecuteReader();
+                    string Emp_id = "";
+                    string Emp_name = "";
+                    string rfid = "";
+
+                    while (rdr.Read())
+                    {
+                        rfid = rdr["rfid"] as string;
+                        Console.WriteLine(rfid);
+
+                    }
+                    rdr.Close();
+                    //snstr = rfid;
+
+
+                    /*                    while (rdr.Read())
+                                        {
+
+                                            Emp_id = rdr["emp_id"].ToString();
+                                            Emp_name = rdr["emp_name"] as string;
+
+                                        }
+                                        rdr.Close();*/
+
+                    //Emp_Update f1 = new Emp_Update(userinfo);
+
+
+                    /*                    if (work == 1)
+                                        {
+                                            cmd.CommandText = $"insert into attendance_check (emp_id, emp_name, time) " +
+                                                                 $"values('{Emp_id}','{Emp_name}','{time}')";
+                                            cmd.ExecuteNonQuery();
+                                        }*/
+
+                    /*                    if (string.IsNullOrEmpty(snstr) == false)
+                                        {
+                                            timer1.Stop();
+                                            Delay(2000);
+                                            timer1.Start();
+                                            return;
+                                        }*/
+
+                    conn.Close();
+
+                }
+            }
+        }
+
+        private void RFID_conn()
+        {
+
+            int ctr = 0;
+            byte[] FirmwareVer = new byte[31];
+            byte[] FirmwareVer1 = new byte[20];
+            byte infolen = 0x00;
+            string FirmStr;
+            ACR120U.tReaderStatus ReaderStat = new ACR120U.tReaderStatus();
+
+
+
+            g_rHandle = ACR120U.ACR120_Open(0);
+            if (g_rHandle != 0)
+            {
+                //DisplayMessage("[X] " + ACR120U.GetErrMsg(g_rHandle));
+            }
+            else
+            {
+
+                //DisplayMessage("Connected to USB" + string.Format("{0}", 0 + 1));
+                g_isConnected = true;
+
+                //Get the DLL version the program is using
+                g_retCode = ACR120U.ACR120_RequestDLLVersion(ref infolen, ref FirmwareVer[0]);
+                if (g_retCode < 0) ;
+
+                //DisplayMessage("[X] " + ACR120U.GetErrMsg(g_retCode));
+
+                else
+                {
+                    FirmStr = "";
+                    for (ctr = 0; ctr < Convert.ToInt16(infolen) - 1; ctr++)
+                        FirmStr = FirmStr + char.ToString((char)(FirmwareVer[ctr]));
+                    //DisplayMessage("DLL Version : " + FirmStr);
+                }
+
+                //Routine to get the firmware version.
+                g_retCode = ACR120U.ACR120_Status(g_rHandle, ref FirmwareVer1[0], ref ReaderStat);
+                if (g_retCode < 0) ;
+
+                //DisplayMessage("[X] " + ACR120U.GetErrMsg(g_retCode));
+
+                else
+                {
+                    FirmStr = "";
+                    for (ctr = 0; ctr < Convert.ToInt16(infolen); ctr++)
+                        if ((FirmwareVer1[ctr] != 0x00) && (FirmwareVer1[ctr] != 0xFF))
+                            FirmStr = FirmStr + char.ToString((char)(FirmwareVer1[ctr]));
+                    //DisplayMessage("Firmware Version : " + FirmStr);
+                }
+
+            }
         }
     }   
 }

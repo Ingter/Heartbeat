@@ -192,7 +192,7 @@ namespace TestForm
                     string EmpI = rdr["emp_id"].ToString();  //직원 id 값 변수에 넣음
                     string em_rfid = rdr["RFID"] as string;
                     EmpID = Convert.ToInt32(EmpI);         // int 값으로 변경
-                    if (em_rfid == snstr)
+                    if (em_rfid == snstr&&snstr!="")
                         overlap = 1;
 
 /*                    if (pass == EmpID)
@@ -201,10 +201,8 @@ namespace TestForm
                 rdr.Close();
                 if (overlap == 1)
                 {
-                    cmd.CommandText = ($"delete from emp_info where rfid = '{snstr}'");
+                    cmd.CommandText = ($"update emp_info set rfid ='null' where rfid ='{snstr}'");
                     cmd.ExecuteNonQuery();
-
-                    conn.Close();
                 }
 
                 if (imgPath != "")  // 사용자가 이미지를 등록했을 때  실행
@@ -354,7 +352,7 @@ namespace TestForm
 
                     
 
-                    cmd.CommandText = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = {a} where emp_id = {Passvalue2}";
+                    cmd.CommandText = $"update emp_info set emp_name='{emp_name.Text}', emp_email='{emp_email.Text}',emp_tel = '{emp_tel.Text}', emp_emer_tel='{emp_etel.Text}',emp_addr='{emp_addr.Text}', blood_type='{emp_bl.Text}', dept_id = {a}, rfid= '{snstr}' where emp_id = {Passvalue2}";
                     cmd.ExecuteNonQuery();
 
                     cmd.CommandText = ($"select * from emp_info where emp_id = {Passvalue2}");
@@ -395,6 +393,7 @@ namespace TestForm
                 MessageBox.Show(ex.ToString());
                 MessageBox.Show("수정되었습니다.");
             }
+            conn.Close();
 
 
         }
@@ -461,23 +460,10 @@ namespace TestForm
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            /*            MyRFID.Read_RFID_And_UPDATE_UserInfo();
-                        MyRFID myRFID = new MyRFID();
-                        string aa = "";
-                        aa = myRFID.Read_RFID_And_UPDATE_UserInfo(); //이것의 함수를 string만들어서 리턴을 rfid값하던가
 
-                        *//*            if(myRFID.snstr!="")
-                                    emp_rfid.Text=myRFID.snstr; //이것의 값을 rfid값하던가 하셈*//*
-                        string bb =MyRFID.snstr;
-                        if (aa != "")
-                            emp_rfid.Text = aa;*/
             Read_RFID_And_UPDATE_UserInfo();
             if (snstr != "")
                 emp_rfid.Text = snstr;
-
-
-
-
 
         }
         private int g_rHandle, g_retCode;
@@ -570,6 +556,11 @@ namespace TestForm
 
                 }
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void RFID_conn()
