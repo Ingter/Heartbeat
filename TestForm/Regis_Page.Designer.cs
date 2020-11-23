@@ -141,6 +141,7 @@
             this.textBox3.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.textBox3.Location = new System.Drawing.Point(176, 184);
             this.textBox3.Name = "textBox3";
+            this.textBox3.PasswordChar = '*';
             this.textBox3.Size = new System.Drawing.Size(216, 27);
             this.textBox3.TabIndex = 9;
             // 
@@ -205,10 +206,10 @@
             this.radioButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(66)))), ((int)(((byte)(57)))));
             this.radioButton1.Location = new System.Drawing.Point(176, 288);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(79, 24);
+            this.radioButton1.Size = new System.Drawing.Size(92, 24);
             this.radioButton1.TabIndex = 17;
             this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "master";
+            this.radioButton1.Text = "manager";
             this.radioButton1.UseVisualStyleBackColor = true;
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
@@ -219,10 +220,10 @@
             this.radioButton2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(66)))), ((int)(((byte)(57)))));
             this.radioButton2.Location = new System.Drawing.Point(272, 288);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(112, 24);
+            this.radioButton2.Size = new System.Drawing.Size(123, 24);
             this.radioButton2.TabIndex = 18;
             this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "non-master";
+            this.radioButton2.Text = "sub-manager";
             this.radioButton2.UseVisualStyleBackColor = true;
             this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
@@ -231,7 +232,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(550, 377);
             this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.radioButton1);

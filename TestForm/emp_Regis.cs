@@ -158,15 +158,16 @@ namespace TestForm
                     ImgNum = Convert.ToInt32(ImgN);
                     string EmpI = rdr["emp_id"].ToString();  //직원 id 값 변수에 넣음
                     string em_rfid = rdr["RFID"] as string;
-                    if (em_rfid == snstr&& snstr!="")
+                    if (em_rfid == textBox7.Text&& textBox7.Text != "")
                         overlap = 1;
+
                 }
                 rdr.Close();
 
 
                 if (overlap == 1)
                 {
-                    cmd.CommandText = ($"update emp_info set rfid ='null' where rfid ='{snstr}'");
+                    cmd.CommandText = ($"update emp_info set rfid ='null' where rfid ='{textBox7.Text}'");
                     cmd.ExecuteNonQuery();
                 }
 
@@ -202,6 +203,10 @@ namespace TestForm
                     SQL = $"INSERT INTO emp_img (ImageNo, Image, Image_name) VALUES(@ImageNo, @Image, @ImageName)";
                     SQL2 = $"insert into emp_info (emp_id, emp_name, emp_email, emp_tel, emp_addr, emp_emer_tel, blood_type, dept_id, rfid) values ({textBox1.Text},'{textBox2.Text}','{textBox3.Text}','{textBox4.Text}','{textBox5.Text}','{textBox6.Text}','{comboBox1.Text}',{a} ,'{textBox7.Text}')";
 
+                    //쿼리 넣는 순서를 emp_info로 변경해서 오류 수정
+                    cmd.CommandText = SQL2;
+                    cmd.ExecuteNonQuery();
+
                     cmd.CommandText = SQL;
 
                     cmd.Parameters.AddWithValue("@ImageNo", ImgNum);
@@ -210,8 +215,8 @@ namespace TestForm
 
                     cmd.ExecuteNonQuery();
 
-                    cmd.CommandText = SQL2;
-                    cmd.ExecuteNonQuery();
+/*                    cmd.CommandText = SQL2;
+                    cmd.ExecuteNonQuery();*/
 
                     MessageBox.Show("작업자 등록이 완료되었습니다.");
                     this.Close();
@@ -247,9 +252,9 @@ namespace TestForm
             }
             catch (MySqlException ex)
             {
-
                 //MessageBox.Show(ex.ToString());
-                MessageBox.Show("중복된 ID입니다.");
+                //두개 구분가능한가?
+                MessageBox.Show("중복ID확인 또는 빈칸을 모두 채워주세요.");
             }
         }
 
@@ -386,36 +391,6 @@ namespace TestForm
 
                     }
                     rdr.Close();
-                    //snstr = rfid;
-
-
-                    /*                    while (rdr.Read())
-                                        {
-
-                                            Emp_id = rdr["emp_id"].ToString();
-                                            Emp_name = rdr["emp_name"] as string;
-
-                                        }
-                                        rdr.Close();*/
-
-                    //Emp_Update f1 = new Emp_Update(userinfo);
-
-
-                    /*                    if (work == 1)
-                                        {
-                                            cmd.CommandText = $"insert into attendance_check (emp_id, emp_name, time) " +
-                                                                 $"values('{Emp_id}','{Emp_name}','{time}')";
-                                            cmd.ExecuteNonQuery();
-                                        }*/
-
-                    /*                    if (string.IsNullOrEmpty(snstr) == false)
-                                        {
-                                            timer1.Stop();
-                                            Delay(2000);
-                                            timer1.Start();
-                                            return;
-                                        }*/
-
                     conn.Close();
 
                 }

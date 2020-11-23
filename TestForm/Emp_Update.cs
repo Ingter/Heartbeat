@@ -194,7 +194,7 @@ namespace TestForm
                     string EmpI = rdr["emp_id"].ToString();  //직원 id 값 변수에 넣음
                     string em_rfid = rdr["RFID"] as string;
                     em_id = Convert.ToInt32(EmpI);         // int 값으로 변경
-                    if (em_rfid == snstr&&snstr!="")
+                    if (em_rfid == emp_rfid.Text && emp_rfid.Text != "")
                         overlap = 1;
 
                     if (pass == em_id)
@@ -203,7 +203,7 @@ namespace TestForm
                 rdr.Close();
                 if (overlap == 1)
                 {
-                    cmd.CommandText = ($"update emp_info set rfid = '' where rfid ='{snstr}'");
+                    cmd.CommandText = ($"update emp_info set rfid = 'null' where rfid ='{emp_rfid.Text}'");
                     cmd.ExecuteNonQuery();
                 }
 
