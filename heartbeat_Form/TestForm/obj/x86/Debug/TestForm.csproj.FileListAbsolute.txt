@@ -1,0 +1,10 @@
+C:\Heartbeat\TestForm\obj\x86\Debug\TestForm.Detail_Page.resources
+C:\Heartbeat\TestForm\obj\x86\Debug\TestForm.Emp_Update.resources
+C:\Heartbeat\TestForm\obj\x86\Debug\TestForm.emp_Regis.resources
+C:\Heartbeat\TestForm\obj\x86\Debug\TestForm.Login.resources
+C:\Heartbeat\TestForm\obj\x86\Debug\TestForm.Man_Page.resources
+C:\Heartbeat\TestForm\obj\x86\Debug\TestForm.Regis_Page.resources
+C:\Heartbeat\TestForm\obj\x86\Debug\TestForm.Properties.Resources.resources
+C:\Heartbeat\TestForm\obj\x86\Debug\TestForm.RFID.resources
+C:\Heartbeat\TestForm\obj\x86\Debug\TestForm.csproj.GenerateResource.cache
+C:\Heartbeat\TestForm\obj\x86\Debug\TestForm.csproj.CoreCompileInputs.cache
